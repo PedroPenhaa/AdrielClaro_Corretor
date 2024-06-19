@@ -1,0 +1,52 @@
+#s__home {
+   width: 100%;
+   height: calc(100vh - 9.6rem);
+   background-color: red;
+   background-image: url('../assets/bg/bg.jpg');
+   background-size: cover;
+
+   .container {
+      @include flex(column, center, center);
+      height: 100%;
+      width: 100%;
+      color: white;
+
+      h1 {
+         color: white !important;
+      }
+
+      .filter {
+         background-color: rgba(0, 0, 0, 0.5);
+         width: 70rem;
+         padding: 1rem;
+         border: 1px solid red;
+
+         p {
+            margin-bottom: 1rem;
+         }
+
+         form {
+            @include flex(column, center, center);
+
+            .filters {
+               @include flex(row, center, center);
+               gap: 1rem; /* Adiciona espaço entre os itens */
+
+               .filter-item {
+                  width: 10rem;
+
+                  label {
+                     display: block;
+                     margin-bottom: 0.5rem;
+                  }
+
+                  input,
+                  select {
+                     width: 100%;
+                  }
+               }
+            }
+         }
+      }
+   }
+}

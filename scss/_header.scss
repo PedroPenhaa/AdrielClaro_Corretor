@@ -1,0 +1,45 @@
+header {
+   background-color: #0B0A0D;
+   height: calc(22vh);
+ 
+   .custom-header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 1rem;
+ 
+     a {
+       @include flex(column, center, center);
+ 
+       img {
+         width: 8rem;
+         height: auto;
+       }
+ 
+       p {
+         color: white;
+         font-weight: bold;
+         font-size: 0.6rem;
+         margin: 0;
+       }
+     }
+ 
+     nav ul {
+       display: flex;
+       list-style: none;
+       margin: 0;
+       padding: 0;
+       gap: 40px;
+       li {
+         margin-left: 1rem;
+ 
+         a {
+            font-weight: bold;
+           color: white;
+           text-decoration: none;
+         }
+       }
+     }
+   }
+ }
+ 

@@ -1,0 +1,1 @@
+{"version":3,"sources":["script.js"],"names":["document","addEventListener","console","log"],"mappings":"AAAAA,SAASC,iBAAiB,mBAAoB,WAC3CC,QAAQC,IAAI,8BAA8B,CAD7CH,CAAAA","file":"script.js","sourcesContent":["document.addEventListener('DOMContentLoaded', () => {\n   console.log('JavaScript está funcionando!');\n });\n "]}
