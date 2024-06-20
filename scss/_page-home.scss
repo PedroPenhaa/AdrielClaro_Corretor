@@ -207,3 +207,24 @@ section {
       }
    }
 }
+
+
+#s__sobre{
+   background-color: var(primary-yellow);
+   padding: 10rem;
+
+
+   .container{
+      @include flex(row, center, center);
+      gap: 10rem;
+      .left{
+         width: 30%;
+         iframe{
+            width: 18rem;
+         }
+      }
+      .right{
+         width: 50%;
+      }
+   }
+}
