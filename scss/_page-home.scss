@@ -1,6 +1,9 @@
+section{
+      width: 100%;
+      height: calc(100vh - 9.6rem);
+}
+
 #s__home {
-   width: 100%;
-   height: calc(100vh - 9.6rem);
    background-color: red;
    background-image: url('../assets/bg/bg.jpg');
    background-size: cover;
@@ -50,3 +53,24 @@
       }
    }
 }
+
+
+#s__imoveis{
+   @include flex(column, center, center);
+   gap: 20px;
+   .container{
+      .row{
+         
+         .card{
+            width: 250px;
+            height: 250px;
+            img{
+
+            }
+            .card-body{
+               
+            }
+         }
+         }
+      }
+   }

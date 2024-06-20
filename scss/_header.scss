@@ -1,6 +1,6 @@
 header {
    background-color: #0B0A0D;
-   height: calc(22vh);
+   height: calc(18vh);
  
    .custom-header {
      display: flex;
@@ -12,7 +12,7 @@ header {
        @include flex(column, center, center);
  
        img {
-         width: 8rem;
+         width: 6rem;
          height: auto;
        }
  
