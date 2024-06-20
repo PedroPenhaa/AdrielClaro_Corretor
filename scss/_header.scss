@@ -1,25 +1,25 @@
 header {
    background-color: #0B0A0D;
-   height: calc(18vh);
+   height: auto;
  
    .custom-header {
      display: flex;
      justify-content: space-between;
      align-items: center;
-     padding: 1rem;
+     padding: 2rem 10rem;
  
      a {
        @include flex(column, center, center);
  
        img {
-         width: 6rem;
+         width: 10rem;
          height: auto;
        }
  
        p {
          color: white;
          font-weight: bold;
-         font-size: 0.6rem;
+         font-size: 0.9rem;
          margin: 0;
        }
      }
@@ -35,8 +35,11 @@ header {
  
          a {
             font-weight: bold;
-           color: white;
+           color: var(--primary-yellow);
            text-decoration: none;
+         }
+         a:hover {
+           color: var(--light-gray);
          }
        }
      }

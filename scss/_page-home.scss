@@ -1,10 +1,9 @@
-section{
-      width: 100%;
-      height: calc(100vh - 9.6rem);
+section {
+   width: 100%;
+   height: calc(100vh - 9.6rem);
 }
 
 #s__home {
-   background-color: red;
    background-image: url('../assets/bg/bg.jpg');
    background-size: cover;
 
@@ -12,17 +11,21 @@ section{
       @include flex(column, center, center);
       height: 100%;
       width: 100%;
-      color: white;
+      gap: 2rem;
+      color:  var(--primary-yellow);
+     
 
       h1 {
-         color: white !important;
+         color:  var(--primary-yellow-dark);
       }
 
       .filter {
+         @include flex(column, center, center);
          background-color: rgba(0, 0, 0, 0.5);
-         width: 70rem;
+         width: 120rem;
          padding: 1rem;
-         border: 1px solid red;
+         border: 1px solid black;
+         border-radius: 20px;
 
          p {
             margin-bottom: 1rem;
@@ -30,22 +33,46 @@ section{
 
          form {
             @include flex(column, center, center);
+            width: 100%;
+            padding: 2rem;
 
             .filters {
-               @include flex(row, center, center);
-               gap: 1rem; /* Adiciona espaço entre os itens */
+               @include flex(row, center, center); 
+               gap: 5rem; 
+               height: auto;
 
                .filter-item {
-                  width: 10rem;
+                  @include flex(column, right, center); 
+                  width: 100%;
+                  max-width: 20rem; 
+                  text-align: left;
 
                   label {
+        
+                     width: 20rem;
                      display: block;
-                     margin-bottom: 0.5rem;
+                     margin-bottom: 0.8rem;
+                     font-weight: bold;
+                     font-size: 1.5rem;
                   }
 
                   input,
                   select {
                      width: 100%;
+                     height: 30px;
+                     border-radius: 10px;
+                     padding: 0 15px;
+                  }
+
+                  button {
+                     width: 5rem;
+                     background-color: var(--primary-yellow);
+                     border: 1px solid black;
+                     border-radius: 0.5rem;
+                     display: flex;
+                     align-items: center;
+                     justify-content: center;
+                     margin-top: 2.5rem;
                   }
                }
             }
@@ -55,22 +82,128 @@ section{
 }
 
 
-#s__imoveis{
-   @include flex(column, center, center);
+#s__imoveis {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
    gap: 20px;
-   .container{
-      .row{
-         
-         .card{
-            width: 250px;
-            height: 250px;
-            img{
+   padding: 20px;
 
-            }
-            .card-body{
-               
-            }
+   .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h1 {
+         margin: 40px 0;
+         font-size: 3rem;
+         color: var(--dark-gray);
+      }
+
+      .row {
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: space-between;
+         margin-top: 20px;
+
+         .col-md-4 {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
          }
+
+         .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+            img {
+               width: 100%;
+               height: 200px;
+               object-fit: cover;
+            }
+
+            .card-body {
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+               padding: 15px;
+               text-align: center;
+
+               p{
+                  margin-bottom: 10px;
+                  font-size: 1.5rem;
+                  color: var(--lime-greeny);
+               }
+
+               h5 {
+                  margin-bottom: 10px;
+                  font-size: 1.25rem;
+                  color: #333;
+               }
+
+               .card-text {
+                  margin: 5px 0 20px 0;
+                  font-size: 1rem;
+                  font-weight: bold;
+                  color: #666;
+               }
+
+               .card-info {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  margin-bottom: 15px;
+                  gap: 1rem;
+
+                  .info-details{
+                     display: flex;
+                     flex-direction: row;
+                     align-items: flex-start;
+                     width: 100%;
+                  }
+
+                  .info-location{
+                     display: flex;
+                     flex-direction: column;
+                     align-items: flex-start;
+                     width: 100%;
+                     padding-left: 1.5rem;
+                  }
+
+                  p {
+                     margin: 0;
+                     font-size: 0.9rem;
+                     color: #666;
+
+                     i {
+                        margin-right: 5px;
+                        color: #333;
+                     }
+                  }
+               }
+
+               .btn {
+                  padding: 10px 20px;
+                  font-size: 1rem;
+                  color: #fff;
+                  background-color: #007bff;
+                  border: none;
+                  border-radius: 5px;
+                  cursor: pointer;
+
+                  &:hover {
+                     background-color: #0056b3;
+                  }
+               }
+            }
          }
       }
    }
+}
