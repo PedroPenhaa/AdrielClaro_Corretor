@@ -210,21 +210,34 @@ section {
 
 
 #s__sobre{
-   background-color: var(primary-yellow);
+   background-color: var(--primary-yellow);
    padding: 10rem;
 
 
    .container{
-      @include flex(row, center, center);
-      gap: 10rem;
-      .left{
-         width: 30%;
-         iframe{
-            width: 18rem;
+      @include flex(column, center, center);
+      h1 {
+         margin: 40px 0;
+         font-size: 3rem;
+         color: var(--dark-gray);
+      }
+
+      .content{
+         @include flex(row, center, center);
+         width: 100%;
+         gap: 10rem;
+
+         .left{
+            width: 30%;
+            iframe{
+               width: 18rem;
+            }
          }
+         .right{
+            width: 50%;
+         }
+
       }
-      .right{
-         width: 50%;
-      }
+     
    }
 }
