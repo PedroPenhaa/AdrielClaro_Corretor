@@ -12,13 +12,19 @@
 
 <body>
    <main>
+
+      <!--=====================================================================-->
+      <!--=========== HEADER  ============-->
+      <!--=====================================================================-->
       <header class="container-fluid" style="background-color: #0B0A0D;">
+
          <div class="container custom-header">
             <a>
                <img src="./assets/logos/logo_5.png" alt="Logo" class="img-fluid logo-img">
                <p>ENGENHEIRO CIVIL E CORRETOR DE IMÓVEIS</p>
                <p>CREA MG 380290 - CRECI 53770</p>
             </a>
+
             <nav>
                <ul>
                   <li><a href="#">Home</a></li>
@@ -28,129 +34,152 @@
                </ul>
             </nav>
          </div>
+
       </header>
 
-      <!-- Home -->
+      <!--=====================================================================-->
+      <!--=========== HOME  ============-->
+      <!--=====================================================================-->
       <section class="container-fluid" id="s__home"
          style="background-image: url('./assets/bg/bg.jpg'); background-size: cover; background-repeat: no-repeat;">
-
          <div class="container">
+            
             <h1>Encontre o seu imóvel ideal</h1>
 
             <div class="filter">
 
                <form>
-                  <p></p>
                   <div class="filters">
+
+                     <!-- Disponíbilidade -->
                      <div class="filter-item">
-                        <label for="type">Tipo do Imóvel</label>
+                        <label for="type">Disponibilidade</label>
                         <select name="type" id="type">
-                           <option value="1">Casa</option>
-                           <option value="2">Apartamento</option>
-                           <option value="3">Terreno</option>
+                           <option value="1">Aluguel</option>
+                           <option value="2">Venda</option>
                         </select>
                      </div>
+
+                     <!-- Classificação Imóvel -->
+                     <div class="filter-item">
+                        <label for="type">Classificação do Imóvel</label>
+                        <select name="type" id="type">
+                           <option value="1">Apartamento</option>
+                           <option value="2">Casa</option>
+                           <option value="3">Sítio e Chácaras</option>
+                           <option value="4">Terra</option>
+                           <option value="5">Terreno</option>
+                        </select>
+                     </div>
+
+                     <!-- Valor Mínimo -->
                      <div class="filter-item">
                         <label for="minValue">Valor mínimo</label>
                         <input type="text" name="minValue" id="minValue" placeholder="R$ 0,00">
                      </div>
+
+                     <!-- Valor Máximo -->
                      <div class="filter-item">
                         <label for="maxValue">Valor máximo</label>
                         <input type="text" name="maxValue" id="maxValue" placeholder="R$ 0,00">
                      </div>
+
                   </div>
                </form>
+
             </div>
-         </div>
 
          </div>
-
       </section>
-      
-     <!-- Imóveis -->
-     <section class="container-fluid" id="s__imoveis">
-      <div class="title">
-         <h1> Imóveis </h1>
-      </div>
 
-      <div class="container">
-         <div class="row mt-2">
-            <!-- Card 1 -->
-            <div class="col-md-4">
-               <div class="card">
-                  <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
-                  <div class="card-body">
-                     <h5 class="card-title">Casa 1</h5>
-                     <p class="card-text">R$ 500.000,00</p>
-                     <a href="#" class="btn btn-primary">Ver mais</a>
+      <!--=====================================================================-->
+      <!--=========== IMÓVEIS  ============-->
+      <!--=====================================================================-->
+      <section class="container-fluid" id="s__imoveis">
+         <div class="container">
+          
+            <h1> Imóveis </h1>
+
+            <div class="container">
+               <div class="row mt-2">
+                  <!-- Card 1 -->
+                  <div class="col-md-4">
+                     <div class="card">
+                        <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
+                        <div class="card-body">
+                           <h5 class="card-title">Casa 1</h5>
+                           <p class="card-text">R$ 500.000,00</p>
+                           <a href="#" class="btn btn-primary">Ver mais</a>
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- Card 2 -->
+                  <div class="col-md-4">
+                     <div class="card">
+                        <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
+                        <div class="card-body">
+                           <h5 class="card-title">Casa 2</h5>
+                           <p class="card-text">R$ 600.000,00</p>
+                           <a href="#" class="btn btn-primary">Ver mais</a>
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- Card 3 -->
+                  <div class="col-md-4">
+                     <div class="card">
+                        <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
+                        <div class="card-body">
+                           <h5 class="card-title">Casa 3</h5>
+                           <p class="card-text">R$ 700.000,00</p>
+                           <a href="#" class="btn btn-primary">Ver mais</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+   
+               <div class="row mt-4">
+                  <!-- Card 4 -->
+                  <div class="col-md-4">
+                     <div class="card">
+                        <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
+                        <div class="card-body">
+                           <h5 class="card-title">Casa 4</h5>
+                           <p class="card-text">R$ 800.000,00</p>
+                           <a href="#" class="btn btn-primary">Ver mais</a>
+                        </div>
+                     </div>
+                  </div>
+                
+                  <!-- Card 5 -->
+                  <div class="col-md-4">
+                     <div class="card">
+                        <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
+                        <div class="card-body">
+                           <h5 class="card-title">Casa 5</h5>
+                           <p class="card-text">R$ 900.000,00</p>
+                           <a href="#" class="btn btn-primary">Ver mais</a>
+                        </div>
+                     </div>
+                  </div>
+              
+                  <!-- Card 6 -->
+                  <div class="col-md-4">
+                     <div class="card">
+                        <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
+                        <div class="card-body">
+                           <h5 class="card-title">Casa 6</h5>
+                           <p class="card-text">R$ 1.000.000,00</p>
+                           <a href="#" class="btn btn-primary">Ver mais</a>
+                        </div>
+                     </div>
                   </div>
                </div>
             </div>
-            <!-- Card 2 -->
-            <div class="col-md-4">
-               <div class="card">
-                  <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
-                  <div class="card-body">
-                     <h5 class="card-title">Casa 2</h5>
-                     <p class="card-text">R$ 600.000,00</p>
-                     <a href="#" class="btn btn-primary">Ver mais</a>
-                  </div>
-               </div>
-            </div>
-            <!-- Card 3 -->
-            <div class="col-md-4">
-               <div class="card">
-                  <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
-                  <div class="card-body">
-                     <h5 class="card-title">Casa 3</h5>
-                     <p class="card-text">R$ 700.000,00</p>
-                     <a href="#" class="btn btn-primary">Ver mais</a>
-                  </div>
-               </div>
-            </div>
+   
          </div>
-      
-         <div class="row mt-4">
-            <!-- Card 4 -->
-            <div class="col-md-4">
-               <div class="card">
-                  <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
-                  <div class="card-body">
-                     <h5 class="card-title">Casa 4</h5>
-                     <p class="card-text">R$ 800.000,00</p>
-                     <a href="#" class="btn btn-primary">Ver mais</a>
-                  </div>
-               </div>
-            </div>
-            <!-- Card 5 -->
-            <div class="col-md-4">
-               <div class="card">
-                  <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
-                  <div class="card-body">
-                     <h5 class="card-title">Casa 5</h5>
-                     <p class="card-text">R$ 900.000,00</p>
-                     <a href="#" class="btn btn-primary">Ver mais</a>
-                  </div>
-               </div>
-            </div>
-            <!-- Card 6 -->
-            <div class="col-md-4">
-               <div class="card">
-                  <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
-                  <div class="card-body">
-                     <h5 class="card-title">Casa 6</h5>
-                     <p class="card-text">R$ 1.000.000,00</p>
-                     <a href="#" class="btn btn-primary">Ver mais</a>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      
-      </div>
-
-   </section>
-
+      </section>
 
    </main>
 

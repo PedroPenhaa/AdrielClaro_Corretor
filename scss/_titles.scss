@@ -1,0 +1,43 @@
+h1, h2, h3, h4, h5, h6, p, span, a{
+   font-family: 'Roboto', sans-serif;
+ }
+ h2, h3{
+   line-height: 120%;
+ }
+ h2, h5, h6, p{
+   line-height: 130%;
+ }
+ h1{
+   font-size: 96px;
+   font-weight: 800;
+   line-height: 100%;
+   letter-spacing: -0.96px;
+ }
+ h2{
+   font-size: 40px;
+   font-weight: 800;
+   letter-spacing: -0.8px;
+ }
+ h3{
+   font-size: 36px;
+   font-weight: 800;
+   letter-spacing: -0.72px;
+ }
+ h4{
+   font-size: 28px;
+   font-weight: 600;
+ }
+ h5{
+   font-size: 20px;
+   font-weight: 700;
+ }
+ h6{
+   font-size: 18px;
+   font-weight: 500;
+ }
+ p{
+   color: var(--black-dark);
+   font-size: 18px;
+   font-weight: 400;
+ }
+ 

@@ -1,0 +1,50 @@
+*{
+   margin: 0;
+   padding: 0;
+   outline: 0;
+   list-style: none;
+   text-decoration: none;
+   border: 0;
+   -webkit-font-smoothing: antialiased;
+   -webkit-box-sizing: border-box;
+   box-sizing: border-box;
+   font-size: 16px;
+   font-family: 'Roboto', sans-serif;
+ }
+ html{
+   font-size: 62.5%;
+   scroll-behavior: smooth;
+   overflow-x: hidden !important;
+ }
+ body{
+   -webkit-font-smoothing: antialiased;
+ }
+ main{
+   position: relative !important;
+ }
+ a{
+   display: inline-block;
+ }
+ svg, img{
+   display: inline-block;
+   max-width: 100%;
+ }
+ img{
+   -o-object-fit: cover;
+   object-fit: cover;
+ }
+ button, a{
+   background-color: transparent;
+   border: none;
+   cursor: pointer !important;
+ }
+ button{
+   cursor: pointer;
+ }
+ :focus{
+   outline: 0;
+   box-shadow: 0 0 0 2px var(--primary-green);
+ }
+ .fancybox__container {
+   z-index: 999999 !important;
+ }
