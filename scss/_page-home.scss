@@ -83,6 +83,7 @@ section {
 
 
 #s__imoveis {
+   height: calc(190vh - 9.6rem);
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -205,8 +206,87 @@ section {
             }
          }
       }
+
+      .btn{
+         margin-top: 2rem;
+         padding: 10px 20px;
+         font-size: 2rem;
+         color: var(--primary-yellow);
+         background-color: none;
+         border: none;
+         border-radius: 5px;
+         cursor: pointer;
+
+         &:hover {
+            background-color: var(--dark-green);
+         }
+      
+      }
    }
 }
+
+
+
+#s__serviços {
+   height: calc(100vh - 9.6rem);
+   background-color: var(--primary-yellow-light);
+ 
+   .container {
+     padding: 5rem;
+     @include flex(column, left, center);
+     gap: 5rem;
+ 
+     h1 {
+       font-size: 3rem;
+       color: var(--primary-yellow);
+       text-align: center;
+       text-transform: uppercase;
+       letter-spacing: 0.1rem;
+     }
+ 
+     .content {
+       @include flex(column, right, center);
+       gap: 3rem;
+       width: 100%;
+ 
+       .row {
+         gap: 2rem; // Espaçamento entre os cartões
+ 
+         .card {
+           @include flex(column, center, center);
+           gap: 2rem;
+           background-color: var(--primary-yellow-light);
+           border: 2px solid var(--primary-yellow);
+           border-radius: 1rem;
+           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+           transition: transform 0.3s ease, box-shadow 0.3s ease;
+ 
+           &:hover {
+             transform: translateY(-10px);
+             box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+           }
+ 
+           i {
+             font-size: 5rem;
+             color: var(--primary-yellow);
+           }
+ 
+           p {
+             font-size: 1.5rem;
+             color: var(--primary-yellow);
+             font-weight: bold;
+             text-transform: uppercase;
+             margin: 0;
+           }
+         }
+       }
+     }
+   }
+ }
+ 
+
+
+
 
 
 #s__sobre{
