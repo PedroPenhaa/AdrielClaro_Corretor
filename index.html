@@ -6,26 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adriel Claro - Corretor</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="dist/css/main.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 
 <body>
     <main>
-
         <!--=====================================================================-->
         <!--=========== HEADER  ============-->
         <!--=====================================================================-->
         <header class="container-fluid" style="background-color: #0B0A0D;">
-
             <div class="custom-header">
                 <a>
                     <img src="./assets/logos/logo_5.png" alt="Logo" class="img-fluid logo-img">
                     <p>ENGENHEIRO CIVIL E CORRETOR DE IMÓVEIS</p>
                     <p>CREA MG 380290 - CRECI 53770</p>
                 </a>
-
                 <nav>
                     <ul>
                         <li><a href="#">Home</a></li>
@@ -35,72 +32,74 @@
                     </ul>
                 </nav>
             </div>
-
         </header>
 
         <!--=====================================================================-->
         <!--=========== HOME  ============-->
         <!--=====================================================================-->
-        <section class="container-fluid" id="s__home"
-            style="background-image: url('./assets/bg/bg.jpg'); background-size: cover; background-repeat: no-repeat;">
-            <div class="container">
-
-                <h1>Encontre o seu imóvel ideal</h1>
-
-                <div class="filter">
-
-                    <form>
-                        <div class="filters">
-
-                            <!-- Disponíbilidade -->
-                            <div class="filter-item">
-                                <label for="type">Disponibilidade</label>
-                                <select name="type" id="type">
-                                    <option value="1">Aluguel</option>
-                                    <option value="2">Venda</option>
-                                </select>
-                            </div>
-
-                            <!-- Classificação Imóvel -->
-                            <div class="filter-item">
-                                <label for="type">Classificação do Imóvel</label>
-                                <select name="type" id="type">
-                                    <option value="1">Apartamento</option>
-                                    <option value="2">Casa</option>
-                                    <option value="3">Sítio e Chácaras</option>
-                                    <option value="4">Terra</option>
-                                    <option value="5">Terreno</option>
-                                </select>
-                            </div>
-
-                            <!-- Valor Mínimo -->
-                            <div class="filter-item">
-                                <label for="minValue">Valor mínimo</label>
-                                <input type="text" name="minValue" id="minValue" placeholder="R$ 0,00">
-                            </div>
-
-                            <!-- Valor Máximo -->
-                            <div class="filter-item">
-                                <label for="maxValue">Valor máximo</label>
-                                <input type="text" name="maxValue" id="maxValue" placeholder="R$ 0,00">
-                            </div>
-
-
-                            <!-- Botão de pesquisa -->
-                            <div class="filter-item">
-                                <button type="submit" class="btn btn-primary">
-                                    <img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Lupa"
-                                        style="width: 20px;">
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
+        <section class="container-fluid" id="s__home">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="overlay"></div>
+                        <img src="./assets/bg/bg.jpg" alt="Background Image">
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="overlay"></div>
+                        <img src="./assets/bg/bg1.jpg" alt="Background Image">
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="overlay"></div>
+                        <img src="./assets/bg/bg2.webp" alt="Background Image">
+                    </div>
                 </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
 
+            <div class="container">
+                <div class="content-container">
+                    <h1>Encontre o seu imóvel ideal</h1>
+                    <div class="filter">
+                        <form>
+                            <div class="filters">
+                                <div class="filter-item">
+                                    <label for="availability">Disponibilidade</label>
+                                    <select name="availability" id="availability">
+                                        <option value="1">Aluguel</option>
+                                        <option value="2">Venda</option>
+                                    </select>
+                                </div>
+                                <div class="filter-item">
+                                    <label for="classification">Classificação do Imóvel</label>
+                                    <select name="classification" id="classification">
+                                        <option value="1">Apartamento</option>
+                                        <option value="2">Casa</option>
+                                        <option value="3">Sítio e Chácaras</option>
+                                        <option value="4">Terra</option>
+                                        <option value="5">Terreno</option>
+                                    </select>
+                                </div>
+                                <div class="filter-item">
+                                    <label for="minValue">Valor mínimo</label>
+                                    <input type="text" name="minValue" id="minValue" placeholder="R$ 0,00">
+                                </div>
+                                <div class="filter-item">
+                                    <label for="maxValue">Valor máximo</label>
+                                    <input type="text" name="maxValue" id="maxValue" placeholder="R$ 0,00">
+                                </div>
+                                <div class="filter-item">
+                                    <button type="submit" class="btn btn-primary">
+                                        <img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Lupa" style="width: 20px;">
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </section>
-
 
         <!--=====================================================================-->
         <!--=========== IMÓVEIS  ============-->
@@ -123,19 +122,11 @@
                                         <p><i class="fas fa-car"></i> 1 Garagem</p>
                                         <p><i class="fas fa-ruler-combined"></i> 100 m²</p>
                                     </div>
-                                    <!-- 
-                                 <div class="info-location">
-                                     <p><i class="fas fa-city"></i> Centro</p> 
-                                     <p><i class="fas fa-envelope"></i> 12345-678</p> 
-                                     <p><i class="fas fa-road"></i> Rua Capitão Quinzinho, 34</p>
-                                 </div> 
-                                 -->
                                 </div>
                                 <a href="#" class="btn btn-primary">Ver mais</a>
                             </div>
                         </div>
                     </div>
-
                     <!-- Card 2 -->
                     <div class="col-md-4">
                         <div class="card">
@@ -150,19 +141,11 @@
                                         <p><i class="fas fa-car"></i> 1 Garagem</p>
                                         <p><i class="fas fa-ruler-combined"></i> 100 m²</p>
                                     </div>
-                                    <!-- 
-                                 <div class="info-location">
-                                     <p><i class="fas fa-city"></i> Centro</p> 
-                                     <p><i class="fas fa-envelope"></i> 12345-678</p> 
-                                     <p><i class="fas fa-road"></i> Rua Capitão Quinzinho, 34</p>
-                                 </div> 
-                                 -->
                                 </div>
                                 <a href="#" class="btn btn-primary">Ver mais</a>
                             </div>
                         </div>
                     </div>
-
                     <!-- Card 3 -->
                     <div class="col-md-4">
                         <div class="card">
@@ -177,105 +160,13 @@
                                         <p><i class="fas fa-car"></i> 1 Garagem</p>
                                         <p><i class="fas fa-ruler-combined"></i> 100 m²</p>
                                     </div>
-                                    <!-- 
-                                 <div class="info-location">
-                                     <p><i class="fas fa-city"></i> Centro</p> 
-                                     <p><i class="fas fa-envelope"></i> 12345-678</p> 
-                                     <p><i class="fas fa-road"></i> Rua Capitão Quinzinho, 34</p>
-                                 </div> 
-                                 -->
                                 </div>
                                 <a href="#" class="btn btn-primary">Ver mais</a>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="row mt-4">
-
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
-                            <div class="card-body">
-                                <p>Categoria: <a>Venda</a></p>
-                                <p class="card-text">R$ 500.000,00</p>
-                                <div class="card-info">
-                                    <div class="info-details">
-                                        <p><i class="fas fa-bed"></i> 1 Quarto</p>
-                                        <p><i class="fas fa-bath"></i> 1 Banheiro</p>
-                                        <p><i class="fas fa-car"></i> 1 Garagem</p>
-                                        <p><i class="fas fa-ruler-combined"></i> 100 m²</p>
-                                    </div>
-
-                                    <div class="info-location">
-                                        <p><i class="fas fa-city"></i> Centro</p>
-                                        <p><i class="fas fa-envelope"></i> 12345-678</p>
-                                        <p><i class="fas fa-road"></i> Rua Capitão Quinzinho, 34</p>
-                                    </div>
-
-                                </div>
-                                <a href="#" class="btn btn-primary">Ver mais</a>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
-                            <div class="card-body">
-                                <p>Categoria: <a>Venda</a></p>
-                                <p class="card-text">R$ 500.000,00</p>
-                                <div class="card-info">
-                                    <div class="info-details">
-                                        <p><i class="fas fa-bed"></i> 1 Quarto</p>
-                                        <p><i class="fas fa-bath"></i> 1 Banheiro</p>
-                                        <p><i class="fas fa-car"></i> 1 Garagem</p>
-                                        <p><i class="fas fa-ruler-combined"></i> 100 m²</p>
-                                    </div>
-
-                                    <div class="info-location">
-                                        <p><i class="fas fa-city"></i> Centro</p>
-                                        <p><i class="fas fa-envelope"></i> 12345-678</p>
-                                        <p><i class="fas fa-road"></i> Rua Capitão Quinzinho, 34</p>
-                                    </div>
-
-                                </div>
-                                <a href="#" class="btn btn-primary">Ver mais</a>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
-                            <div class="card-body">
-                                <p>Categoria: <a>Venda</a></p>
-                                <p class="card-text">R$ 500.000,00</p>
-                                <div class="card-info">
-                                    <div class="info-details">
-                                        <p><i class="fas fa-bed"></i> 1 Quarto</p>
-                                        <p><i class="fas fa-bath"></i> 1 Banheiro</p>
-                                        <p><i class="fas fa-car"></i> 1 Garagem</p>
-                                        <p><i class="fas fa-ruler-combined"></i> 100 m²</p>
-                                    </div>
-
-                                    <div class="info-location">
-                                        <p><i class="fas fa-city"></i> Centro</p>
-                                        <p><i class="fas fa-envelope"></i> 12345-678</p>
-                                        <p><i class="fas fa-road"></i> Rua Capitão Quinzinho, 34</p>
-                                    </div>
-
-                                </div>
-                                <a href="#" class="btn btn-primary">Ver mais</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <a href="#" class="btn">Ver mais..</a>
-
             </div>
         </section>
 
@@ -285,10 +176,7 @@
         <section class="container-fluid" id="s__serviços">
             <div class="container">
                 <h1> Serviços </h1>
-
                 <div class="content">
-
-
                     <div class="row">
                         <!-- Card 1 -->
                         <div class="col-md-3">
@@ -312,7 +200,6 @@
                             </div>
                         </div>
                     </div>
-                    
                     <!-- Segunda linha de cartões -->
                     <div class="row mt-2">
                         <!-- Card 4 -->
@@ -337,71 +224,40 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-
             </div>
-        </section>
-
-
-
-
-        <!--=====================================================================-->
-        <!--=========== Sobre  ============-->
-        <!--=====================================================================-->
-        <section class="container-fluid" id="s__sobre">
-            <div class="container">
-                <h1> Sobre </h1>
-
-                <div class="content">
-                    <div class="left">
-                        <iframe width="560" height="315"
-                            src="https://www.youtube.com/embed/rnYnbF1FLjk?si=BnBNqPw0liSo9QQA"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-
-                    <div class="right">
-                        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non massa ac augue posuere
-                            sollicitudin. Aliquam fringilla ac arcu sed bibendum. Donec fringilla massa id mi tincidunt,
-                            vitae euismod odio tincidunt. Phasellus cursus dui in volutpat molestie. Aenean velit lacus,
-                            consectetur quis facilisis id, facilisis sit amet dui. Maecenas convallis ut enim vel
-                            mattis. Vivamus vel sapien eu quam eleifend interdum id ac leo. In sit amet cursus augue.
-
-                            Nulla mollis quam porta dui aliquam consequat. Vivamus sed quam quis dui imperdiet molestie
-                            sed at arcu. Mauris tempus, mauris rutrum auctor accumsan, elit enim iaculis magna, non
-                            commodo enim lorem ut erat. Donec neque augue, suscipit ac erat non, euismod cursus dui.
-                            Praesent rutrum egestas felis quis euismod. Suspendisse vel convallis mauris. Curabitur ac
-                            rhoncus sapien, sed condimentum metus. Curabitur dui turpis, volutpat laoreet blandit vel,
-                            malesuada nec massa. Suspendisse egestas varius nunc sed faucibus.
-
-                            Sed faucibus sit amet metus et pharetra. Aliquam luctus sem at condimentum dictum. Nulla
-                            facilisi. In hac habitasse platea dictumst. Nunc ut felis nisl. Proin volutpat efficitur
-                            lacus, placerat egestas orci vulputate a. Duis mollis ipsum turpis, a vestibulum turpis
-                            varius ut. </p>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section>
-
         </section>
     </main>
+  <script src="dist/js/all.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var swiper = new Swiper('.swiper-container', {
+      loop: true,
+        autoplay: {
+        //delay: 3500,
+        disableOnInteraction: false, 
+      }, 
+      speed: 2000, // Define a velocidade da transição para 1000ms (1 segundo)
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
 
-    <script src="dist/js/all.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-        </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
-        </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
-        </script>
+    console.log(swiper); // Para verificar se o Swiper está inicializado corretamente
+  });
+</script>
+
+
+  
 </body>
 
 </html>
