@@ -71,4 +71,16 @@
 
 
    --black: #00000;
+
+
+
+// Definições de cores
+$primary-color: #0056b3; // Azul, ajuste conforme sua paleta de cores
+$secondary-color: #ffffff; // Branco
+$hover-color: lighten($primary-color, 10%); // Azul mais claro para hover
+$text-color: #333; // Cor de texto escuro para melhor legibilidade
+
+
+
+
  }

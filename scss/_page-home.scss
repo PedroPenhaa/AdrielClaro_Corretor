@@ -170,7 +170,7 @@ section {
 
 
 #s__imoveis {
-   height: calc(190vh - 9.6rem);
+   height: calc(170vh - 9.6rem);
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -314,7 +314,7 @@ section {
 
 
 
-#s__serviços {
+/* #s__serviços {
    height: calc(100vh - 9.6rem);
    background-color: var(--primary-yellow-light);
 
@@ -369,10 +369,83 @@ section {
          }
       }
    }
+} */
+
+
+
+// Estilos para a seção de serviços
+#s__serviços {
+  padding: 40px 0;
+  background-color: var(--light-yelloww);
+
+  h1 {
+    color: #0056b3;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .content {
+
+    .row {
+      margin-bottom: 20px;
+      @include flex(row, center, center);
+      text-align: center;
+      .col-md-3 {
+        margin-top: 20px;
+      }
+
+      .card {
+        background-color: #ffffff;
+        border: 1px solid #0056b3;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 200px;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        i {
+          color:  #0056b3;
+          margin-bottom: 10px;
+        }
+
+        p {
+          margin-top: 0;
+          padding: 0 10px;
+        }
+
+        .service-description {
+          font-size: 0.9rem;
+          color: darken(#333, 20%);
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+
+  // Responsividade
+  @media (max-width: 991px) {
+    .row {
+      .col-md-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  @media (min-width: 992px) {
+    .row {
+      .col-md-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+      }
+    }
+  }
 }
-
-
-
 
 
 
