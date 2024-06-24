@@ -1,44 +1,42 @@
 section {
    width: 100%;
    height: calc(100vh - 9.6rem);
-}
-
-#s__home {
-   position: relative;
+ }
+ 
+ #s__home {
    position: relative;
    width: 100%;
    height: 100vh;
  
    .swiper-container {
-      margin-left: -15px;
-      width: 100vw;
-      height: 100vh;
-      z-index: 1;
-   
+     margin-left: -15px;
+     width: 100vw;
+     height: 100vh;
+     z-index: 1;
    }
  
    .swiper-slide {
-      position: relative;
-
-      img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-      }
-
-      .overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.5); /* Ajuste a opacidade conforme necessário */
-          z-index: 1;
-      }
-  }
+     position: relative;
+ 
+     img {
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+     }
+ 
+     .overlay {
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       background-color: rgba(0, 0, 0, 0.5); // Ajuste a opacidade conforme necessário
+       z-index: 1;
+     }
+   }
  
    .content-container {
-      z-index: 2023;
+     z-index: 2023;
      position: absolute;
      top: 50%;
      left: 50%;
@@ -46,71 +44,129 @@ section {
      color: var(--primary-yellow);
      text-align: center;
    }
+ 
    h1 {
-      color: var(--primary-yellow-dark);
+     color: var(--primary-yellow-dark);
    }
-
+ 
    .filter {
-      @include flex(column, center, center);
-      background-color: rgba(0, 0, 0, 0.5);
-      width: 120rem;
-      padding: 1rem;
-      border: 1px solid black;
-      border-radius: 20px;
-
-      p {
-         margin-bottom: 1rem;
-      }
-
-      form {
-         @include flex(column, center, center);
-         width: 100%;
-         padding: 2rem;
-
-         .filters {
-            @include flex(row, center, center);
-            gap: 5rem;
-            height: auto;
-
-            .filter-item {
-               @include flex(column, right, center);
-               width: 100%;
-               max-width: 20rem;
-               text-align: left;
-
-               label {
-
-                  width: 20rem;
-                  display: block;
-                  margin-bottom: 0.8rem;
-                  font-weight: bold;
-                  font-size: 1.5rem;
-               }
-
-               input,
-               select {
-                  width: 100%;
-                  height: 30px;
-                  border-radius: 10px;
-                  padding: 0 15px;
-               }
-
-               button {
-                  width: 5rem;
-                  background-color: var(--primary-yellow);
-                  border: 1px solid black;
-                  border-radius: 0.5rem;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  margin-top: 2.5rem;
-               }
-            }
+     @include flex(column, center, center);
+     background-color: rgba(0, 0, 0, 0.5);
+     width: 120rem;
+     padding: 1rem;
+     border: 1px solid black;
+     border-radius: 20px;
+ 
+     p {
+       margin-bottom: 1rem;
+     }
+ 
+     form {
+       @include flex(column, center, center);
+       width: 100%;
+       padding: 2rem;
+ 
+       .filters {
+         @include flex(row, center, center);
+         gap: 5rem;
+         height: auto;
+ 
+         .filter-item {
+           @include flex(column, right, center);
+           width: 100%;
+           max-width: 20rem;
+           text-align: left;
+ 
+           label {
+             width: 20rem;
+             display: block;
+             margin-bottom: 0.8rem;
+             font-weight: bold;
+             font-size: 1.5rem;
+           }
+ 
+           input,
+           select {
+             width: 100%;
+             height: 30px;
+             border-radius: 10px;
+             padding: 0 15px;
+           }
+ 
+           button {
+             width: 5rem;
+             background-color: var(--primary-yellow);
+             border: 1px solid black;
+             border-radius: 0.5rem;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             margin-top: 2.5rem;
+           }
          }
-      }
+       }
+     }
    }
-}
-
+ }
+ 
+ // Media queries for mobile
+ @media (max-width: 768px) {
+   #s__home {
+     height: auto;
+ 
+     .swiper-pagination,
+     .swiper-button-next,
+     .swiper-button-prev {
+       display: none !important;
+     }
+ 
+     .content-container {
+       top: 40%;
+       left: 50%;
+       transform: translate(-50%, -40%);
+       padding: 1rem;
+ 
+       h1 {
+         font-size: 1.5rem;
+       }
+     }
+ 
+     .filter {
+       width: 90%;
+       padding: 1rem;
+       border-radius: 10px;
+ 
+       form {
+         padding: 1rem;
+ 
+         .filters {
+           flex-direction: column;
+           gap: 1rem;
+ 
+           .filter-item {
+             max-width: 100%;
+             
+             label {
+               font-size: 1rem;
+             }
+ 
+             input,
+             select {
+               height: 25px;
+               padding: 0 10px;
+             }
+ 
+             button {
+               width: 100%;
+               margin-top: 1rem;
+             }
+           }
+         }
+       }
+     }
+   }
+ }
+ 
 
 
 #s__imoveis {
