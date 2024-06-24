@@ -95,17 +95,20 @@ nav {
     position: absolute;
     top: 100%;
     background-color: #0B0A0D;
-    width: 100%;
+    width: 100vw !important;
     padding: 1rem;
   }
 
   .nav-links.active {
     display: flex;
-    width: 100vw !important;
+    width: 110vw !important;
     position: absolute ;
-    margin-left: -315px;
+    margin-left: -380px;
     top: 50px;
+    left: 0 !important;
+    margin-top: 50px;
     z-index: 2024;
+
     background-color: #0B0A0D;
     li{
       width: 100%;
