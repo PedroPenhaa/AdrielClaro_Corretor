@@ -1,48 +1,122 @@
 header {
-   background-color: #0B0A0D;
-   height: auto;
- 
-   .custom-header {
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     padding: 2rem 10rem;
- 
-     a {
-       @include flex(column, center, center);
- 
-       img {
-         width: 10rem;
-         height: auto;
-       }
- 
-       p {
-         color: white;
-         font-weight: bold;
-         font-size: 0.9rem;
-         margin: 0;
-       }
-     }
- 
-     nav ul {
-       display: flex;
-       list-style: none;
-       margin: 0;
-       padding: 0;
-       gap: 40px;
-       li {
-         margin-left: 1rem;
- 
-         a {
-            font-weight: bold;
-           color: var(--primary-yellow);
-           text-decoration: none;
-         }
-         a:hover {
-           color: var(--light-gray);
-         }
-       }
-     }
-   }
- }
- 
+  background-color: #0B0A0D;
+  height: auto;
+}
+
+.custom-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 10rem;
+}
+
+.custom-header a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-img {
+  width: 10rem;
+  height: auto;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+
+.header-text p {
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin: 0;
+  text-align: center;
+}
+
+nav {
+  position: relative;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 40px;
+}
+
+.nav-links li {
+  margin-left: 1rem;
+}
+
+.nav-links a {
+  font-weight: bold;
+  color: var(--primary-yellow);
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  color: var(--light-gray);
+}
+
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger-menu span {
+  height: 2px;
+  background: var(--primary-yellow);
+  margin: 3px 0;
+  width: 25px;
+}
+
+@media (max-width: 768px) {
+  .custom-header {
+    padding: 1rem 2rem;
+  }
+
+  .logo-img {
+    width: 10rem;
+  }
+
+  .header-text{
+    display: none;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 100%;
+    background-color: #0B0A0D;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+    width: 100vw !important;
+    position: absolute ;
+    margin-left: -315px;
+    top: 50px;
+    z-index: 2024;
+    background-color: #0B0A0D;
+    li{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  }
+
+  .hamburger-menu {
+    display: flex;
+  }
+}
