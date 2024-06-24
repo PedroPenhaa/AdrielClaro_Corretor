@@ -194,6 +194,10 @@ section {
       justify-content: space-between;
       margin-top: 20px;
 
+      .section2{
+        display: flex;
+      }
+
       .col-md-4 {
         display: flex;
         justify-content: center;
@@ -316,6 +320,12 @@ section {
   #s__imoveis {
     
     height: calc(305vh - 9.6rem);
+
+    .container{
+      .section2{
+        display: none;
+      }
+    }
   }
 }
 
