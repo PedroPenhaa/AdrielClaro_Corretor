@@ -422,37 +422,100 @@
 
 
 #s__sobre {
-  background-color: var(--primary-yellow);
-  padding: 10rem;
-
-
-  .container {
+/*   background-color: var(--primary-yellow); */
+  padding: 8rem;
+  .container{
     @include flex(column, center, center);
-
-    h1 {
-      margin: 40px 0;
-      font-size: 3rem;
-      color: var(--dark-gray);
-    }
-
-    .content {
-      @include flex(row, center, center);
+  
+    h1{
       width: 100%;
-      gap: 10rem;
+      text-align: start;
+      color: black;
+      margin-bottom: 8rem;
+    }
+    .sec{
+      @include flex(row, center, center);
+      gap: 5rem;
 
-      .left {
-        width: 30%;
-
-        iframe {
-          width: 18rem;
-        }
-      }
-
-      .right {
+      .video,
+      .info{
         width: 50%;
       }
 
-    }
+      .video{
+        iframe{
+       
+          border: 1px solid #ddd;
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+      }
 
+      .info{
+        @include flex(column, center, center);
+        gap: 2rem;
+        h3{
+          font-size: 3rem;
+        }
+        
+        p{
+          font-size: 1.5rem;
+          color: #666;
+          text-align: justify;
+        }
+
+
+      }
+
+      
+    }
   }
+
+}
+
+
+#s__contato{
+    background-color: black;
+    padding: 5rem 0 8rem 0;
+
+    .container{
+      h1{
+        margin-bottom: 5rem
+        
+      }
+      .sec{
+        @include flex(row, center, center);
+        gap: 10rem;
+        .map-container{
+          iframe{
+            width: 50rem;
+            height: 30rem;
+            border: 1px solid #ddd;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+          }
+        }
+        .contact-icons{
+          @include flex(column, center, center);
+          gap: 2rem;
+          p{
+            font-size: 2rem;
+            font-weight: bold;
+            color: var( --primary-yellow);
+          }
+          .icons{
+            @include flex(row, center, center);
+            gap: 5rem;
+            a{
+              i{
+                color:  var( --white);
+              }
+            }
+          }
+        }
+
+      }
+    }
 }
