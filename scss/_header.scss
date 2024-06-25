@@ -4,9 +4,7 @@ header {
 }
 
 .custom-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex(row, center, left);
   padding: 2rem 10rem;
 }
 
@@ -36,16 +34,35 @@ header {
   text-align: center;
 }
 
+.infos {
+  @include flex(column, center, center);
+  width: 100%;
+}
+
 nav {
   position: relative;
 }
+
+.links{
+  @include flex(row, center, right);
+  width: 100%;
+  gap: 5rem;
+  a{
+    i{
+      font-size: 2rem;
+      color: var(--primary-yellow);
+    }
+  }
+}
+
 
 .nav-links {
   display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 40px;
+  gap: 40px;  
+ // margin-left: -815px;
 }
 
 .nav-links li {
@@ -56,6 +73,7 @@ nav {
   font-weight: bold;
   color: var(--primary-yellow);
   text-decoration: none;
+  font-size: 2rem;
 }
 
 .nav-links a:hover {
