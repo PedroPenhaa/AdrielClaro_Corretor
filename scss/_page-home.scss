@@ -1,7 +1,9 @@
-section {
+/* section {
   width: 100%;
   height: calc(100vh - 9.6rem);
 }
+ */
+
 
 #s__home {
   position: relative;
@@ -109,7 +111,7 @@ section {
   }
 }
 
-// Media queries for mobile
+//Mobile Home
 @media (max-width: 768px) {
   #s__home {
     height: auto;
@@ -316,6 +318,7 @@ section {
   }
 }
 
+//Mobile Imoveis
 @media (max-width: 768px) {
   #s__imoveis {
     
@@ -330,74 +333,20 @@ section {
 }
 
 
-
-
-/* #s__serviços {
-   height: calc(100vh - 9.6rem);
-   background-color: var(--primary-yellow-light);
-
-   .container {
-      padding: 5rem;
-      @include flex(column, left, center);
-      gap: 5rem;
-
-      h1 {
-         font-size: 3rem;
-         color: var(--primary-yellow);
-         text-align: center;
-         text-transform: uppercase;
-         letter-spacing: 0.1rem;
-      }
-
-      .content {
-         @include flex(column, right, center);
-         gap: 3rem;
-         width: 100%;
-
-         .row {
-            gap: 2rem; // Espaçamento entre os cartões
-
-            .card {
-               @include flex(column, center, center);
-               gap: 2rem;
-               background-color: var(--primary-yellow-light);
-               border: 2px solid var(--primary-yellow);
-               border-radius: 1rem;
-               box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-               transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-               &:hover {
-                  transform: translateY(-10px);
-                  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-               }
-
-               i {
-                  font-size: 5rem;
-                  color: var(--primary-yellow);
-               }
-
-               p {
-                  font-size: 1.5rem;
-                  color: var(--primary-yellow);
-                  font-weight: bold;
-                  text-transform: uppercase;
-                  margin: 0;
-               }
-            }
-         }
-      }
-   }
-} */
-
-
-
-// Estilos para a seção de serviços
 #s__serviços {
   padding: 40px 0;
-  background-color: var(--light-yelloww);
+
+}
+.container{
+  background-image:url('../assets/bg/bg1.jpg');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
+
+
 
   h1 {
-    color: #0056b3;
+    color: var(--white);
     text-align: center;
     margin-bottom: 20px;
   }
@@ -414,20 +363,24 @@ section {
       }
 
       .card {
+        @include flex(column, center, center);
         background-color: #ffffff;
-        border: 1px solid #0056b3;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        height: 200px;
+        width: 26rem;
+        height: 200px; 
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
 
         &:hover {
           transform: translateY(-5px);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
         }
 
         i {
-          color: #0056b3;
+          height: auto;
+          color: var(--primary-yellow);
           margin-bottom: 10px;
         }
 
@@ -437,7 +390,7 @@ section {
         }
 
         .service-description {
-          font-size: 0.9rem;
+          font-size: 1.1rem;
           color: darken(#333, 20%);
           margin-top: 5px;
         }
