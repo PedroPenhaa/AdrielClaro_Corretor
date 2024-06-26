@@ -41,9 +41,11 @@ header {
 
 nav {
   position: relative;
+  margin-left: -22rem;
 }
 
 .links{
+
   @include flex(row, center, right);
   width: 100%;
   gap: 5rem;
