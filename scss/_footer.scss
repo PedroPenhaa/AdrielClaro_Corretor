@@ -1,7 +1,7 @@
 footer {
    height: 5rem;
-   background-color: white; // Certifique-se de que esta variável de cor está definida em seu arquivo SCSS principal
-   color: var(--dark); // Sugestão para a cor do texto, defina esta variável conforme necessário
+   background-color: black; // Certifique-se de que esta variável de cor está definida em seu arquivo SCSS principal
+   color: var(--white); // Sugestão para a cor do texto, defina esta variável conforme necessário
    display: flex;
    align-items: center;
    justify-content: center;
@@ -11,6 +11,7 @@ footer {
    gap: 50rem;
    align-items: center;
        p {
+         color: white;
          font-weight: bold;
            margin: 5px 0; // Pequena margem entre linhas
            font-size: 1.2rem; // Tamanho da fonte menor para o texto do footer
