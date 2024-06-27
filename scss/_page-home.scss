@@ -119,63 +119,6 @@
   }
 }
 
-@media (max-width: 768px) {
-  #s__home {
-    height: auto;
-
-    .swiper-pagination,
-    .swiper-button-next,
-    .swiper-button-prev {
-      display: none !important;
-    }
-
-    .content-container {
-      top: 40%;
-      left: 50%;
-      transform: translate(-50%, -40%);
-      padding: 1rem;
-
-      h1 {
-        font-size: 1.5rem;
-      }
-    }
-
-    .filter {
-      width: 90%;
-      padding: 1rem;
-      border-radius: 10px;
-
-      form {
-        padding: 1rem;
-
-        .filters {
-          flex-direction: column;
-          gap: 1rem;
-
-          .filter-item {
-            max-width: 100%;
-
-            label {
-              font-size: 1rem;
-            }
-
-            input,
-            select {
-              height: 25px;
-              padding: 0 10px;
-            }
-
-            button {
-              width: 100%;
-              margin-top: 1rem;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
 // ------------------------------------------ // 
 // ----------------- Imóveis ---------------- //
 // ------------------------------------------ // 
@@ -326,19 +269,6 @@
   }
 }
 
-@media (max-width: 768px) {
-  #s__imoveis {
-
-    height: calc(170vh - 9.6rem);
-
-    .container {
-      .section2 {
-        display: none;
-      }
-    }
-  }
-}
-
 // ------------------------------------------ // 
 // ---------------- Serviços ---------------- //
 // ------------------------------------------ // 
@@ -428,30 +358,6 @@
 
 }
 
-@media (max-width: 768px) {
-  #s__serviços {
-
-    max-width: 100%;
-    height: calc(185vh - 9.6rem);
-
-    .container {
-      h2 {
-        margin: 0 0 1rem 0;
-      }
-
-      .content {
-        .row {
-          gap: 0.5rem;
-
-          .col-md-3 {
-            @include flex(column, center, center);
-            margin-left: 2rem;
-          }
-        }
-      }
-    }
-  }
-}
 
 // ------------------------------------------ // 
 // ------------------ Sobre ----------------- //
@@ -537,54 +443,7 @@
 }
 
 @media (max-width: 768px) {
-  #s__sobre {
-    .container {
-      h2 {
-        @include flex(column, center, center);
-        margin: 0 0 2rem 0;
-      }
-
-      .sec {
-        @include flex(column, center, center);
-        margin: 0 0 0 -7rem;
-        padding: 0;
-
-        .video,
-        .info {
-          width: 100%;
-        }
-
-
-        .video {
-          iframe {
-            width: 35rem;
-            height: 25rem;
-            margin: 0 0 0 68px
-          }
-        }
-
-        .info {
-          @include flex(column, center, center);
-          width: 350px;
-          margin: -55px 0 0 68px;
-
-
-          .info-sobre {
-            margin: -10px 0 0 0;
-            padding-left: 231px;
-
-            p {
-              font-size: 1rem;
-            }
-
-          }
-        }
-      }
-
-    }
-
-  }
-}
+  
 
 
 // ------------------------------------------ // 
@@ -614,20 +473,6 @@
   }
 }
 
-@media (max-width: 768px) {
-  #s__ajuda {
-    height: calc(45vh - 9.6rem);
-   .container{
-    @include flex(row, center, center);
-    h2{
- 
-      width: 80%;
-      font-size: 2.1rem;
-    }
-   }
-
-  }
-}
 
 // ------------------------------------------ // 
 // ----------------- Contato ---------------- //
@@ -707,40 +552,7 @@
   }
 }
 
-@media (max-width: 768px) {
-  #s__contato {
-    .container{
-      .sec{
-        @include flex(column, center, center);
-        .map-container{
-          @include flex(column, center, center);
-          width: 100%;
-          h2{
-            font-size: 3rem;
-            margin: 0 0 2rem 0;
-          }
-          iframe{
-            width: 90%;
-            height: auto;
-          }
-          p{
-            font-size: 1.2rem;
-          }
-        }
-        .contact-icons{
-          width: 100%;
-          p{
-            width: 90%;
-            font-size: 1.5rem;
-            margin: 0;
-            text-align: justify;
-          }
-        }
-      }
-    }
 
-  }
-}
 
 
 // ------------------------------------------ // 
@@ -788,4 +600,204 @@
     }
 
   }
+}
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  #s__home {
+    height: auto;
+
+    .swiper-pagination,
+    .swiper-button-next,
+    .swiper-button-prev {
+      display: none !important;
+    }
+
+    .content-container {
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -40%);
+      padding: 1rem;
+
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+
+    .filter {
+      width: 90%;
+      padding: 1rem;
+      border-radius: 10px;
+
+      form {
+        padding: 1rem;
+
+        .filters {
+          flex-direction: column;
+          gap: 1rem;
+
+          .filter-item {
+            max-width: 100%;
+
+            label {
+              font-size: 1rem;
+            }
+
+            input,
+            select {
+              height: 25px;
+              padding: 0 10px;
+            }
+
+            button {
+              width: 100%;
+              margin-top: 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  #s__imoveis {
+
+    height: calc(170vh - 9.6rem);
+
+    .container {
+      .section2 {
+        display: none;
+      }
+    }
+  }
+
+  #s__serviços {
+
+    max-width: 100%;
+    height: calc(185vh - 9.6rem);
+
+    .container {
+      h2 {
+        margin: 0 0 1rem 0;
+      }
+
+      .content {
+        .row {
+          gap: 0.5rem;
+
+          .col-md-3 {
+            @include flex(column, center, center);
+            margin-left: 2rem;
+          }
+        }
+      }
+    }
+  }
+
+
+  #s__sobre {
+    .container {
+      h2 {
+        @include flex(column, center, center);
+        margin: 0 0 2rem 0;
+      }
+
+      .sec {
+        @include flex(column, center, center);
+        margin: 0 0 0 -7rem;
+        padding: 0;
+
+        .video,
+        .info {
+          width: 100%;
+        }
+
+
+        .video {
+          iframe {
+            width: 35rem;
+            height: 25rem;
+            margin: 0 0 0 68px
+          }
+        }
+
+        .info {
+          @include flex(column, center, center);
+          width: 350px;
+          margin: -55px 0 0 68px;
+
+
+          .info-sobre {
+            margin: -10px 0 0 0;
+            padding-left: 231px;
+
+            p {
+              font-size: 1rem;
+            }
+
+          }
+        }
+      }
+
+    }
+
+  }
+
+
+  #s__ajuda {
+    height: calc(45vh - 9.6rem);
+   .container{
+    @include flex(row, center, center);
+    h2{
+ 
+      width: 80%;
+      font-size: 2.1rem;
+    }
+   }
+
+  }
+
+
+  #s__contato {
+    .container{
+      .sec{
+        @include flex(column, center, center);
+        .map-container{
+          @include flex(column, center, center);
+          width: 100%;
+          h2{
+            font-size: 3rem;
+            margin: 0 0 2rem 0;
+          }
+          iframe{
+            width: 90%;
+            height: auto;
+          }
+          p{
+            font-size: 1.2rem;
+          }
+        }
+        .contact-icons{
+          width: 100%;
+          p{
+            width: 90%;
+            font-size: 1.5rem;
+            margin: 0;
+            text-align: justify;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+
+
+
 }
