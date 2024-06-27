@@ -180,7 +180,7 @@
 // ----------------- Imóveis ---------------- //
 // ------------------------------------------ // 
 #s__imoveis {
-/*   height: calc(145vh - 9.6rem); */
+  /*   height: calc(145vh - 9.6rem); */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -351,9 +351,7 @@
     background-position: center;
     background-repeat: no-repeat;
 
-
-
-    h2{
+    h2 {
       color: var(--white);
       text-align: center;
     }
@@ -430,11 +428,36 @@
 
 }
 
+@media (max-width: 768px) {
+  #s__serviços {
+
+    max-width: 100%;
+    height: calc(185vh - 9.6rem);
+
+    .container {
+      h2 {
+        margin: 0 0 1rem 0;
+      }
+
+      .content {
+        .row {
+          gap: 0.5rem;
+
+          .col-md-3 {
+            @include flex(column, center, center);
+            margin-left: 2rem;
+          }
+        }
+      }
+    }
+  }
+}
+
 // ------------------------------------------ // 
 // ------------------ Sobre ----------------- //
 // ------------------------------------------ // 
 #s__sobre {
- /*  height: calc(90vh - 9.6rem); */
+  /*  height: calc(90vh - 9.6rem); */
   /*   background-color: var(--primary-yellow); */
   padding: 4rem;
 
@@ -513,11 +536,62 @@
 
 }
 
+@media (max-width: 768px) {
+  #s__sobre {
+    .container {
+      h2 {
+        @include flex(column, center, center);
+        margin: 0 0 2rem 0;
+      }
+
+      .sec {
+        @include flex(column, center, center);
+        margin: 0 0 0 -7rem;
+        padding: 0;
+
+        .video,
+        .info {
+          width: 100%;
+        }
+
+
+        .video {
+          iframe {
+            width: 35rem;
+            height: 25rem;
+            margin: 0 0 0 68px
+          }
+        }
+
+        .info {
+          @include flex(column, center, center);
+          width: 350px;
+          margin: -55px 0 0 68px;
+
+
+          .info-sobre {
+            margin: -10px 0 0 0;
+            padding-left: 231px;
+
+            p {
+              font-size: 1rem;
+            }
+
+          }
+        }
+      }
+
+    }
+
+  }
+}
+
+
 // ------------------------------------------ // 
 // ------------------ Ajuda ----------------- //
 // ------------------------------------------ // 
 #s__ajuda {
-   height: calc(70vh - 9.6rem); 
+  height: calc(70vh - 9.6rem);
 
 
   .container {
@@ -525,7 +599,7 @@
     width: 100%;
     @include flex(row, center, right);
 
-    h2{
+    h2 {
       width: 35rem;
       text-align: justify;
       //color: var(--primary-yellow); /* Mantém a cor original */
@@ -537,6 +611,21 @@
       /* Torna o texto mais forte */
 
     }
+  }
+}
+
+@media (max-width: 768px) {
+  #s__ajuda {
+    height: calc(45vh - 9.6rem);
+   .container{
+    @include flex(row, center, center);
+    h2{
+ 
+      width: 80%;
+      font-size: 2.1rem;
+    }
+   }
+
   }
 }
 
@@ -561,21 +650,22 @@
         @include flex(column, start, center);
         gap: 1rem;
 
-        h2{
+        h2 {
           margin: 0.70rem 0 33px 0rem;
           color: var(--primary-yellow);
           font-weight: bold;
           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        p{
+        p {
           @include flex(row, center, center);
-          gap: 1.5rem; 
+          gap: 1.5rem;
           font-size: 1.5rem;
           text-align: justify;
           font-weight: bold;
           margin-top: 3rem;
-          i{
+
+          i {
             color: red;
           }
         }
@@ -617,40 +707,34 @@
   }
 }
 
-// ------------------------------------------ // 
-// --------------- Links Úteis -------------- //
-// ------------------------------------------ // 
-#s__links{
-  background-color: black;
-  padding: 5rem;
-  border-bottom: 1px solid var(--primary-yellow);
-  .container{
-    @include flex(row, center, space-around);
-    gap: 10rem;
-    .sec{ 
-      @include flex(column, start, start);
-      height: 200px;
-      margin-bottom: 6rem;
-      h2{
-        margin-top: -0  ;
-        font-size: 2.3rem;
-        color: var(--primary-yellow);
-        margin-bottom: 2rem;
-        font-weight: bold;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      }
-      ul{
-        li{
-          font-size: 1.5rem;
-          color: var(--white);
-          margin-bottom: 1rem;
-          a{
-            color: var(--white);
-            text-decoration: none;
-            &:hover{
-              text-decoration: underline;
-            }
-          } 
+@media (max-width: 768px) {
+  #s__contato {
+    .container{
+      .sec{
+        @include flex(column, center, center);
+        .map-container{
+          @include flex(column, center, center);
+          width: 100%;
+          h2{
+            font-size: 3rem;
+            margin: 0 0 2rem 0;
+          }
+          iframe{
+            width: 90%;
+            height: auto;
+          }
+          p{
+            font-size: 1.2rem;
+          }
+        }
+        .contact-icons{
+          width: 100%;
+          p{
+            width: 90%;
+            font-size: 1.5rem;
+            margin: 0;
+            text-align: justify;
+          }
         }
       }
     }
@@ -659,12 +743,49 @@
 }
 
 
+// ------------------------------------------ // 
+// --------------- Links Úteis -------------- //
+// ------------------------------------------ // 
+#s__links {
+  background-color: black;
+  padding: 5rem;
+  border-bottom: 1px solid var(--primary-yellow);
 
+  .container {
+    @include flex(row, center, space-around);
+    gap: 10rem;
 
+    .sec {
+      @include flex(column, start, start);
+      height: 200px;
+      margin-bottom: 6rem;
 
+      h2 {
+        margin-top: -0;
+        font-size: 2.3rem;
+        color: var(--primary-yellow);
+        margin-bottom: 2rem;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
 
+      ul {
+        li {
+          font-size: 1.5rem;
+          color: var(--white);
+          margin-bottom: 1rem;
 
+          a {
+            color: var(--white);
+            text-decoration: none;
 
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
 
-
-
+  }
+}
