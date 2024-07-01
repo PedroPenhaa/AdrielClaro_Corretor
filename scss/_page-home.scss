@@ -907,3 +907,123 @@
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------------------ // 
+// ------------------------------------------ // 
+// ------------------------------------------ // 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------------------ // 
+// ----------------- Imóveis All ------------ //
+// ------------------------------------------ // 
+
+#s__imoveis_all{
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  
+  .filter{
+    @include flex(column, left, start);
+    padding: 20px;
+    max-width: 20%;
+    height: 100vh;
+    background-color: var(--color-secondary); // Usa o marrom escuro como fundo
+    color: var(--color-highlight); // Texto em dourado para destaque
+    border-right: 5px solid var(--color-highlight); // Linha divisória destacada
+    position: fixed;
+    
+    a{
+      margin-left: 25px;
+      img{
+        width: 180px;
+        height: auto;
+      }
+      .header-text{
+        width: 100%;
+        @include flex(column, center, center);
+        p{
+          color: var(--color-background); // Texto quase branco para legibilidade
+          font-size: 0.9rem;
+          margin-left: 0; // Ajuste para centralizar o texto
+          font-weight: bold;
+        }
+      }
+    }
+    
+    form {
+      input[type="text"], select {
+        margin-top: 10px;
+        padding: 10px;
+        width: 90%;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+        background-color: var(--color-highlight);
+        color: var(--color-primary);
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+        img {
+          filter: invert(100%); // Inverte a cor do ícone para destacar no botão
+        }
+      }
+    }
+  }
+  
+  .informacoes_sec{
+    width: calc(100% - 20%);
+    padding: 2% 3% 2% 3%;
+    margin-left: 20%; // Assegura que o conteúdo não fique por baixo do filtro
+    background-color: var(--color-background); // Fundo claro para as informações
+
+    .venda, .aluguel {
+      h1 {
+        color: var(--color-tertiary); // Utiliza o marrom médio para títulos
+      }
+      .card {
+        background-color: var(--white); // Fundo claro para os cards
+        border-radius: 10px;
+        box-shadow: 0px 6px 10px rgba(0,0,0,0.1);
+        
+        .card-body {
+          padding: 20px;
+          .card-text, p {
+            color: var(--color-primary); // Texto escuro para contraste
+          }
+          .btn {
+            background-color: var(--color-highlight); // Botão em dourado
+            color: var(--color-primary);
+          }
+        }
+      }
+    }
+  }
+}
