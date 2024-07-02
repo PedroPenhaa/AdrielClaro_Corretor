@@ -31,7 +31,7 @@ header {
           color: white;
           font-weight: bold;
           font-size: 0.9rem;
-          margin: 0;
+          margin: 0 0 2px 0;
           text-align: center;
         }
       }
@@ -50,8 +50,7 @@ header {
           i {
             font-size: 2rem;
             color: var(--color-highlight);  
-              text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
-  
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.4);  
           }
         }
       }
@@ -75,12 +74,12 @@ header {
               color: var(--color-highlight);
               text-decoration: none;
               font-size: 2rem;
-              text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+              text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.4); 
             }
   
             a:hover {
               color: var(--light-gray);
-            }
+              text-shadow: 2px 2px 4px var(--color-tertiary);            }
           }
         }
   
