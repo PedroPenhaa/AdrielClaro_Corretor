@@ -943,45 +943,26 @@
 
 
 
-
 // ------------------------------------------ // 
 // ----------------- Imóveis All ------------ //
 // ------------------------------------------ // 
 
-#s__imoveis_all{
+#s__imoveis_all {
   padding: 0;
   width: 100%;
   display: flex;
   flex-direction: row;
   
-  .filter{
+  .filter {
     @include flex(column, left, start);
     padding: 20px;
     max-width: 20%;
     height: 100vh;
-    background-color: var(--color-secondary); // Usa o marrom escuro como fundo
+    background-color: var(--color-primary); // Usa o marrom escuro como fundo
     color: var(--color-highlight); // Texto em dourado para destaque
     border-right: 5px solid var(--color-highlight); // Linha divisória destacada
     position: fixed;
-    
-    a{
-      //margin-left: 25px;
-      img{
-        width: 220px;
-        height: auto;
-      }
-      .header-text{
-        width: 100%;
-        @include flex(column, center, center);
-        p{
-          color: var(--color-background); // Texto quase branco para legibilidade
-          font-size: 0.9rem;
-          margin-left: 0; // Ajuste para centralizar o texto
-          font-weight: bold;
-        }
-      }
-    }
-    
+
     form {
       padding-top: 20px;
       input[type="text"], select {
@@ -1002,13 +983,13 @@
         border-radius: 10px;
         box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
         img {
-          filter: invert(100%); // Inverte a cor do ícone para destacar no botão
+          filter: invert(100%);
         }
       }
     }
   }
   
-  .informacoes_sec{
+  .informacoes_sec {
     width: calc(100% - 20%);
     padding: 2% 3% 2% 3%;
     margin-left: 20%; // Assegura que o conteúdo não fique por baixo do filtro
@@ -1018,37 +999,88 @@
       h1 {
         margin: 3rem 0;
         font-size: 3rem;
-        color: var(--color-tertiary); // Utiliza o marrom médio para títulos
+        color: var(--color-tertiary);
       }
       .card {
-        max-height: auto;
-        width: 300px;
-        background-color: var(--white); // Fundo claro para os cards
-        border-radius: 20px !important;
-        box-shadow: 0px 6px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out;
+        width: 280px;
+        height: 360px;
 
-        img{
+        &:hover {
+          transform: translateY(-10px);
+        }
+
+        .card-img-top {
           width: 100%;
           height: 200px;
           object-fit: cover;
-          border-radius: 20px 20px 0 0;
         }
-        
+
         .card-body {
-          padding: 20px;
-          p{
-            width: 100%;
-            font-size: 1rem ;
-          }
-          .card-text, p {
-  
-            color: var(--color-primary); // Texto escuro para contraste
-          }
-          .btn {
-            background-color: var(--color-highlight); // Botão em dourado
-            color: var(--color-primary);
-          }
+          padding: 15px;
         }
+
+        .card-title {
+          font-size: 1.2rem;
+          color: #333;
+        }
+
+        .card-text {
+          font-size: 1.4rem;
+          color: #666;
+          margin-bottom: 10px;
+        }
+
+        .card-info {
+          font-size: 1rem;
+          color: #888;
+          margin-bottom: 5px;
+        }
+
+        .btn-primary {
+          background-color: #0056b3;
+          border: none;
+          width: 100%;
+          padding: 10px;
+        }
+      }
+    }
+  }
+
+  // Swiper styles
+  .swiper-container {
+    width: 100%;
+    height: 200px; // Ajuste conforme necessário
+  
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .swiper-button-prev, .swiper-button-next {
+      color: #000;
+    }
+  
+    .swiper-pagination-bullet {
+      position: absolute;
+      margin-top: -50px;
+      bottom: 10px; // Ajuste a posição conforme necessário
+      width: 10px; // Tamanho do bullet
+      height: 10px; // Tamanho do bullet
+      background: #f00; // Cor padrão vermelha
+      border-radius: 50%; // Torna o bullet circular
+      opacity: 0.7; // Opacidade para não ativos
+  
+      &-active {
+        background: #fff; // Cor branca para o bullet ativo
+        opacity: 1; // Opacidade total para o ativo
       }
     }
   }

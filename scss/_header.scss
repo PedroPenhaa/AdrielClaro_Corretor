@@ -1,8 +1,109 @@
 header {
-  background-color: var(--color-secondary);
+  background-color: var(  --color-primary);
   height: auto;
   position: relative; /* Necessário para o pseudo-elemento */
+
+
+  .custom-header {
+    @include flex(row, center, left);
+    padding: 22px 10rem 10px 10rem;
+    margin-top: -10px;
+  
+  
+    a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-direction: column;
+  
+      .logo-img {
+        width: 110px;
+        height: auto;
+        margin: -8px 0 4px 0;
+      }
+  
+      .header-text {
+        display: flex;
+        flex-direction: column;
+        margin-left: 1rem;
+        width: 23rem;
+        p {
+          color: white;
+          font-weight: bold;
+          font-size: 0.9rem;
+          margin: 0;
+          text-align: center;
+        }
+      }
+    }
+  
+    .infos {
+      @include flex(column, center, center);
+      width: 100%;
+  
+      .links {
+        @include flex(row, center, right);
+        width: 100%;
+        gap: 5rem;
+  
+        a {
+          i {
+            font-size: 2rem;
+            color: var(--color-highlight);  
+              text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+  
+          }
+        }
+      }
+  
+      nav {
+        position: relative;
+        margin-left: -22rem;
+  
+        .nav-links {
+          display: flex;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          gap: 40px;
+  
+          li {
+            margin-left: 1rem;
+  
+            a {
+              font-weight: bold;
+              color: var(--color-highlight);
+              text-decoration: none;
+              font-size: 2rem;
+              text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+            }
+  
+            a:hover {
+              color: var(--light-gray);
+            }
+          }
+        }
+  
+        .hamburger-menu {
+          display: none;
+          flex-direction: column;
+          cursor: pointer;
+  
+          span {
+            height: 2px;
+            background: var(--primary-yellow);
+            margin: 3px 0;
+            width: 25px;
+          }
+        }
+      }
+    }
+  }
 }
+
+
+
+
 
 header::after {
   content: "";
@@ -11,108 +112,12 @@ header::after {
   left: 0;
   width: 100%;
   height: 3px; /* Altura da border-bottom */
-  background: linear-gradient(to left, #FFD700,  var(  --primary-yellow) 40%), linear-gradient(to right, #FFD700, var(  --primary-yellow) 50%);
+  background: linear-gradient(to left, var(--color-highlight),  var(  --primary-yellow) 40%), linear-gradient(to right, var(--color-highlight), var(  --primary-yellow) 50%);
   background-size: 50% 100%;
   background-position: left, right;
   background-repeat: no-repeat;
 }
 
-
-.custom-header {
-  @include flex(row, center, left);
-  padding: 22px 10rem 10px 10rem;
-  margin-top: -10px;
-
-
-  a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    flex-direction: column;
-
-    .logo-img {
-      width: 110px;
-      height: auto;
-      margin: -8px 0 4px 0;
-    }
-
-    .header-text {
-      display: flex;
-      flex-direction: column;
-      margin-left: 1rem;
-      width: 23rem;
-      p {
-        color: white;
-        font-weight: bold;
-        font-size: 0.9rem;
-        margin: 0;
-        text-align: center;
-      }
-    }
-  }
-
-  .infos {
-    @include flex(column, center, center);
-    width: 100%;
-
-    .links {
-      @include flex(row, center, right);
-      width: 100%;
-      gap: 5rem;
-
-      a {
-        i {
-          font-size: 2rem;
-          color: var(--color-highlight);  
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
-
-        }
-      }
-    }
-
-    nav {
-      position: relative;
-      margin-left: -22rem;
-
-      .nav-links {
-        display: flex;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        gap: 40px;
-
-        li {
-          margin-left: 1rem;
-
-          a {
-            font-weight: bold;
-            color: var(--color-highlight);
-            text-decoration: none;
-            font-size: 2rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
-          }
-
-          a:hover {
-            color: var(--light-gray);
-          }
-        }
-      }
-
-      .hamburger-menu {
-        display: none;
-        flex-direction: column;
-        cursor: pointer;
-
-        span {
-          height: 2px;
-          background: var(--primary-yellow);
-          margin: 3px 0;
-          width: 25px;
-        }
-      }
-    }
-  }
-}
 
 @media (max-width: 768px) {
   .custom-header {

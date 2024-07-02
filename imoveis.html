@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,20 +10,12 @@
    <link rel="stylesheet" href="dist/css/main.css">
    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
-
-
 <body>
-
    <main>
       <section class="container-fluid" id="s__imoveis_all">
-
-         <div class="filter fade-in-right  fade-element">
+         <div class="filter fade-in-right fade-element">
             <a href="#">
                <img src="./assets/logos/logo_3.png" alt="Logo" class="img-fluid logo-img">
-              <!--  <div class="header-text">
-                  <p>ENGENHEIRO CIVIL E CORRETOR DE IMÓVEIS</p>
-                  <p>CREA MG 380290 - CRECI 53770</p>
-               </div> -->
             </a>
             <form>
                <div class="filters">
@@ -56,60 +46,70 @@
                   </div>
                   <div class="filter-item">
                      <button type="submit" class="btn btn-primary">
-                        <img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Lupa"
-                           style="width: 20px;">
+                        <img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Lupa" style="width: 20px;">
                      </button>
                   </div>
                </div>
             </form>
          </div>
-
+       
          <div class="informacoes_sec">
             <div class="venda">
                <h1>Imóveis para venda</h1>
-               <div class="row mt-2 fade-in-left">
+               <div class="row">
                   <!-- Card 1 -->
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                      <div class="card">
-                        <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
-                        <div class="card-body">
-                           <p class="card-text">R$ 500.000,00</p>
-                           <div class="card-info">
-                              <div class="info-details">
-                                 <div class="info1">
-                                    <p><i class="fas fa-bed"></i> 1 Quarto</p>
-                                    <p><i class="fas fa-bath"></i> 1 Banheiro</p>
-                                 </div>
-
-                                 <div class="info2">
-
-                                    <p><i class="fas fa-car"></i> 1 Garagem</p>
-                                    <p><i class="fas fa-ruler-combined"></i> 100 m²</p>
-
-                                 </div>
-                              </div>
-                           </div>
-                           <a href="#" class="btn btn-primary">Ver mais</a>
+                        <!-- Swiper -->
+                        <div class="swiper-container">
+                          <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="./assets/bg/casa_1.jpg" alt="Imagem 1" class="img-fluid"></div>
+                            <div class="swiper-slide"><img src="./assets/bg/casa_2.jpg" alt="Imagem 2" class="img-fluid"></div>
+                            <div class="swiper-slide"><img src="./assets/bg/casa_3.jpg" alt="Imagem 3" class="img-fluid"></div>
+                          </div>
+                          <!-- Add Pagination -->
+                          <div class="swiper-pagination"></div>
+                          <!-- Add Navigation -->
+                          <div class="swiper-button-prev"></div>
+                          <div class="swiper-button-next"></div>
                         </div>
-                     </div>
+                        
+                        <div class="card-body">
+                          <h5 class="card-title">Casa em Condomínio – terras de San Pedro</h5>
+                          <p class="card-text"><strong>R$1.300.000,00</strong></p>
+                          <p class="card-info"><i class="fas fa-bed"></i> 3 Dormitórios, sendo 3 suítes</p>
+                          <p class="card-info"><i class="fas fa-car"></i> 4 Garagens</p>
+                          <p class="card-info"><i class="fas fa-ruler-combined"></i> 217m²</p>
+                          <a href="#" class="btn btn-primary">Ver mais</a>
+                        </div>
+                      </div>
                   </div>
-                
-
-              
-
-            </div>
-
-
-            <div class="aluguel">
-        
-
+                  <!-- Mais cards aqui -->
+               </div>
             </div>
          </div>
-
-
       </section>
+   </main>
 
+
+
+   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+   <script>
+     var swiper = new Swiper('.swiper-container', {
+       slidesPerView: 1,
+       spaceBetween: 30,
+       loop: true,
+       pagination: {
+         el: '.swiper-pagination',
+         clickable: true,
+       },
+       navigation: {
+         nextEl: '.swiper-button-next',
+         prevEl: '.swiper-button-prev',
+       },
+     });
+   </script>
+   
 
 </body>
-
 </html>
