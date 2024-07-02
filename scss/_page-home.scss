@@ -60,8 +60,9 @@
 
   h1 {
     color: var(--primary-yellow-dark);
+
     font-size: 5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.2);
     /* Adiciona sombra ao texto para melhorar a legibilidade */
     font-weight: bold;
     /* Torna o texto mais forte */
@@ -114,7 +115,7 @@
 
           button {
             width: 5rem;
-            background-color: var(--primary-yellow);
+            background-color: var(--color-highlight);
             border: 1px solid black;
             border-radius: 0.5rem;
             display: flex;
@@ -200,16 +201,22 @@
   align-items: center;
   gap: 20px;
   padding: 20px;
+  background-color: var(--color-background);
 
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    h1 {
-      margin: 40px 0;
+    h2 {
+   
       font-size: 3rem;
-      color: var(--dark-gray);
+      color: var( --color-tertiary);
+      font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -.8px;
+  text-shadow: 2px 2px 4px rgba(0,0,0, 0.2);
+  margin: 4rem 0;
     }
 
     .row {
@@ -511,6 +518,7 @@
 // ------------------ Sobre ----------------- //
 // ------------------------------------------ // 
 #s__sobre {
+  background-color: var(--color-background);
 
   padding: 4rem;
 
@@ -695,7 +703,8 @@
 // ----------------- Contato ---------------- //
 // ------------------------------------------ // 
 #s__contato {
-  background-color: var(--white);
+  background-color: var(--color-background);
+
   padding: 5rem 0 8rem 0;
 
   .container {
@@ -826,7 +835,7 @@
 // ------------------------------------------ // 
 // Estilos já existentes para #s__links
 #s__links {
-  background-color: black;
+  background-color: var(--color-primary);
   padding: 5rem;
   border-bottom: 1px solid var(--primary-yellow);
 
