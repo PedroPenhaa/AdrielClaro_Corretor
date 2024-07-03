@@ -659,7 +659,7 @@
 // ------------------ Ajuda ----------------- //
 // ------------------------------------------ // 
 #s__ajuda {
-  height: calc(70vh - 9.6rem);
+  height: calc(80vh - 9.6rem);
 
 
   .container {
@@ -668,11 +668,11 @@
     @include flex(row, center, right);
 
     h2 {
-      width: 35rem;
+      width: 42rem;
       text-align: justify;
       //color: var(--primary-yellow); /* Mantém a cor original */
       color: #fff;
-      font-size: 3rem;
+      font-size: 4rem;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
       /* Adiciona sombra ao texto para melhorar a legibilidade */
       font-weight: bold;

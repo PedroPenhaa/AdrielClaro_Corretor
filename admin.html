@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .sidebar {
+            width: 200px;
+            height: 100vh;
+            background-color: #343a40;
+            padding: 20px;
+            color: white;
+        }
+        .header{
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .header-text{
+            width: 100%;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-self: center;
+           
+           
+        }
+        p{
+         font-size: 0.8rem; 
+         font-weight: bold;
+            }
+        .info-panel {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            background-color: #f8f9fa;
+            border-left: 5px solid;
+            padding: 10px;
+            width: 24%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .info-box:nth-child(1) { border-color: #17a2b8; }
+        .info-box:nth-child(2) { border-color: #ffc107; }
+        .info-box:nth-child(3) { border-color: #28a745; }
+        .info-box:nth-child(4) { border-color: #dc3545; }
+        .chart {
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+       <div class="header">
+         <img src="./assets/logos/logo_3.png" alt="Logo" style="width: 100%; height: auto;">
+         <div class="header-text">
+            <p>ENGENHEIRO CIVIL E CORRETOR DE IMÓVEIS</p>
+            <p>CREA MG 380290 - CRECI 53770</p>
+        </div>
+       </div>
+        <!-- Sidebar content -->
+        Menu
+    </div>
+    <div class="main-content">
+        <header>Dashboard / Overview</header>
+        <div class="info-panel">
+            <div class="info-box">
+                <strong>26 New Messages!</strong>
+                <p>View Details</p>
+            </div>
+            <div class="info-box">
+                <strong>11 New Tasks!</strong>
+                <p>View Details</p>
+            </div>
+            <div class="info-box">
+                <strong>123 New Orders!</strong>
+                <p>View Details</p>
+            </div>
+            <div class="info-box">
+                <strong>13 New Tickets!</strong>
+                <p>View Details</p>
+            </div>
+        </div>
+        <div class="chart">
+            <!-- Aqui você pode integrar um gráfico real usando uma biblioteca de gráficos -->
+            Area Chart Example
+        </div>
+    </div>
+</body>
+</html>

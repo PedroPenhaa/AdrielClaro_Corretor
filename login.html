@@ -45,26 +45,73 @@
             height: auto;
             margin-bottom: 20px;
         }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="bg">
         <div class="login-container">
             <img src="./assets/logos/logo_3.png" alt="Logo" class="logo">
-<!--             <h1><i class="fas fa-bug"></i> Corretor de Imóveis </h1>
- -->            
- 
- <h1>Corretor de Imóveis </h1>
- <form>
+            <h1>Corretor de Imóveis</h1>
+            <form id="loginForm">
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email">
+                    <input type="email" class="form-control" id="email" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" id="password" placeholder="Password" required>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <div class="error-message" id="error-message"></div>
             </form>
         </div>
     </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+        import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD5CRo97EPoWGlUASNz0qPftVmN1fwxk6M",
+            authDomain: "adriel-consultor-imobiliario.firebaseapp.com",
+            databaseURL: "https://adriel-consultor-imobiliario-default-rtdb.firebaseio.com",
+            projectId: "adriel-consultor-imobiliario",
+            storageBucket: "adriel-consultor-imobiliario.appspot.com",
+            messagingSenderId: "55769079311",
+            appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
+            measurementId: "G-1BP7CKYQM1"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+
+        // Handle Login
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMessageElement = document.getElementById('error-message');
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    var user = userCredential.user;
+                    window.location.href = './admin.html'; // Redirect to another page
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    if (errorCode === 'auth/user-not-found') {
+                        errorMessageElement.textContent = 'Usuário não identificado';
+                    } else {
+                        errorMessageElement.textContent = 'Erro: ' + errorMessage;
+                    }
+                });
+        });
+    </script>
 </body>
 </html>
