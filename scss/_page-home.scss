@@ -999,8 +999,8 @@
 
       .row{
         width: 100%;
-        @include flex(row, center, center);
-        gap: 8rem;
+        @include flex(row, center, start);
+        gap: 10rem;
       }
 
 
@@ -1105,7 +1105,7 @@
     .swiper-button-prev, .swiper-button-next {
       color: var(--color-background);
       text-shadow: 0px 4px 6px rgba(0,0,0,1);
-      margin-top: -50px;
+      margin-top: -100px;
     }
   
     .swiper-pagination-bullet {
@@ -1129,3 +1129,51 @@
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////
+
