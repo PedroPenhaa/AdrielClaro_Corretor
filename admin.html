@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,6 +13,7 @@
             padding: 0;
             display: flex;
         }
+
         .sidebar {
             width: 200px;
             height: 100vh;
@@ -18,70 +21,53 @@
             padding: 20px;
             color: white;
         }
-        .header{
-         display: flex;
-         flex-direction: column;
-         justify-content: center;
-         align-items: center;
-        }
+
         .main-content {
             flex-grow: 1;
             padding: 20px;
         }
-        header {
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        .header-text{
-            width: 100%;
-            
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-self: center;
-           
-           
-        }
-        p{
-         font-size: 0.8rem; 
-         font-weight: bold;
-            }
+
         .info-panel {
             display: flex;
             justify-content: space-around;
             margin-bottom: 20px;
         }
+
         .info-box {
             background-color: #f8f9fa;
             border-left: 5px solid;
             padding: 10px;
             width: 24%;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .info-box:nth-child(1) { border-color: #17a2b8; }
-        .info-box:nth-child(2) { border-color: #ffc107; }
-        .info-box:nth-child(3) { border-color: #28a745; }
-        .info-box:nth-child(4) { border-color: #dc3545; }
+
+        .info-box:nth-child(1) {
+            border-color: #17a2b8;
+        }
+
+        .info-box:nth-child(2) {
+            border-color: #ffc107;
+        }
+
+        .info-box:nth-child(3) {
+            border-color: #28a745;
+        }
+
+        .info-box:nth-child(4) {
+            border-color: #dc3545;
+        }
+
         .chart {
             padding: 20px;
             background-color: #ffffff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
         }
     </style>
 </head>
+
 <body>
     <div class="sidebar">
-       <div class="header">
-         <img src="./assets/logos/logo_3.png" alt="Logo" style="width: 100%; height: auto;">
-         <div class="header-text">
-            <p>ENGENHEIRO CIVIL E CORRETOR DE IMÓVEIS</p>
-            <p>CREA MG 380290 - CRECI 53770</p>
-        </div>
-       </div>
         <!-- Sidebar content -->
         Menu
     </div>
@@ -109,6 +95,162 @@
             <!-- Aqui você pode integrar um gráfico real usando uma biblioteca de gráficos -->
             Area Chart Example
         </div>
+        <!-- Botão para abrir o modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createDataModal">
+            Adicionar Imóvel
+        </button>
+
+        <!-- Modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="createDataModal" tabindex="-1" aria-labelledby="createDataModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createDataModalLabel">Novo Cadastro de Imóvel</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="createDataForm">
+                            <div class="form-group">
+                                <label for="imagens">Imagens</label>
+                                <input type="file" class="form-control-file" id="imagens" multiple required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cidade">Cidade</label>
+                                <input type="text" class="form-control" id="cidade" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bairro">Bairro</label>
+                                <input type="text" class="form-control" id="bairro" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="endereco">Endereço</label>
+                                <input type="text" class="form-control" id="endereco" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="numero">Número</label>
+                                <input type="text" class="form-control" id="numero" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cep">Cep</label>
+                                <input type="text" class="form-control" id="cep" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="descricao">Descrição</label>
+                                <input type="text" class="form-control" id="descricao" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="quartos">Quartos</label>
+                                <input type="text" class="form-control" id="quartos" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="garagem">Garagem</label>
+                                <input type="text" class="form-control" id="garagem" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="metros_quadrados">Metros Quadrados</label>
+                                <input type="text" class="form-control" id="metros_quadrados" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="valor">Valor</label>
+                                <input type="text" class="form-control" id="valor" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+        import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js';
+        import { getStorage, ref as storageRef, uploadBytes } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
+    
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyD5CRo97EPoWGlUASNz0qPftVmN1fwxk6M",
+            authDomain: "adriel-consultor-imobiliario.firebaseapp.com",
+            databaseURL: "https://adriel-consultor-imobiliario-default-rtdb.firebaseio.com",
+            projectId: "adriel-consultor-imobiliario",
+            storageBucket: "adriel-consultor-imobiliario.appspot.com",
+            messagingSenderId: "55769079311",
+            appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
+            measurementId: "G-1BP7CKYQM1"
+        };
+    
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const storage = getStorage(app);
+    
+        document.addEventListener('DOMContentLoaded', function () {
+            const createDataForm = document.getElementById('createDataForm');
+            if (createDataForm) {
+                createDataForm.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    const cidade = document.getElementById('cidade').value;
+                    const bairro = document.getElementById('bairro').value;
+                    const endereco = document.getElementById('endereco').value;
+                    const numero = document.getElementById('numero').value;
+                    const cep = document.getElementById('cep').value;
+                    const descricao = document.getElementById('descricao').value;
+                    const quartos = document.getElementById('quartos').value;
+                    const garagem = document.getElementById('garagem').value;
+                    const metros_quadrados = document.getElementById('metros_quadrados').value;
+                    const valor = document.getElementById('valor').value;
+                    const images = document.getElementById('imagens').files;
+    
+                    // Determine o próximo índice
+                    const itemsRef = ref(database, 'cadastros/venda');
+                    onValue(itemsRef, async snapshot => {
+                        let newIndex = 1; 
+                        if (snapshot.exists()) {
+                            newIndex = snapshot.size + 1;
+                        }
+    
+                        const immovelRef = ref(database, `cadastros/venda/${newIndex}/dados`);
+                        await set(immovelRef, {
+                            cidade: cidade,
+                            bairro: bairro,
+                            endereco: endereco,
+                            numero: numero,
+                            cep: cep,
+                            descricao: descricao,
+                            quartos: quartos,
+                            garagem: garagem,
+                            metros_quadrados: metros_quadrados,
+                            valor: valor
+                        });
+    
+                        // Handle image uploads
+                        Array.from(images).forEach(async (image, index) => {
+                            const imageRef = storageRef(storage, `cadastros/venda/${newIndex}/imagens/${image.name}`);
+                            await uploadBytes(imageRef, image);
+                        });
+    
+                        alert('Dados e imagens cadastrados com sucesso!');
+                        $('#createDataModal').modal('hide');
+                    }, {
+                        onlyOnce: true
+                    });
+                });
+            }
+        });
+    </script>
+    
+
+
+
 </body>
+
 </html>
