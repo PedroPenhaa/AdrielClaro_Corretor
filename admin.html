@@ -63,44 +63,165 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
         }
+
+        /* Estilos adicionais para o modal */
+        /* Centraliza verticalmente o modal */
+        .modal-dialog {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100% - 1rem);
+        }
+
+        /* Estilização do conteúdo do modal */
+        .modal-dialog {
+            max-width: 800px;
+            /* Aumenta a largura do modal */
+        }
+
+        .modal-content {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+        }
+
+        /* Botão fechar personalizado */
+        .close {
+            padding: 1rem;
+            margin: -1rem -1rem -1rem auto;
+            background-color: transparent;
+            border: none;
+            color: #000;
+            font-size: 1.4rem;
+        }
+
+        /* Estilização dos campos de formulário */
+        .form-control {
+            padding: 0.375rem 0.75rem;
+        }
+
+        /* Estilização específica para botões */
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            box-shadow: none;
+        }
+
+        /* Melhora o espaçamento e a apresentação dos labels e inputs */
+        .label-float {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .label-float input {
+            border: 2px solid lightgrey;
+            outline: none;
+            height: 40px;
+            width: 100%;
+            padding-left: 10px;
+        }
+
+        .label-float input:focus {
+            border-color: #007bff;
+        }
+
+        .label-float label {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .label-float input:focus+label,
+        .label-float input:not(:placeholder-shown)+label {
+            top: -18px;
+            background: white;
+            padding: 0 5px;
+            font-size: 12px;
+            color: #007bff;
+        }
+
+
+
+
+        /* CARDS */ 
+
+
+        .card-body {
+           
+            width: 100%;
+            height: 400px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .photos{
+            border: 1px solid black;
+            background: red;
+            width: 40%;
+            height: 90%;
+        }
+
     </style>
 </head>
 
 <body>
     <div class="sidebar">
-        <!-- Sidebar content -->
-        Menu
-    </div>
-    <div class="main-content">
-        <header>Dashboard / Overview</header>
-        <div class="info-panel">
-            <div class="info-box">
-                <strong>26 New Messages!</strong>
-                <p>View Details</p>
-            </div>
-            <div class="info-box">
-                <strong>11 New Tasks!</strong>
-                <p>View Details</p>
-            </div>
-            <div class="info-box">
-                <strong>123 New Orders!</strong>
-                <p>View Details</p>
-            </div>
-            <div class="info-box">
-                <strong>13 New Tickets!</strong>
-                <p>View Details</p>
-            </div>
-        </div>
-        <div class="chart">
-            <!-- Aqui você pode integrar um gráfico real usando uma biblioteca de gráficos -->
-            Area Chart Example
-        </div>
-        <!-- Botão para abrir o modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createDataModal">
-            Adicionar Imóvel
-        </button>
+        <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link active" href="#" id="add-properties">Incluir Imóveis</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#" id="view-properties">Ver Imóveis</a></li>
+            
+            
+        </ul>
 
-        <!-- Modal -->
+    </div>
+
+
+
+    <div class="main-content">
+
+        <div class="info-imóveis">
+            opa
+        </div>
+
+
+        <div class="sec-imoveis">
+            <header>Dashboard / Overview</header>
+            <div class="info-panel">
+                <div class="info-box">
+                    <strong>26 New Messages!</strong>
+                    <p>View Details</p>
+                </div>
+                <div class="info-box">
+                    <strong>11 New Tasks!</strong>
+                    <p>View Details</p>
+                </div>
+                <div class="info-box">
+                    <strong>123 New Orders!</strong>
+                    <p>View Details</p>
+                </div>
+                <div class="info-box">
+                    <strong>13 New Tickets!</strong>
+                    <p>View Details</p>
+                </div>
+            </div>
+            <div class="chart">
+                <!-- Aqui você pode integrar um gráfico real usando uma biblioteca de gráficos -->
+                Area Chart Example
+            </div>
+            <!-- Botão para abrir o modal -->
+            <!-- Botão para abrir o modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createDataModal">
+                Adicionar Imóvel
+            </button>
+        </div>
+
+        
+
         <!-- Modal -->
         <div class="modal fade" id="createDataModal" tabindex="-1" aria-labelledby="createDataModalLabel"
             aria-hidden="true">
@@ -114,49 +235,57 @@
                     </div>
                     <div class="modal-body">
                         <form id="createDataForm">
-                            <div class="form-group">
-                                <label for="imagens">Imagens</label>
-                                <input type="file" class="form-control-file" id="imagens" multiple required>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="cidade">Cidade</label>
+                                    <input type="text" class="form-control" id="cidade" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="bairro">Bairro</label>
+                                    <input type="text" class="form-control" id="bairro" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="cidade">Cidade</label>
-                                <input type="text" class="form-control" id="cidade" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-8">
+                                    <label for="endereco">Endereço</label>
+                                    <input type="text" class="form-control" id="endereco" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="numero">Número</label>
+                                    <input type="text" class="form-control" id="numero" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="bairro">Bairro</label>
-                                <input type="text" class="form-control" id="bairro" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="cep">Cep</label>
+                                    <input type="text" class="form-control" id="cep" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="quartos">Quartos</label>
+                                    <input type="text" class="form-control" id="quartos" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="garagem">Garagem</label>
+                                    <input type="text" class="form-control" id="garagem" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="endereco">Endereço</label>
-                                <input type="text" class="form-control" id="endereco" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="numero">Número</label>
-                                <input type="text" class="form-control" id="numero" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="cep">Cep</label>
-                                <input type="text" class="form-control" id="cep" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="metros_quadrados">Metros Quadrados</label>
+                                    <input type="text" class="form-control" id="metros_quadrados" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="valor">Valor</label>
+                                    <input type="text" class="form-control" id="valor" required>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="descricao">Descrição</label>
                                 <input type="text" class="form-control" id="descricao" required>
                             </div>
                             <div class="form-group">
-                                <label for="quartos">Quartos</label>
-                                <input type="text" class="form-control" id="quartos" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="garagem">Garagem</label>
-                                <input type="text" class="form-control" id="garagem" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="metros_quadrados">Metros Quadrados</label>
-                                <input type="text" class="form-control" id="metros_quadrados" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="valor">Valor</label>
-                                <input type="text" class="form-control" id="valor" required>
+                                <label for="imagens">Imagens</label>
+                                <input type="file" class="form-control-file" id="imagens" multiple required>
                             </div>
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </form>
@@ -165,7 +294,18 @@
             </div>
         </div>
 
+
     </div>
+
+
+
+
+
+
+
+
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -175,7 +315,7 @@
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
         import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js';
         import { getStorage, ref as storageRef, uploadBytes } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
-    
+
         // Configuração do Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyD5CRo97EPoWGlUASNz0qPftVmN1fwxk6M",
@@ -187,12 +327,12 @@
             appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
             measurementId: "G-1BP7CKYQM1"
         };
-    
+
         // Inicializar Firebase
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
         const storage = getStorage(app);
-    
+
         document.addEventListener('DOMContentLoaded', function () {
             const createDataForm = document.getElementById('createDataForm');
             if (createDataForm) {
@@ -209,15 +349,15 @@
                     const metros_quadrados = document.getElementById('metros_quadrados').value;
                     const valor = document.getElementById('valor').value;
                     const images = document.getElementById('imagens').files;
-    
+
                     // Determine o próximo índice
                     const itemsRef = ref(database, 'cadastros/venda');
                     onValue(itemsRef, async snapshot => {
-                        let newIndex = 1; 
+                        let newIndex = 1;
                         if (snapshot.exists()) {
                             newIndex = snapshot.size + 1;
                         }
-    
+
                         const immovelRef = ref(database, `cadastros/venda/${newIndex}/dados`);
                         await set(immovelRef, {
                             cidade: cidade,
@@ -231,13 +371,13 @@
                             metros_quadrados: metros_quadrados,
                             valor: valor
                         });
-    
+
                         // Handle image uploads
                         Array.from(images).forEach(async (image, index) => {
                             const imageRef = storageRef(storage, `cadastros/venda/${newIndex}/imagens/${image.name}`);
                             await uploadBytes(imageRef, image);
                         });
-    
+
                         alert('Dados e imagens cadastrados com sucesso!');
                         $('#createDataModal').modal('hide');
                     }, {
@@ -246,8 +386,138 @@
                 });
             }
         });
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------------------------------------- */
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const addPropertiesLink = document.getElementById('add-properties');
+    const viewPropertiesLink = document.getElementById('view-properties');
+    const secImoveisDiv = document.querySelector('.sec-imoveis');
+    const infoImoveisDiv = document.querySelector('.info-imóveis');
+
+    // Inicialmente esconde os divs
+    secImoveisDiv.style.display = 'none';
+    infoImoveisDiv.style.display = 'none';
+
+    // Mostra o sec-imoveis quando clicar em Incluir Imóveis
+    addPropertiesLink.addEventListener('click', function (event) {
+        event.preventDefault();
+        secImoveisDiv.style.display = 'block';
+        infoImoveisDiv.style.display = 'none';
+    });
+
+    // Mostra o info-imoveis quando clicar em Ver Imóveis
+    viewPropertiesLink.addEventListener('click', function (event) {
+        event.preventDefault();
+        infoImoveisDiv.style.display = 'block';
+        secImoveisDiv.style.display = 'none';
+    });
+});
+
+
+
+
+
+
+
+/* ----------------------------------------------------------------- */
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const storage = getStorage(app);
+
+    const addPropertiesLink = document.getElementById('add-properties');
+    const viewPropertiesLink = document.getElementById('view-properties');
+    const secImoveisDiv = document.querySelector('.sec-imoveis');
+    const infoImoveisDiv = document.querySelector('.info-imóveis');
+
+    // Esconde inicialmente os divs
+    secImoveisDiv.style.display = 'none';
+    infoImoveisDiv.style.display = 'none';
+
+    // Exibe 'sec-imoveis' ao clicar em 'Incluir Imóveis'
+    addPropertiesLink.addEventListener('click', function (event) {
+        event.preventDefault();
+        secImoveisDiv.style.display = 'block';
+        infoImoveisDiv.style.display = 'none';
+    });
+
+    // Busca e exibe 'info-imoveis' ao clicar em 'Ver Imóveis'
+    viewPropertiesLink.addEventListener('click', function (event) {
+        event.preventDefault();
+        fetchAndDisplayProperties();
+        secImoveisDiv.style.display = 'none';
+    });
+
+    function fetchAndDisplayProperties() {
+        const itemsRef = ref(database, 'cadastros/venda');
+        onValue(itemsRef, (snapshot) => {
+            infoImoveisDiv.innerHTML = ''; // Limpa antes de adicionar novos cards
+            snapshot.forEach((childSnapshot) => {
+                const data = childSnapshot.val().dados;
+                if (data) { // Verifica se há dados para evitar erros
+                    const cardHtml = `
+                        <div class="card" ">
+                            <div class="card-body">
+
+                                <div class="photos">
+                                    <img> </img>
+
+                                </div>
+
+
+                                <div class="info">
+                                    <h5 class="card-title">${data.endereco}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">${data.bairro}, ${data.cidade}</h6>
+                                <p class="card-text">
+                                    Quartos: ${data.quartos}, Garagem: ${data.garagem}, Metros Quadrados: ${data.metros_quadrados}, Valor: ${data.valor}
+                                    <br>
+                                    Descrição: ${data.descricao}
+                                </p>
+                                    </div>
+                                
+                            </div>
+                        </div>
+                    `;
+                    infoImoveisDiv.innerHTML += cardHtml;
+                }
+            });
+        }, {
+            onlyOnce: true
+        });
+    }
+});
+
+
+
+
+
+
+
+
+
+
     </script>
-    
+
 
 
 
