@@ -5,168 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="dist/css/main.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
 
-        .sidebar {
-            width: 200px;
-            height: 100vh;
-            background-color: #343a40;
-            padding: 20px;
-            color: white;
-        }
-
-        .main-content {
-            flex-grow: 1;
-            padding: 20px;
-        }
-
-        .info-panel {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-        }
-
-        .info-box {
-            background-color: #f8f9fa;
-            border-left: 5px solid;
-            padding: 10px;
-            width: 24%;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .info-box:nth-child(1) {
-            border-color: #17a2b8;
-        }
-
-        .info-box:nth-child(2) {
-            border-color: #ffc107;
-        }
-
-        .info-box:nth-child(3) {
-            border-color: #28a745;
-        }
-
-        .info-box:nth-child(4) {
-            border-color: #dc3545;
-        }
-
-        .chart {
-            padding: 20px;
-            background-color: #ffffff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-        }
-
-        /* Estilos adicionais para o modal */
-        /* Centraliza verticalmente o modal */
-        .modal-dialog {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: calc(100% - 1rem);
-        }
-
-        /* Estilização do conteúdo do modal */
-        .modal-dialog {
-            max-width: 800px;
-            /* Aumenta a largura do modal */
-        }
-
-        .modal-content {
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
-        }
-
-        /* Botão fechar personalizado */
-        .close {
-            padding: 1rem;
-            margin: -1rem -1rem -1rem auto;
-            background-color: transparent;
-            border: none;
-            color: #000;
-            font-size: 1.4rem;
-        }
-
-        /* Estilização dos campos de formulário */
-        .form-control {
-            padding: 0.375rem 0.75rem;
-        }
-
-        /* Estilização específica para botões */
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-            box-shadow: none;
-        }
-
-        /* Melhora o espaçamento e a apresentação dos labels e inputs */
-        .label-float {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .label-float input {
-            border: 2px solid lightgrey;
-            outline: none;
-            height: 40px;
-            width: 100%;
-            padding-left: 10px;
-        }
-
-        .label-float input:focus {
-            border-color: #007bff;
-        }
-
-        .label-float label {
-            position: absolute;
-            left: 10px;
-            top: 10px;
-            pointer-events: none;
-            transition: all 0.3s ease;
-        }
-
-        .label-float input:focus+label,
-        .label-float input:not(:placeholder-shown)+label {
-            top: -18px;
-            background: white;
-            padding: 0 5px;
-            font-size: 12px;
-            color: #007bff;
-        }
-
-
-
-
-        /* CARDS */ 
-
-
-        .card-body {
-           
-            width: 100%;
-            height: 400px;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-direction: row;
-        }
-
-        .photos{
-            border: 1px solid black;
-            background: red;
-            width: 40%;
-            height: 90%;
-        }
-
-    </style>
 </head>
 
 <body>
@@ -174,20 +15,14 @@
         <ul class="nav flex-column">
             <li class="nav-item"><a class="nav-link active" href="#" id="add-properties">Incluir Imóveis</a></li>
             <li class="nav-item"><a class="nav-link active" href="#" id="view-properties">Ver Imóveis</a></li>
-            
-            
         </ul>
-
     </div>
-
 
 
     <div class="main-content">
 
         <div class="info-imóveis">
-           
         </div>
-
 
         <div class="sec-imoveis">
             <header>Dashboard / Overview</header>
@@ -219,8 +54,6 @@
                 Adicionar Imóvel
             </button>
         </div>
-
-        
 
         <!-- Modal -->
         <div class="modal fade" id="createDataModal" tabindex="-1" aria-labelledby="createDataModalLabel"
@@ -294,17 +127,7 @@
             </div>
         </div>
 
-
     </div>
-
-
-
-
-
-
-
-
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -385,6 +208,7 @@
                     });
                 });
             }
+            
         });
 
 
@@ -396,86 +220,86 @@
 
 
 
-/* ----------------------------------------------------------------- */
+        /* ----------------------------------------------------------------- */
 
 
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    const addPropertiesLink = document.getElementById('add-properties');
-    const viewPropertiesLink = document.getElementById('view-properties');
-    const secImoveisDiv = document.querySelector('.sec-imoveis');
-    const infoImoveisDiv = document.querySelector('.info-imóveis');
+        document.addEventListener('DOMContentLoaded', function () {
+            const addPropertiesLink = document.getElementById('add-properties');
+            const viewPropertiesLink = document.getElementById('view-properties');
+            const secImoveisDiv = document.querySelector('.sec-imoveis');
+            const infoImoveisDiv = document.querySelector('.info-imóveis');
 
-    // Inicialmente esconde os divs
-    secImoveisDiv.style.display = 'none';
-    infoImoveisDiv.style.display = 'none';
+            // Inicialmente esconde os divs
+            secImoveisDiv.style.display = 'none';
+            infoImoveisDiv.style.display = 'none';
 
-    // Mostra o sec-imoveis quando clicar em Incluir Imóveis
-    addPropertiesLink.addEventListener('click', function (event) {
-        event.preventDefault();
-        secImoveisDiv.style.display = 'block';
-        infoImoveisDiv.style.display = 'none';
-    });
+            // Mostra o sec-imoveis quando clicar em Incluir Imóveis
+            addPropertiesLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                secImoveisDiv.style.display = 'block';
+                infoImoveisDiv.style.display = 'none';
+            });
 
-    // Mostra o info-imoveis quando clicar em Ver Imóveis
-    viewPropertiesLink.addEventListener('click', function (event) {
-        event.preventDefault();
-        infoImoveisDiv.style.display = 'block';
-        secImoveisDiv.style.display = 'none';
-    });
-});
-
-
-
-
-
-
-
-/* ----------------------------------------------------------------- */
+            // Mostra o info-imoveis quando clicar em Ver Imóveis
+            viewPropertiesLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                infoImoveisDiv.style.display = 'block';
+                secImoveisDiv.style.display = 'none';
+            });
+        });
 
 
 
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
-    const storage = getStorage(app);
 
-    const addPropertiesLink = document.getElementById('add-properties');
-    const viewPropertiesLink = document.getElementById('view-properties');
-    const secImoveisDiv = document.querySelector('.sec-imoveis');
-    const infoImoveisDiv = document.querySelector('.info-imóveis');
+        /* ----------------------------------------------------------------- */
 
-    // Esconde inicialmente os divs
-    secImoveisDiv.style.display = 'none';
-    infoImoveisDiv.style.display = 'none';
 
-    // Exibe 'sec-imoveis' ao clicar em 'Incluir Imóveis'
-    addPropertiesLink.addEventListener('click', function (event) {
-        event.preventDefault();
-        secImoveisDiv.style.display = 'block';
-        infoImoveisDiv.style.display = 'none';
-    });
 
-    // Busca e exibe 'info-imoveis' ao clicar em 'Ver Imóveis'
-    viewPropertiesLink.addEventListener('click', function (event) {
-        event.preventDefault();
-        fetchAndDisplayProperties();
-        secImoveisDiv.style.display = 'none';
-    });
 
-    function fetchAndDisplayProperties() {
-        const itemsRef = ref(database, 'cadastros/venda');
-        onValue(itemsRef, (snapshot) => {
-            infoImoveisDiv.innerHTML = ''; // Limpa antes de adicionar novos cards
-            snapshot.forEach((childSnapshot) => {
-                const data = childSnapshot.val().dados;
-                if (data) { // Verifica se há dados para evitar erros
-                    const cardHtml = `
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const app = initializeApp(firebaseConfig);
+            const database = getDatabase(app);
+            const storage = getStorage(app);
+
+            const addPropertiesLink = document.getElementById('add-properties');
+            const viewPropertiesLink = document.getElementById('view-properties');
+            const secImoveisDiv = document.querySelector('.sec-imoveis');
+            const infoImoveisDiv = document.querySelector('.info-imóveis');
+
+            // Esconde inicialmente os divs
+            secImoveisDiv.style.display = 'none';
+            infoImoveisDiv.style.display = 'none';
+
+            // Exibe 'sec-imoveis' ao clicar em 'Incluir Imóveis'
+            addPropertiesLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                secImoveisDiv.style.display = 'block';
+                infoImoveisDiv.style.display = 'none';
+            });
+
+            // Busca e exibe 'info-imoveis' ao clicar em 'Ver Imóveis'
+            viewPropertiesLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                fetchAndDisplayProperties();
+                secImoveisDiv.style.display = 'none';
+            });
+
+            function fetchAndDisplayProperties() {
+                const itemsRef = ref(database, 'cadastros/venda');
+                onValue(itemsRef, (snapshot) => {
+                    infoImoveisDiv.innerHTML = ''; // Limpa antes de adicionar novos cards
+                    snapshot.forEach((childSnapshot) => {
+                        const data = childSnapshot.val().dados;
+                        if (data) { // Verifica se há dados para evitar erros
+                            const cardHtml = `
                         <div class="card" ">
                             <div class="card-body">
 
@@ -498,14 +322,14 @@ document.addEventListener('DOMContentLoaded', function () {
                             </div>
                         </div>
                     `;
-                    infoImoveisDiv.innerHTML += cardHtml;
-                }
-            });
-        }, {
-            onlyOnce: true
+                            infoImoveisDiv.innerHTML += cardHtml;
+                        }
+                    });
+                }, {
+                    onlyOnce: true
+                });
+            }
         });
-    }
-});
 
 
 
@@ -517,9 +341,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     </script>
-
-
-
 
 </body>
 
