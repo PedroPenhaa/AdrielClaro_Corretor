@@ -120,9 +120,16 @@
         /* Card styles */
         .card {
             background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 2rem;
+  border-bottom: 1px solid black;
         }
 
         .card-body {
@@ -152,6 +159,25 @@
         .card-body .info .card-text {
             font-size: 0.9rem;
         }
+
+
+
+
+        .carousel-img {
+        width: 100%;
+        height: 300px; /* Altura fixa para todas as imagens */
+        object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+    }
+    .carousel-container {
+        width: 400px; /* Largura fixa para o carrossel */
+        margin: auto; /* Centraliza o carrossel */
+    }
+
+
+
+
+
+
     </style>
 </head>
 
@@ -164,7 +190,10 @@
     </div>
 
     <div class="main-content">
-        <div class="info-imóveis"></div>
+        <div class="info-imóveis" style="width: 100%;">
+
+
+        </div>
 
         <div class="sec-imoveis">
             <header>Dashboard / Overview</header>
@@ -194,7 +223,8 @@
             </button>
         </div>
 
-        <div class="modal fade" id="createDataModal" tabindex="-1" aria-labelledby="createDataModalLabel" aria-hidden="true">
+        <div class="modal fade" id="createDataModal" tabindex="-1" aria-labelledby="createDataModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -270,20 +300,20 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
-        import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js';
-        import { getStorage, ref as storageRef, uploadBytes } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
+        import { getDatabase, ref, set, onValue, get } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js';
+        import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
 
-       // Configuração do Firebase
- const firebaseConfig = {
-   apiKey: "AIzaSyD5CRo97EPoWGlUASNz0qPftVmN1fwxk6M",
-   authDomain: "adriel-consultor-imobiliario.firebaseapp.com",
-   databaseURL: "https://adriel-consultor-imobiliario-default-rtdb.firebaseio.com",
-   projectId: "adriel-consultor-imobiliario",
-   storageBucket: "adriel-consultor-imobiliario.appspot.com",
-   messagingSenderId: "55769079311",
-   appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
-   measurementId: "G-1BP7CKYQM1"
-};
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyD5CRo97EPoWGlUASNz0qPftVmN1fwxk6M",
+            authDomain: "adriel-consultor-imobiliario.firebaseapp.com",
+            databaseURL: "https://adriel-consultor-imobiliario-default-rtdb.firebaseio.com",
+            projectId: "adriel-consultor-imobiliario",
+            storageBucket: "adriel-consultor-imobiliario.appspot.com",
+            messagingSenderId: "55769079311",
+            appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
+            measurementId: "G-1BP7CKYQM1"
+        };
 
 
         const app = initializeApp(firebaseConfig);
@@ -293,8 +323,9 @@
         document.addEventListener('DOMContentLoaded', function () {
             const createDataForm = document.getElementById('createDataForm');
             if (createDataForm) {
-                createDataForm.addEventListener('submit', function (event) {
+                createDataForm.addEventListener('submit', async function (event) {
                     event.preventDefault();
+
                     const cidade = document.getElementById('cidade').value;
                     const bairro = document.getElementById('bairro').value;
                     const endereco = document.getElementById('endereco').value;
@@ -308,40 +339,48 @@
                     const images = document.getElementById('imagens').files;
 
                     const itemsRef = ref(database, 'cadastros/venda');
-                    onValue(itemsRef, async snapshot => {
-                        let newIndex = 1;
-                        if (snapshot.exists()) {
-                            newIndex = snapshot.size + 1;
-                        }
+                    const snapshot = await get(itemsRef);
+                    let newIndex = 1; // Default to 1 if no children
+                    if (snapshot.exists()) {
+                        const data = snapshot.val();
+                        const keys = Object.keys(data);
+                        newIndex = keys.length + 1; // Calculate new index based on existing keys
+                    }
 
-                        const immovelRef = ref(database, `cadastros/venda/${newIndex}/dados`);
-                        await set(immovelRef, {
-                            cidade: cidade,
-                            bairro: bairro,
-                            endereco: endereco,
-                            numero: numero,
-                            cep: cep,
-                            descricao: descricao,
-                            quartos: quartos,
-                            garagem: garagem,
-                            metros_quadrados: metros_quadrados,
-                            valor: valor
-                        });
-
-                        Array.from(images).forEach(async (image, index) => {
-                            const imageRef = storageRef(storage, `cadastros/venda/${newIndex}/imagens/${image.name}`);
-                            await uploadBytes(imageRef, image);
-                        });
-
-                        alert('Dados e imagens cadastrados com sucesso!');
-                        $('#createDataModal').modal('hide');
-                    }, {
-                        onlyOnce: true
+                    const immovelRef = ref(database, `cadastros/venda/${newIndex}/dados`);
+                    await set(immovelRef, {
+                        cidade: cidade,
+                        bairro: bairro,
+                        endereco: endereco,
+                        numero: numero,
+                        cep: cep,
+                        descricao: descricao,
+                        quartos: quartos,
+                        garagem: garagem,
+                        metros_quadrados: metros_quadrados,
+                        valor: valor
                     });
+
+                    let imageUrls = {};
+
+                    for (let i = 0; i < images.length; i++) {
+                        const image = images[i];
+                        const imageRef = storageRef(storage, `cadastros/venda/${newIndex}/imagens/${i + 1}`); // Adjusted to start from 1
+                        const uploadResult = await uploadBytes(imageRef, image);
+                        const url = await getDownloadURL(uploadResult.ref);
+                        imageUrls[`${i + 1}`] = url; // Key as '1', '2', '3', etc.
+                    }
+
+                    const imagesRef = ref(database, `cadastros/venda/${newIndex}/imagens`);
+                    await set(imagesRef, imageUrls);
+
+                    alert('Dados e imagens cadastrados com sucesso!');
+                    $('#createDataModal').modal('hide');
                 });
             }
         });
 
+        /* Seleção da seção */
         document.addEventListener('DOMContentLoaded', function () {
             const addPropertiesLink = document.getElementById('add-properties');
             const viewPropertiesLink = document.getElementById('view-properties');
@@ -389,21 +428,23 @@
                 secImoveisDiv.style.display = 'none';
             });
 
-           /*  function fetchAndDisplayProperties() {
+            function fetchAndDisplayProperties() {
     const itemsRef = ref(database, 'cadastros/venda');
     onValue(itemsRef, (snapshot) => {
-        infoImoveisDiv.innerHTML = '';
+        infoImoveisDiv.innerHTML = '';  // Limpar conteúdo anterior
         snapshot.forEach((childSnapshot) => {
             const data = childSnapshot.val().dados;
-            const images = childSnapshot.val().imagens; // Supondo que as imagens estão salvas em 'imagens' dentro de cada cadastro
+            const images = childSnapshot.val().imagens; // Pega o objeto de imagens
+
             if (data) {
                 let carouselInnerHtml = '';
 
-                if (images && images.length > 0) {
-                    images.forEach((img, index) => {
+                // Verifica se existem imagens e cria itens do carrossel para cada uma
+                if (images && Object.keys(images).length > 0) {
+                    Object.keys(images).forEach((key, index) => {
                         carouselInnerHtml += `
                             <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                                <img src="${img.url}" class="d-block w-100">
+                                <img src="${images[key]}" class="d-block w-100 carousel-img">
                             </div>
                         `;
                     });
@@ -411,7 +452,7 @@
 
                 const cardHtml = `
                     <div class="card">
-                        <div class="card-body">
+                        <div class="carousel-container">
                             <div id="carousel${childSnapshot.key}" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     ${carouselInnerHtml}
@@ -425,41 +466,15 @@
                                     <span class="sr-only">Next</span>
                                 </a>
                             </div>
-                            <div class="info">
-                                <h5 class="card-title">${data.endereco}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">${data.bairro}, ${data.cidade}</h6>
-                                <p class="card-text">
-                                    Quartos: ${data.quartos}, Garagem: ${data.garagem}, Metros Quadrados: ${data.metros_quadrados}, Valor: ${data.valor}
-                                    <br>
-                                    Descrição: ${data.descricao}
-                                </p>
-                            </div>
                         </div>
-                    </div>
-                `;
-                infoImoveisDiv.innerHTML += cardHtml;
-            }
-        });
-    }, {
-        onlyOnce: true
-    });
-}
- */
-
- function fetchAndDisplayProperties() {
-    const itemsRef = ref(database, 'cadastros/venda');
-    onValue(itemsRef, (snapshot) => {
-        infoImoveisDiv.innerHTML = '';
-        snapshot.forEach((childSnapshot) => {
-            const data = childSnapshot.val().dados;
-            const imagesData = childSnapshot.val().imagens;
-            if (data && imagesData) {
-                const imageElements = Object.keys(imagesData).map(key => `<img src="${imagesData[key].url}" alt="Image" style="width: 100px; height: auto;">`).join('');
-                const cardHtml = `
-                    <div class="card">
                         <div class="card-body">
-                            ${imageElements}
-                            <p>${data.descricao}</p>
+                            <h5 class="card-title">${data.endereco}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">${data.bairro}, ${data.cidade}</h6>
+                            <p class="card-text">
+                                Quartos: ${data.quartos}, Garagem: ${data.garagem}, Metros Quadrados: ${data.metros_quadrados}, Valor: ${data.valor}
+                                <br>
+                                Descrição: ${data.descricao}
+                            </p>
                         </div>
                     </div>
                 `;
@@ -470,6 +485,7 @@
         onlyOnce: true
     });
 }
+
 
 
         });
