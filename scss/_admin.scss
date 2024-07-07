@@ -1,0 +1,160 @@
+@import 'bootstrap/scss/bootstrap';
+
+// Variables
+$sidebar-bg: #343a40;
+$sidebar-color: #ffffff;
+$sidebar-hover-bg: #495057;
+$main-content-bg: #f8f9fa;
+$info-box-bg: #007bff;
+$info-box-color: #ffffff;
+$modal-header-bg: #007bff;
+$modal-header-color: #ffffff;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Base styles
+body {
+  font-family: Arial, sans-serif;
+  background-color: $main-content-bg;
+  color: #333;
+}
+
+// Sidebar styles
+.sidebar {
+  background-color: $sidebar-bg;
+  color: $sidebar-color;
+  min-height: 100vh;
+  padding: 20px;
+  width: 250px;
+  position: fixed;
+
+  .nav-link {
+    color: $sidebar-color;
+    &:hover {
+      background-color: $sidebar-hover-bg;
+    }
+  }
+}
+
+// Main content styles
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+
+  header {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .info-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .info-box {
+      background-color: $info-box-bg;
+      color: $info-box-color;
+      padding: 20px;
+      border-radius: 8px;
+      flex: 1;
+      min-width: 200px;
+
+      strong {
+        display: block;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+
+  .chart {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .btn-primary {
+    background-color: $info-box-bg;
+    border: none;
+    &:hover {
+      background-color: darken($info-box-bg, 10%);
+    }
+  }
+}
+
+// Modal styles
+.modal-content {
+  .modal-header {
+    background-color: $modal-header-bg;
+    color: $modal-header-color;
+    border-bottom: none;
+
+    .close {
+      color: $modal-header-color;
+    }
+  }
+
+  .modal-body {
+    .form-group {
+      margin-bottom: 15px;
+
+      label {
+        font-weight: bold;
+      }
+
+      input,
+      .form-control-file {
+        margin-top: 5px;
+      }
+    }
+  }
+}
+
+// Card styles
+.card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+
+  .card-body {
+    padding: 20px;
+
+    .photos {
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+    }
+
+    .info {
+      margin-top: 15px;
+
+      .card-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      .card-subtitle {
+        font-size: 1rem;
+        margin-bottom: 15px;
+      }
+
+      .card-text {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

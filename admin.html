@@ -5,9 +5,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="dist/css/main.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Variables */
+        :root {
+            --sidebar-bg: #343a40;
+            --sidebar-color: #ffffff;
+            --sidebar-hover-bg: #495057;
+            --main-content-bg: #f8f9fa;
+            --info-box-bg: #007bff;
+            --info-box-color: #ffffff;
+            --modal-header-bg: #007bff;
+            --modal-header-color: #ffffff;
+        }
 
+        /* Base styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--main-content-bg);
+            color: #333;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            background-color: var(--sidebar-bg);
+            color: var(--sidebar-color);
+            min-height: 100vh;
+            padding: 20px;
+            width: 250px;
+            position: fixed;
+        }
+
+        .sidebar .nav-link {
+            color: var(--sidebar-color);
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: var(--sidebar-hover-bg);
+        }
+
+        /* Main content styles */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .main-content header {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .info-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .info-box {
+            background-color: var(--info-box-bg);
+            color: var(--info-box-color);
+            padding: 20px;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .info-box strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .chart {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--info-box-bg);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: darken(var(--info-box-bg), 10%);
+        }
+
+        /* Modal styles */
+        .modal-content .modal-header {
+            background-color: var(--modal-header-bg);
+            color: var(--modal-header-color);
+            border-bottom: none;
+        }
+
+        .modal-content .modal-header .close {
+            color: var(--modal-header-color);
+        }
+
+        .modal-content .modal-body .form-group {
+            margin-bottom: 15px;
+        }
+
+        .modal-content .modal-body .form-group label {
+            font-weight: bold;
+        }
+
+        .modal-content .modal-body .form-group input,
+        .modal-content .modal-body .form-group .form-control-file {
+            margin-top: 5px;
+        }
+
+        /* Card styles */
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body .photos img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .card-body .info {
+            margin-top: 15px;
+        }
+
+        .card-body .info .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .card-body .info .card-subtitle {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .card-body .info .card-text {
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -18,11 +163,8 @@
         </ul>
     </div>
 
-
     <div class="main-content">
-
-        <div class="info-imóveis">
-        </div>
+        <div class="info-imóveis"></div>
 
         <div class="sec-imoveis">
             <header>Dashboard / Overview</header>
@@ -45,19 +187,14 @@
                 </div>
             </div>
             <div class="chart">
-                <!-- Aqui você pode integrar um gráfico real usando uma biblioteca de gráficos -->
                 Area Chart Example
             </div>
-            <!-- Botão para abrir o modal -->
-            <!-- Botão para abrir o modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createDataModal">
                 Adicionar Imóvel
             </button>
         </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="createDataModal" tabindex="-1" aria-labelledby="createDataModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="createDataModal" tabindex="-1" aria-labelledby="createDataModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -126,32 +263,29 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
         import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js';
         import { getStorage, ref as storageRef, uploadBytes } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
 
-        // Configuração do Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyD5CRo97EPoWGlUASNz0qPftVmN1fwxk6M",
-            authDomain: "adriel-consultor-imobiliario.firebaseapp.com",
-            databaseURL: "https://adriel-consultor-imobiliario-default-rtdb.firebaseio.com",
-            projectId: "adriel-consultor-imobiliario",
-            storageBucket: "adriel-consultor-imobiliario.appspot.com",
-            messagingSenderId: "55769079311",
-            appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
-            measurementId: "G-1BP7CKYQM1"
-        };
+       // Configuração do Firebase
+ const firebaseConfig = {
+   apiKey: "AIzaSyD5CRo97EPoWGlUASNz0qPftVmN1fwxk6M",
+   authDomain: "adriel-consultor-imobiliario.firebaseapp.com",
+   databaseURL: "https://adriel-consultor-imobiliario-default-rtdb.firebaseio.com",
+   projectId: "adriel-consultor-imobiliario",
+   storageBucket: "adriel-consultor-imobiliario.appspot.com",
+   messagingSenderId: "55769079311",
+   appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
+   measurementId: "G-1BP7CKYQM1"
+};
 
-        // Inicializar Firebase
+
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
         const storage = getStorage(app);
@@ -173,7 +307,6 @@
                     const valor = document.getElementById('valor').value;
                     const images = document.getElementById('imagens').files;
 
-                    // Determine o próximo índice
                     const itemsRef = ref(database, 'cadastros/venda');
                     onValue(itemsRef, async snapshot => {
                         let newIndex = 1;
@@ -195,7 +328,6 @@
                             valor: valor
                         });
 
-                        // Handle image uploads
                         Array.from(images).forEach(async (image, index) => {
                             const imageRef = storageRef(storage, `cadastros/venda/${newIndex}/imagens/${image.name}`);
                             await uploadBytes(imageRef, image);
@@ -208,23 +340,7 @@
                     });
                 });
             }
-            
         });
-
-
-
-
-
-
-
-
-
-
-        /* ----------------------------------------------------------------- */
-
-
-
-
 
         document.addEventListener('DOMContentLoaded', function () {
             const addPropertiesLink = document.getElementById('add-properties');
@@ -232,37 +348,21 @@
             const secImoveisDiv = document.querySelector('.sec-imoveis');
             const infoImoveisDiv = document.querySelector('.info-imóveis');
 
-            // Inicialmente esconde os divs
             secImoveisDiv.style.display = 'none';
             infoImoveisDiv.style.display = 'none';
 
-            // Mostra o sec-imoveis quando clicar em Incluir Imóveis
             addPropertiesLink.addEventListener('click', function (event) {
                 event.preventDefault();
                 secImoveisDiv.style.display = 'block';
                 infoImoveisDiv.style.display = 'none';
             });
 
-            // Mostra o info-imoveis quando clicar em Ver Imóveis
             viewPropertiesLink.addEventListener('click', function (event) {
                 event.preventDefault();
                 infoImoveisDiv.style.display = 'block';
                 secImoveisDiv.style.display = 'none';
             });
         });
-
-
-
-
-
-
-
-        /* ----------------------------------------------------------------- */
-
-
-
-
-
 
         document.addEventListener('DOMContentLoaded', function () {
             const app = initializeApp(firebaseConfig);
@@ -274,74 +374,106 @@
             const secImoveisDiv = document.querySelector('.sec-imoveis');
             const infoImoveisDiv = document.querySelector('.info-imóveis');
 
-            // Esconde inicialmente os divs
             secImoveisDiv.style.display = 'none';
             infoImoveisDiv.style.display = 'none';
 
-            // Exibe 'sec-imoveis' ao clicar em 'Incluir Imóveis'
             addPropertiesLink.addEventListener('click', function (event) {
                 event.preventDefault();
                 secImoveisDiv.style.display = 'block';
                 infoImoveisDiv.style.display = 'none';
             });
 
-            // Busca e exibe 'info-imoveis' ao clicar em 'Ver Imóveis'
             viewPropertiesLink.addEventListener('click', function (event) {
                 event.preventDefault();
                 fetchAndDisplayProperties();
                 secImoveisDiv.style.display = 'none';
             });
 
-            function fetchAndDisplayProperties() {
-                const itemsRef = ref(database, 'cadastros/venda');
-                onValue(itemsRef, (snapshot) => {
-                    infoImoveisDiv.innerHTML = ''; // Limpa antes de adicionar novos cards
-                    snapshot.forEach((childSnapshot) => {
-                        const data = childSnapshot.val().dados;
-                        if (data) { // Verifica se há dados para evitar erros
-                            const cardHtml = `
-                        <div class="card" ">
-                            <div class="card-body">
+           /*  function fetchAndDisplayProperties() {
+    const itemsRef = ref(database, 'cadastros/venda');
+    onValue(itemsRef, (snapshot) => {
+        infoImoveisDiv.innerHTML = '';
+        snapshot.forEach((childSnapshot) => {
+            const data = childSnapshot.val().dados;
+            const images = childSnapshot.val().imagens; // Supondo que as imagens estão salvas em 'imagens' dentro de cada cadastro
+            if (data) {
+                let carouselInnerHtml = '';
 
-                                <div class="photos">
-                                    <img> </img>
+                if (images && images.length > 0) {
+                    images.forEach((img, index) => {
+                        carouselInnerHtml += `
+                            <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                                <img src="${img.url}" class="d-block w-100">
+                            </div>
+                        `;
+                    });
+                }
 
+                const cardHtml = `
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="carousel${childSnapshot.key}" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    ${carouselInnerHtml}
                                 </div>
-
-
-                                <div class="info">
-                                    <h5 class="card-title">${data.endereco}</h5>
+                                <a class="carousel-control-prev" href="#carousel${childSnapshot.key}" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carousel${childSnapshot.key}" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                            <div class="info">
+                                <h5 class="card-title">${data.endereco}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">${data.bairro}, ${data.cidade}</h6>
                                 <p class="card-text">
                                     Quartos: ${data.quartos}, Garagem: ${data.garagem}, Metros Quadrados: ${data.metros_quadrados}, Valor: ${data.valor}
                                     <br>
                                     Descrição: ${data.descricao}
                                 </p>
-                                    </div>
-                                
                             </div>
                         </div>
-                    `;
-                            infoImoveisDiv.innerHTML += cardHtml;
-                        }
-                    });
-                }, {
-                    onlyOnce: true
-                });
+                    </div>
+                `;
+                infoImoveisDiv.innerHTML += cardHtml;
             }
         });
+    }, {
+        onlyOnce: true
+    });
+}
+ */
+
+ function fetchAndDisplayProperties() {
+    const itemsRef = ref(database, 'cadastros/venda');
+    onValue(itemsRef, (snapshot) => {
+        infoImoveisDiv.innerHTML = '';
+        snapshot.forEach((childSnapshot) => {
+            const data = childSnapshot.val().dados;
+            const imagesData = childSnapshot.val().imagens;
+            if (data && imagesData) {
+                const imageElements = Object.keys(imagesData).map(key => `<img src="${imagesData[key].url}" alt="Image" style="width: 100px; height: auto;">`).join('');
+                const cardHtml = `
+                    <div class="card">
+                        <div class="card-body">
+                            ${imageElements}
+                            <p>${data.descricao}</p>
+                        </div>
+                    </div>
+                `;
+                infoImoveisDiv.innerHTML += cardHtml;
+            }
+        });
+    }, {
+        onlyOnce: true
+    });
+}
 
 
-
-
-
-
-
-
-
-
+        });
     </script>
-
 </body>
 
 </html>

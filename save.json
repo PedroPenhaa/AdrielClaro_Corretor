@@ -1,0 +1,11 @@
+ // Configuração do Firebase
+ const firebaseConfig = {
+   apiKey: "AIzaSyD5CRo97EPoWGlUASNz0qPftVmN1fwxk6M",
+   authDomain: "adriel-consultor-imobiliario.firebaseapp.com",
+   databaseURL: "https://adriel-consultor-imobiliario-default-rtdb.firebaseio.com",
+   projectId: "adriel-consultor-imobiliario",
+   storageBucket: "adriel-consultor-imobiliario.appspot.com",
+   messagingSenderId: "55769079311",
+   appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
+   measurementId: "G-1BP7CKYQM1"
+};
