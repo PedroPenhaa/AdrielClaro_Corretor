@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         /* Variables */
         :root {
@@ -38,18 +39,15 @@
             flex-direction: column;
         }
 
-        .nav{
+        .nav {
             padding-top: 50px;
             display: flex;
             flex-direction: column;
-        
-            
         }
 
         .sidebar .nav-link {
             color: var(--sidebar-color);
             font-weight: bold;
-           
         }
 
         .sidebar .nav-link:hover {
@@ -61,8 +59,6 @@
             margin-left: 250px;
             padding: 20px;
         }
-
-
 
         .main-content header {
             font-size: 1.5rem;
@@ -139,11 +135,15 @@
             margin-bottom: 20px;
             display: flex;
             flex-direction: row;
-            justify-content: center;
             align-items: center;
             width: 100%;
-            padding: 2rem;
-            border-bottom: 1px solid black;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
         }
 
         .card-body {
@@ -161,41 +161,36 @@
         }
 
         .card-body .info .card-title {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             margin-bottom: 10px;
         }
 
         .card-body .info .card-subtitle {
-            font-size: 1rem;
+            font-size: 1.2rem;
             margin-bottom: 15px;
+            color: #777;
         }
 
         .card-body .info .card-text {
-            font-size: 0.9rem;
+            font-size: 1rem;
+            margin-bottom: 10px;
         }
 
-        .sr-only{
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.2);
+        .card-body .info .card-text i {
+            margin-right: 5px;
         }
-
-       
-
 
         .carousel-img {
             width: 100%;
             height: 300px;
             border-radius: 20px;
-            /* Altura fixa para todas as imagens */
             object-fit: cover;
-            /* Garante que a imagem cubra o espaço sem distorcer */
         }
 
         .carousel-container {
             width: 480px;
             border-radius: 20px;
-            /* Largura fixa para o carrossel */
             margin: auto;
-            /* Centraliza o carrossel */
         }
     </style>
 </head>
@@ -212,8 +207,6 @@
 
     <div class="main-content">
         <div class="info-imóveis" style="width: 100%;">
-
-
         </div>
 
         <div class="sec-imoveis">
@@ -335,7 +328,6 @@
             appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
             measurementId: "G-1BP7CKYQM1"
         };
-
 
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
@@ -464,41 +456,66 @@
                             if (images && Object.keys(images).length > 0) {
                                 Object.keys(images).forEach((key, index) => {
                                     carouselInnerHtml += `
-                            <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                                <img src="${images[key]}" class="d-block w-100 carousel-img">
-                            </div>
-                        `;
+                                        <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                                            <img src="${images[key]}" class="d-block w-100 carousel-img">
+                                        </div>
+                                    `;
                                 });
                             }
 
                             const cardHtml = `
-                    <div class="card">
-                        <div class="carousel-container">
-                            <div id="carousel${childSnapshot.key}" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    ${carouselInnerHtml}
+                                <div class="card">
+                                    <div class="carousel-container">
+                                        <div id="carousel${childSnapshot.key}" class="carousel slide" data-ride="carousel">
+                                            <div class="carousel-inner">
+                                                ${carouselInnerHtml}
+                                            </div>
+                                            <a class="carousel-control-prev" href="#carousel${childSnapshot.key}" role="button" data-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next" href="#carousel${childSnapshot.key}" role="button" data-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="edit" style="display: flex; gap: 10px; justify-content: end">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDataModal">
+                                                <i class="fas fa-edit"></i> Editar
+                                            </button>
+                                            <button type="button" class="btn btn-danger" onclick="deleteData()">
+                                                <i class="fas fa-trash"></i> Excluir
+                                            </button>
+                                        </div>
+
+                                        <h5 class="card-title">${data.endereco}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">${data.bairro}, ${data.cidade}</h6>
+                                        <div class="infos" style="display:flex; flex-direction:column;">
+                                        
+                                                <div class="sec-infos"  style="display:flex; flex-direction:row; width: 100%; align-items: center; justify-content: center; gap: 50px">
+                                                    <div class="sec-infos-1">
+                                                        <p><i class="fas fa-bed"></i> ${data.quartos} quartos</p>
+                                                        <p><i class="fas fa-car"></i> ${data.garagem} garagem</p>
+                                                    </div>
+
+                                                    <div class="sec-infos-2">
+                                                        <p><i class="fas fa-ruler"></i> ${data.metros_quadrados} m²</p>
+                                                        <p><i class="fas fa-dollar-sign"></i> ${data.valor}</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="descricao" style="width: 100%; display:flex; align-items:start; justify-content :start ;">
+                                                    <br>
+                                                        <p>Descrição: ${data.descricao}</p>
+                                                </div>
+                                        </div>
+
+                                        
+                                    </div>
                                 </div>
-                                <a class="carousel-control-prev" href="#carousel${childSnapshot.key}" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carousel${childSnapshot.key}" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">${data.endereco}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">${data.bairro}, ${data.cidade}</h6>
-                            <p class="card-text">
-                                Quartos: ${data.quartos}, Garagem: ${data.garagem}, Metros Quadrados: ${data.metros_quadrados}, Valor: ${data.valor}
-                                <br>
-                                Descrição: ${data.descricao}
-                            </p>
-                        </div>
-                    </div>
-                `;
+                            `;
                             infoImoveisDiv.innerHTML += cardHtml;
                         }
                     });
@@ -506,9 +523,6 @@
                     onlyOnce: true
                 });
             }
-
-
-
         });
     </script>
 </body>
