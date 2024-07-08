@@ -1,5 +1,3 @@
-
-
 // Variables
 $sidebar-bg: #343a40;
 $sidebar-color: #ffffff;
@@ -9,152 +7,234 @@ $info-box-bg: #007bff;
 $info-box-color: #ffffff;
 $modal-header-bg: #007bff;
 $modal-header-color: #ffffff;
-
-// Mixins
-@mixin flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+$card-border-color: #ddd;
+$card-bg: #ffffff;
+$control-icon-color: #000;
 
 // Base styles
 body {
-  font-family: Arial, sans-serif;
-  background-color: $main-content-bg;
-  color: #333;
+    font-family: Arial, sans-serif;
+    background-color: $main-content-bg;
+    color: #333;
 }
 
 // Sidebar styles
 .sidebar {
-  background-color: $sidebar-bg;
-  color: $sidebar-color;
-  min-height: 100vh;
-  padding: 20px;
-  width: 250px;
-  position: fixed;
-
-  .nav-link {
+    background-color: black;
     color: $sidebar-color;
-    &:hover {
-      background-color: $sidebar-hover-bg;
+    min-height: 100vh;
+    padding: 20px;
+    width: 250px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+
+    .nav {
+        padding-top: 50px;
+        display: flex;
+        flex-direction: column;
+
+        .nav-link {
+            color: $sidebar-color;
+            font-weight: bold;
+
+            &:hover {
+                background-color: $sidebar-hover-bg;
+            }
+        }
     }
-  }
 }
 
 // Main content styles
 .main-content {
-  margin-left: 250px;
-  padding: 20px;
-
-  header {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-  }
-
-  .info-panel {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-
-    .info-box {
-      background-color: $info-box-bg;
-      color: $info-box-color;
-      padding: 20px;
-      border-radius: 8px;
-      flex: 1;
-      min-width: 200px;
-
-      strong {
-        display: block;
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-      }
-
-      p {
-        margin: 0;
-      }
-    }
-  }
-
-  .chart {
-    background-color: #ffffff;
+    margin-left: 250px;
     padding: 20px;
-    border-radius: 8px;
-    margin-top: 20px;
-    text-align: center;
-  }
 
-  .btn-primary {
-    background-color: $info-box-bg;
-    border: none;
-    &:hover {
-      background-color: darken($info-box-bg, 10%);
+    header {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
     }
-  }
+
+    .info-panel {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        .info-box {
+            background-color: $info-box-bg;
+            color: $info-box-color;
+            padding: 20px;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 200px;
+
+            strong {
+                display: block;
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .chart {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .btn-primary {
+        background-color: $info-box-bg;
+        border: none;
+
+        &:hover {
+            background-color: darken($info-box-bg, 10%);
+        }
+    }
 }
 
 // Modal styles
 .modal-content {
-  .modal-header {
-    background-color: $modal-header-bg;
-    color: $modal-header-color;
-    border-bottom: none;
+    .modal-header {
+        background-color: $modal-header-bg;
+        color: $modal-header-color;
+        border-bottom: none;
 
-    .close {
-      color: $modal-header-color;
+        .close {
+            color: $modal-header-color;
+        }
     }
-  }
 
-  .modal-body {
-    .form-group {
-      margin-bottom: 15px;
+    .modal-body {
+        .form-group {
+            margin-bottom: 15px;
 
-      label {
-        font-weight: bold;
-      }
+            label {
+                font-weight: bold;
+            }
 
-      input,
-      .form-control-file {
-        margin-top: 5px;
-      }
+            input, .form-control-file {
+                margin-top: 5px;
+            }
+        }
     }
-  }
 }
 
 // Card styles
 .card {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 20px;
+    background-color: $card-bg;
+    border: 1px solid $card-border-color;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
 
-  .card-body {
-    padding: 20px;
+    &:hover {
+        transform: translateY(-5px);
+    }
 
-    .photos {
-      img {
+    .card-body {
+        padding: 20px;
+
+        .photos img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .info {
+            margin-top: 15px;
+
+            .card-title {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+
+            .card-subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+                color: #777;
+            }
+
+            .card-text {
+                font-size: 1rem;
+                margin-bottom: 10px;
+
+                i {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+
+    .carousel-img {
         width: 100%;
-        height: auto;
-        border-radius: 8px;
-      }
+        height: 300px;
+        border-radius: 20px;
+        object-fit: cover;
     }
 
-    .info {
-      margin-top: 15px;
-
-      .card-title {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-      }
-
-      .card-subtitle {
-        font-size: 1rem;
-        margin-bottom: 15px;
-      }
-
-      .card-text {
-        font-size: 0.9rem;
-      }
+    .carousel-container {
+        width: 480px;
+        border-radius: 20px;
+        margin: auto;
     }
-  }
+}
+
+// Additional dynamically injected styles
+.edit {
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+
+    .btn-primary, .btn-danger {
+        i {
+            margin-right: 5px;
+        }
+    }
+}
+
+.infos {
+    display: flex;
+    flex-direction: column;
+
+    .sec-infos {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+
+        .sec-infos-1, .sec-infos-2 {
+            p {
+                i {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+
+    .descricao {
+        width: 100%;
+        display: flex;
+        align-items: start;
+        justify-content: start;
+        margin-top: 10px;
+
+        p {
+            margin-top: 0;
+        }
+    }
+}
+
+// Carousel control colors
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: $control-icon-color;
 }
