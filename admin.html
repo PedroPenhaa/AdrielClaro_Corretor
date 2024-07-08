@@ -128,7 +128,77 @@
                 </div>
             </div>
         </div>
-       
+
+
+        <!-- Modal para exclusão -->
+        <!-- Modal for editing data -->
+        <div class="modal fade" id="editDataModal" tabindex="-1" aria-labelledby="editDataModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editDataModalLabel">Editar Imóvel</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editDataForm">
+                            <input type="hidden" id="edit-id">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="edit-cidade">Cidade</label>
+                                    <input type="text" class="form-control" id="edit-cidade" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="edit-bairro">Bairro</label>
+                                    <input type="text" class="form-control" id="edit-bairro" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-8">
+                                    <label for="edit-endereco">Endereço</label>
+                                    <input type="text" class="form-control" id="edit-endereco" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="edit-numero">Número</label>
+                                    <input type="text" class="form-control" id="edit-numero" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="edit-cep">Cep</label>
+                                    <input type="text" class="form-control" id="edit-cep" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="edit-quartos">Quartos</label>
+                                    <input type="text" class="form-control" id="edit-quartos" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="edit-garagem">Garagem</label>
+                                    <input type="text" class="form-control" id="edit-garagem" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="edit-metros_quadrados">Metros Quadrados</label>
+                                    <input type="text" class="form-control" id="edit-metros_quadrados" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="edit-valor">Valor</label>
+                                    <input type="text" class="form-control" id="edit-valor" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-descricao">Descrição</label>
+                                <input type="text" class="form-control" id="edit-descricao" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -213,6 +283,20 @@
                     $('#createDataModal').modal('hide');
                 });
             }
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
         });
 
         /* Seleção da seção */
