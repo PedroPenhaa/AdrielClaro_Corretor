@@ -28,16 +28,28 @@
 
         /* Sidebar styles */
         .sidebar {
-            background-color: var(--sidebar-bg);
+            background-color: black;
             color: var(--sidebar-color);
             min-height: 100vh;
             padding: 20px;
             width: 250px;
             position: fixed;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav{
+            padding-top: 50px;
+            display: flex;
+            flex-direction: column;
+        
+            
         }
 
         .sidebar .nav-link {
             color: var(--sidebar-color);
+            font-weight: bold;
+           
         }
 
         .sidebar .nav-link:hover {
@@ -49,6 +61,8 @@
             margin-left: 250px;
             padding: 20px;
         }
+
+
 
         .main-content header {
             font-size: 1.5rem;
@@ -120,16 +134,16 @@
         /* Card styles */
         .card {
             background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 2rem;
-  border-bottom: 1px solid black;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 2rem;
+            border-bottom: 1px solid black;
         }
 
         .card-body {
@@ -160,29 +174,36 @@
             font-size: 0.9rem;
         }
 
+        .sr-only{
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.2);
+        }
 
+       
 
 
         .carousel-img {
-        width: 100%;
-        height: 300px; /* Altura fixa para todas as imagens */
-        object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
-    }
-    .carousel-container {
-        width: 400px; /* Largura fixa para o carrossel */
-        margin: auto; /* Centraliza o carrossel */
-    }
+            width: 100%;
+            height: 300px;
+            border-radius: 20px;
+            /* Altura fixa para todas as imagens */
+            object-fit: cover;
+            /* Garante que a imagem cubra o espaço sem distorcer */
+        }
 
-
-
-
-
-
+        .carousel-container {
+            width: 480px;
+            border-radius: 20px;
+            /* Largura fixa para o carrossel */
+            margin: auto;
+            /* Centraliza o carrossel */
+        }
     </style>
 </head>
 
 <body>
     <div class="sidebar">
+        <img src="./assets/logos/logo_3.png" alt="">
+
         <ul class="nav flex-column">
             <li class="nav-item"><a class="nav-link active" href="#" id="add-properties">Incluir Imóveis</a></li>
             <li class="nav-item"><a class="nav-link active" href="#" id="view-properties">Ver Imóveis</a></li>
@@ -387,7 +408,7 @@
             const secImoveisDiv = document.querySelector('.sec-imoveis');
             const infoImoveisDiv = document.querySelector('.info-imóveis');
 
-            secImoveisDiv.style.display = 'none';
+            secImoveisDiv.style.display = 'block';
             infoImoveisDiv.style.display = 'none';
 
             addPropertiesLink.addEventListener('click', function (event) {
@@ -429,28 +450,28 @@
             });
 
             function fetchAndDisplayProperties() {
-    const itemsRef = ref(database, 'cadastros/venda');
-    onValue(itemsRef, (snapshot) => {
-        infoImoveisDiv.innerHTML = '';  // Limpar conteúdo anterior
-        snapshot.forEach((childSnapshot) => {
-            const data = childSnapshot.val().dados;
-            const images = childSnapshot.val().imagens; // Pega o objeto de imagens
+                const itemsRef = ref(database, 'cadastros/venda');
+                onValue(itemsRef, (snapshot) => {
+                    infoImoveisDiv.innerHTML = '';  // Limpar conteúdo anterior
+                    snapshot.forEach((childSnapshot) => {
+                        const data = childSnapshot.val().dados;
+                        const images = childSnapshot.val().imagens; // Pega o objeto de imagens
 
-            if (data) {
-                let carouselInnerHtml = '';
+                        if (data) {
+                            let carouselInnerHtml = '';
 
-                // Verifica se existem imagens e cria itens do carrossel para cada uma
-                if (images && Object.keys(images).length > 0) {
-                    Object.keys(images).forEach((key, index) => {
-                        carouselInnerHtml += `
+                            // Verifica se existem imagens e cria itens do carrossel para cada uma
+                            if (images && Object.keys(images).length > 0) {
+                                Object.keys(images).forEach((key, index) => {
+                                    carouselInnerHtml += `
                             <div class="carousel-item ${index === 0 ? 'active' : ''}">
                                 <img src="${images[key]}" class="d-block w-100 carousel-img">
                             </div>
                         `;
-                    });
-                }
+                                });
+                            }
 
-                const cardHtml = `
+                            const cardHtml = `
                     <div class="card">
                         <div class="carousel-container">
                             <div id="carousel${childSnapshot.key}" class="carousel slide" data-ride="carousel">
@@ -478,13 +499,13 @@
                         </div>
                     </div>
                 `;
-                infoImoveisDiv.innerHTML += cardHtml;
+                            infoImoveisDiv.innerHTML += cardHtml;
+                        }
+                    });
+                }, {
+                    onlyOnce: true
+                });
             }
-        });
-    }, {
-        onlyOnce: true
-    });
-}
 
 
 
