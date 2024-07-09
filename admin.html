@@ -7,8 +7,7 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-        <link rel="stylesheet" href="dist/css/main.css">
- 
+    <link rel="stylesheet" href="dist/css/main.css">
 </head>
 
 <body>
@@ -67,10 +66,6 @@
                     <div class="modal-body">
                         <form id="createDataForm">
                             <div class="form-row">
-
-
-
-                                
                                 <div class="form-group col-md-6">
                                     <label for="cidade">Cidade</label>
                                     <input type="text" class="form-control" id="cidade" required>
@@ -129,9 +124,7 @@
             </div>
         </div>
 
-
-        <!-- Modal para exclusão -->
-        <!-- Modal for editing data -->
+        <!-- Modal para edição -->
         <div class="modal fade" id="editDataModal" tabindex="-1" aria-labelledby="editDataModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -206,8 +199,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
-        import { getDatabase, ref, set, onValue, get } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js';
-        import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
+        import { getDatabase, ref, set, onValue, get, remove } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js';
+        import { getStorage, ref as storageRef, uploadBytes, getDownloadURL, deleteObject } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
 
         // Configuração do Firebase
         const firebaseConfig = {
@@ -227,6 +220,9 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             const createDataForm = document.getElementById('createDataForm');
+            const infoImoveisDiv = document.querySelector('.info-imóveis');
+            const secImoveisDiv = document.querySelector('.sec-imoveis');
+
             if (createDataForm) {
                 createDataForm.addEventListener('submit', async function (event) {
                     event.preventDefault();
@@ -283,31 +279,46 @@
                     $('#createDataModal').modal('hide');
                 });
             }
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-        });
 
-        /* Seleção da seção */
-        document.addEventListener('DOMContentLoaded', function () {
+            const editDataForm = document.getElementById('editDataForm');
+            if (editDataForm) {
+                editDataForm.addEventListener('submit', async function (event) {
+                    event.preventDefault();
+
+                    const itemId = document.getElementById('edit-id').value;
+                    const cidade = document.getElementById('edit-cidade').value;
+                    const bairro = document.getElementById('edit-bairro').value;
+                    const endereco = document.getElementById('edit-endereco').value;
+                    const numero = document.getElementById('edit-numero').value;
+                    const cep = document.getElementById('edit-cep').value;
+                    const quartos = document.getElementById('edit-quartos').value;
+                    const garagem = document.getElementById('edit-garagem').value;
+                    const metros_quadrados = document.getElementById('edit-metros_quadrados').value;
+                    const valor = document.getElementById('edit-valor').value;
+                    const descricao = document.getElementById('edit-descricao').value;
+
+                    const immovelRef = ref(database, `cadastros/venda/${itemId}/dados`);
+                    await set(immovelRef, {
+                        cidade: cidade,
+                        bairro: bairro,
+                        endereco: endereco,
+                        numero: numero,
+                        cep: cep,
+                        descricao: descricao,
+                        quartos: quartos,
+                        garagem: garagem,
+                        metros_quadrados: metros_quadrados,
+                        valor: valor
+                    });
+
+                    alert('Dados atualizados com sucesso!');
+                    $('#editDataModal').modal('hide');
+                    fetchAndDisplayProperties();
+                });
+            }
+
             const addPropertiesLink = document.getElementById('add-properties');
             const viewPropertiesLink = document.getElementById('view-properties');
-            const secImoveisDiv = document.querySelector('.sec-imoveis');
-            const infoImoveisDiv = document.querySelector('.info-imóveis');
-
-            secImoveisDiv.style.display = 'block';
-            infoImoveisDiv.style.display = 'none';
 
             addPropertiesLink.addEventListener('click', function (event) {
                 event.preventDefault();
@@ -317,34 +328,9 @@
 
             viewPropertiesLink.addEventListener('click', function (event) {
                 event.preventDefault();
+                secImoveisDiv.style.display = 'none';
                 infoImoveisDiv.style.display = 'block';
-                secImoveisDiv.style.display = 'none';
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const app = initializeApp(firebaseConfig);
-            const database = getDatabase(app);
-            const storage = getStorage(app);
-
-            const addPropertiesLink = document.getElementById('add-properties');
-            const viewPropertiesLink = document.getElementById('view-properties');
-            const secImoveisDiv = document.querySelector('.sec-imoveis');
-            const infoImoveisDiv = document.querySelector('.info-imóveis');
-
-            secImoveisDiv.style.display = 'none';
-            infoImoveisDiv.style.display = 'none';
-
-            addPropertiesLink.addEventListener('click', function (event) {
-                event.preventDefault();
-                secImoveisDiv.style.display = 'block';
-                infoImoveisDiv.style.display = 'none';
-            });
-
-            viewPropertiesLink.addEventListener('click', function (event) {
-                event.preventDefault();
                 fetchAndDisplayProperties();
-                secImoveisDiv.style.display = 'none';
             });
 
             function fetchAndDisplayProperties() {
@@ -352,6 +338,7 @@
                 onValue(itemsRef, (snapshot) => {
                     infoImoveisDiv.innerHTML = '';  // Limpar conteúdo anterior
                     snapshot.forEach((childSnapshot) => {
+                        const itemId = childSnapshot.key;
                         const data = childSnapshot.val().dados;
                         const images = childSnapshot.val().imagens; // Pega o objeto de imagens
 
@@ -370,17 +357,17 @@
                             }
 
                             const cardHtml = `
-                                <div class="card">
+                                <div class="card" data-item-id="${itemId}">
                                     <div class="carousel-container">
-                                        <div id="carousel${childSnapshot.key}" class="carousel slide" data-ride="carousel">
+                                        <div id="carousel${itemId}" class="carousel slide" data-ride="carousel">
                                             <div class="carousel-inner">
                                                 ${carouselInnerHtml}
                                             </div>
-                                            <a class="carousel-control-prev" href="#carousel${childSnapshot.key}" role="button" data-slide="prev">
+                                            <a class="carousel-control-prev" href="#carousel${itemId}" role="button" data-slide="prev">
                                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                 <span class="sr-only">Previous</span>
                                             </a>
-                                            <a class="carousel-control-next" href="#carousel${childSnapshot.key}" role="button" data-slide="next">
+                                            <a class="carousel-control-next" href="#carousel${itemId}" role="button" data-slide="next">
                                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                 <span class="sr-only">Next</span>
                                             </a>
@@ -391,7 +378,7 @@
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDataModal">
                                                 <i class="fas fa-edit"></i> Editar
                                             </button>
-                                            <button type="button" class="btn btn-danger" onclick="deleteData()">
+                                            <button type="button" class="btn btn-danger" onclick="deleteData('${itemId}')">
                                                 <i class="fas fa-trash"></i> Excluir
                                             </button>
                                         </div>
@@ -399,26 +386,23 @@
                                         <h5 class="card-title">${data.endereco}</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">${data.bairro}, ${data.cidade}</h6>
                                         <div class="infos">
-                                        
-                                                <div class="sec-infos"  >
-                                                    <div class="sec-infos-1">
-                                                        <p><i class="fas fa-bed"></i> ${data.quartos} quartos</p>
-                                                        <p><i class="fas fa-car"></i> ${data.garagem} garagem</p>
-                                                    </div>
-
-                                                    <div class="sec-infos-2">
-                                                        <p><i class="fas fa-ruler"></i> ${data.metros_quadrados} m²</p>
-                                                        <p><i class="fas fa-dollar-sign"></i> ${data.valor}</p>
-                                                    </div>
+                                            <div class="sec-infos"  >
+                                                <div class="sec-infos-1">
+                                                    <p><i class="fas fa-bed"></i> ${data.quartos} quartos</p>
+                                                    <p><i class="fas fa-car"></i> ${data.garagem} garagem</p>
                                                 </div>
 
-                                                <div class="descricao" >
-                                                    <br>
-                                                        <p>Descrição: ${data.descricao}</p>
+                                                <div class="sec-infos-2">
+                                                    <p><i class="fas fa-ruler"></i> ${data.metros_quadrados} m²</p>
+                                                    <p><i class="fas fa-dollar-sign"></i> ${data.valor}</p>
                                                 </div>
+                                            </div>
+
+                                            <div class="descricao" >
+                                                <br>
+                                                <p>Descrição: ${data.descricao}</p>
+                                            </div>
                                         </div>
-
-                                        
                                     </div>
                                 </div>
                             `;
@@ -429,37 +413,66 @@
                     onlyOnce: true
                 });
             }
-        });
 
+            document.addEventListener('click', function (event) {
+                if (event.target && event.target.matches('.btn-primary[data-toggle="modal"]')) {
+                    const card = event.target.closest('.card');
+                    const itemId = card.getAttribute('data-item-id');
 
+                    const editCidade = document.getElementById('edit-cidade');
+                    const editBairro = document.getElementById('edit-bairro');
+                    const editEndereco = document.getElementById('edit-endereco');
+                    const editNumero = document.getElementById('edit-numero');
+                    const editCep = document.getElementById('edit-cep');
+                    const editQuartos = document.getElementById('edit-quartos');
+                    const editGaragem = document.getElementById('edit-garagem');
+                    const editMetrosQuadrados = document.getElementById('edit-metros_quadrados');
+                    const editValor = document.getElementById('edit-valor');
+                    const editDescricao = document.getElementById('edit-descricao');
 
+                    const immovelRef = ref(database, `cadastros/venda/${itemId}/dados`);
+                    onValue(immovelRef, (snapshot) => {
+                        const data = snapshot.val();
+                        editCidade.value = data.cidade;
+                        editBairro.value = data.bairro;
+                        editEndereco.value = data.endereco;
+                        editNumero.value = data.numero;
+                        editCep.value = data.cep;
+                        editQuartos.value = data.quartos;
+                        editGaragem.value = data.garagem;
+                        editMetrosQuadrados.value = data.metros_quadrados;
+                        editValor.value = data.valor;
+                        editDescricao.value = data.descricao;
 
-
-
-
-
-
-
-        // Função para excluir dados
-        async function deleteData(id) {
-            const immovelRef = ref(database, `cadastros/venda/${id}`);
-            await remove(immovelRef);
-
-            const imagesRef = ref(storage, `cadastros/venda/${id}/imagens`);
-            const imagesSnapshot = await get(imagesRef);
-            if (imagesSnapshot.exists()) {
-                const images = imagesSnapshot.val();
-                for (let key in images) {
-                    const imageRef = storageRef(storage, images[key]);
-                    await deleteObject(imageRef);
+                        document.getElementById('edit-id').value = itemId;
+                    }, {
+                        onlyOnce: true
+                    });
                 }
-            }
+            });
 
-            alert('Dados excluídos com sucesso!');
-            fetchAndDisplayProperties(); // Atualize a lista de propriedades
+            // Função para excluir dados
+async function deleteData(id) {
+    const immovelRef = ref(database, `cadastros/venda/${id}`);
+    await remove(immovelRef);
+
+    const imagesRef = ref(database, `cadastros/venda/${id}/imagens`);
+    const imagesSnapshot = await get(imagesRef);
+    if (imagesSnapshot.exists()) {
+        const images = imagesSnapshot.val();
+        for (let key in images) {
+            const imageRef = storageRef(storage, images[key]);
+            await deleteObject(imageRef);
         }
+    }
 
+    alert('Dados excluídos com sucesso!');
+    fetchAndDisplayProperties(); // Atualize a lista de propriedades
+}
 
+// Tornar a função deleteData global
+window.deleteData = deleteData;
+        });
     </script>
 </body>
 
