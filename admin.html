@@ -15,7 +15,7 @@
         <img src="./assets/logos/logo_3.png" alt="">
 
         <ul class="nav flex-column">
-            <li class="nav-item"><a class="nav-link active" href="#" id="add-properties">Incluir Imóveis</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#" id="add-properties">Painel de Controle</a></li>
             <li class="nav-item"><a class="nav-link active" href="#" id="view-properties">Ver Imóveis</a></li>
         </ul>
     </div>
@@ -25,11 +25,11 @@
         </div>
 
         <div class="sec-imoveis">
-            <header>Dashboard / Overview</header>
+           
             <div class="info-panel">
                 <div class="info-box">
-                    <strong>26 New Messages!</strong>
-                    <p>View Details</p>
+                    <strong>Imóveis Cadastrados</strong>
+                    <p>56</p>
                 </div>
                 <div class="info-box">
                     <strong>11 New Tasks!</strong>
@@ -44,12 +44,14 @@
                     <p>View Details</p>
                 </div>
             </div>
-            <div class="chart">
-                Area Chart Example
+    
+            <div class="info-info">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createDataModal">
+                    Adicionar Imóvel
+                </button>
             </div>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createDataModal">
-                Adicionar Imóvel
-            </button>
+
+            
         </div>
 
         <!-- Modal para adicionar -->
@@ -66,11 +68,40 @@
                     <div class="modal-body">
                         <form id="createDataForm">
                             <div class="form-row">
+                                
+
+                                <div class="filter-item col-md-6">
+                                    <label for="availability">Disponibilidade</label>
+                                    <select name="availability" id="availability">
+                                        <option value="1">Aluguel</option>
+                                        <option value="2">Venda</option>
+                                    </select>
+                                </div>
+
+
                                 <div class="form-group col-md-6">
+                                    <label for="edit-categoria">Categoria</label>
+                                   
+                                    <select name="edit-categoria" id="edit-categoria" >
+                                        <option value="1">Apartamento</option>
+                                        <option value="2">Casa</option>
+                                        <option value="3">Sítio e Chácaras</option>
+                                        <option value="4">Terra</option>
+                                        <option value="5">Terreno</option>
+                                    </select>
+                                   
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label for="edit-codigo">Código</label>
+                                    <input type="text" class="form-control" id="edit-codigo" required>
+                                </div>
+
+                                <div class="form-group col-md-5">
                                     <label for="cidade">Cidade</label>
                                     <input type="text" class="form-control" id="cidade" required>
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-5">
                                     <label for="bairro">Bairro</label>
                                     <input type="text" class="form-control" id="bairro" required>
                                 </div>
@@ -86,22 +117,22 @@
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-3">
                                     <label for="cep">Cep</label>
                                     <input type="text" class="form-control" id="cep" required>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-3">
                                     <label for="quartos">Quartos</label>
                                     <input type="text" class="form-control" id="quartos" required>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-3">
                                     <label for="garagem">Garagem</label>
                                     <input type="text" class="form-control" id="garagem" required>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="metros_quadrados">Metros Quadrados</label>
+                                <div class="form-group col-md-3">
+                                    <label for="metros_quadrados">M2</label>
                                     <input type="text" class="form-control" id="metros_quadrados" required>
                                 </div>
                                 <div class="form-group col-md-6">

@@ -48,33 +48,55 @@ body {
 // Main content styles
 .main-content {
     margin-left: 250px;
-    padding: 20px;
+    //padding: 20px;
+
+    .sec-imoveis{
+        background-color: var( --color-background);
+        width: 100%;
+        height: 100vh;
+        padding: 20px;
+        .info-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+    
+            .info-box {
+                background-color: var(  --color-highlight);
+                color: $info-box-color;
+                padding: 20px;
+                border-radius: 8px;
+                flex: 1;
+                min-width: 200px;
+    
+                strong {
+                    display: block;
+                    font-size: 1.5rem;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+        .info-info{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            button{
+                padding: 2rem;
+                background-color: var(  --color-highlight);
+                border-radius: 10px;
+                font-size: 1.2rem;
+                font-weight: bold;
+            }
+        }
+    }
 
     header {
         font-size: 1.5rem;
         margin-bottom: 20px;
     }
 
-    .info-panel {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-
-        .info-box {
-            background-color: $info-box-bg;
-            color: $info-box-color;
-            padding: 20px;
-            border-radius: 8px;
-            flex: 1;
-            min-width: 200px;
-
-            strong {
-                display: block;
-                font-size: 1.2rem;
-                margin-bottom: 10px;
-            }
-        }
-    }
+    
 
     .chart {
         background-color: #ffffff;
@@ -96,11 +118,26 @@ body {
 
 // Modal styles
 .modal-content {
+    padding: 1rem;
     border-radius: 20px;
+    width: 650px;
     .modal-header {
-        background-color: $modal-header-bg;
-        color: $modal-header-color;
-        border-bottom: none;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid #CBA75C;
+        color: var(--color-highlight);
+        border-radius: 20px;
+        margin-bottom: 15px;
+
+        h5{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
 
         .close {
             color: $modal-header-color;
