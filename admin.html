@@ -26,7 +26,7 @@
     </div>
 
     <div class="main-content">
-        <div class="info-imóveis" style="width: 100%;">
+        <div class="info-imóveis" style="width: 100%; ">
         </div>
 
         <div class="sec-imoveis">
@@ -36,7 +36,7 @@
 
                 <div class="info-box">
                     <strong>Imóveis Cadastrados</strong>
-                    <p id="numeroImoveis"></p> 
+                    <p id="numeroImoveis"></p>
                 </div>
 
                 <div class="info-box">
@@ -162,7 +162,7 @@
             </div>
         </div>
 
-     
+
         <!-- Modal para edição -->
         <div class="modal fade" id="editDataModal" tabindex="-1" aria-labelledby="editDataModalLabel"
             aria-hidden="true">
@@ -249,14 +249,16 @@
             </div>
         </div>
 
-        <div id="loadingSpinner" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1050;">
+        <!-- Carregamento -->
+        <div id="loadingSpinner"
+            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1050;">
             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                 <div class="spinner-border text-primary" role="status">
                     <span class="sr-only">Carregando...</span>
                 </div>
             </div>
         </div>
-        
+
 
     </div>
 
@@ -286,49 +288,46 @@
 
 
         document.addEventListener('DOMContentLoaded', function () {
-
-
-
-
             fetchCounts();
-            fetchPropertyCount(); // Chama a função para buscar e exibir o número de imóveis cadastrados logo após o carregamento da página
+            fetchPropertyCount(); 
 
             // Função para buscar e exibir o número de imóveis cadastrados
             function fetchPropertyCount() {
-        const countRef = ref(database, 'cadastros/venda');
-        onValue(countRef, (snapshot) => {
-            if (snapshot.exists()) {
-                const totalProperties = Object.keys(snapshot.val()).length; // Calcula o número de chaves se o snapshot existe
-                animateValue(document.getElementById('numeroImoveis'), 0, totalProperties, 500); // Adicionando animação
-            } else {
-                animateValue(document.getElementById('numeroImoveis'), 0, 0, 500); // Animação mesmo se o valor for 0
+                const countRef = ref(database, 'cadastros/venda');
+                onValue(countRef, (snapshot) => {
+                    if (snapshot.exists()) {
+                        const totalProperties = Object.keys(snapshot.val()).length; // Calcula o número de chaves se o snapshot existe
+                        animateValue(document.getElementById('numeroImoveis'), 0, totalProperties, 500); // Adicionando animação
+                    } else {
+                        animateValue(document.getElementById('numeroImoveis'), 0, 0, 500); // Animação mesmo se o valor for 0
+                    }
+                });
             }
-        });
-    }
 
+            // Função para buscar e exibir o número de vendas e aluguéis
             function fetchCounts() {
-        const refVendas = ref(database, 'cadastros/venda');
-        onValue(refVendas, (snapshot) => {
-            let countVendas = 0;
-            let countAlugueis = 0;
+                const refVendas = ref(database, 'cadastros/venda');
+                onValue(refVendas, (snapshot) => {
+                    let countVendas = 0;
+                    let countAlugueis = 0;
 
-            snapshot.forEach((childSnapshot) => {
-                const item = childSnapshot.val().dados; // Assumindo que os dados estão em um objeto `dados`
-                if (item.disponibilidade === "1") {
-                    countVendas++;
-                } else if (item.disponibilidade === "2") {
-                    countAlugueis++;
-                }
-            });
+                    snapshot.forEach((childSnapshot) => {
+                        const item = childSnapshot.val().dados; // Assumindo que os dados estão em um objeto `dados`
+                        if (item.disponibilidade === "1") {
+                            countVendas++;
+                        } else if (item.disponibilidade === "2") {
+                            countAlugueis++;
+                        }
+                    });
 
-            // Animar os contadores com uma duração mais rápida
-            animateValue(document.getElementById('vendasCount'), 0, countVendas, 500); // 500ms de duração da animação
-            animateValue(document.getElementById('alugueisCount'), 0, countAlugueis, 500);
-        });
-    }
+                    // Animar os contadores com uma duração mais rápida
+                    animateValue(document.getElementById('vendasCount'), 0, countVendas, 500); // 500ms de duração da animação
+                    animateValue(document.getElementById('alugueisCount'), 0, countAlugueis, 500);
+                });
+            }
 
 
-
+            // Função para animar os valores, colocar o contador em 0 e o valor final
             function animateValue(obj, start, end, duration) {
                 let startTimestamp = null;
                 const step = (timestamp) => {
@@ -346,15 +345,13 @@
             const infoImoveisDiv = document.querySelector('.info-imóveis');
             const secImoveisDiv = document.querySelector('.sec-imoveis');
 
-
+            // Adicionando um evento de envio ao formulário de criação
             if (createDataForm) {
                 createDataForm.addEventListener('submit', async function (event) {
                     event.preventDefault();
 
-
-    // Mostrar o spinner de carregamento
-    document.getElementById('loadingSpinner').style.display = 'block';
-
+                    // Mostrar o spinner de carregamento
+                    document.getElementById('loadingSpinner').style.display = 'block';
 
                     const disponibilidade = document.getElementById('availability').value;
                     const categoria = document.getElementById('edit-categoria').value;
@@ -370,7 +367,6 @@
                     const valor = document.getElementById('valor').value;
                     const descricao = document.getElementById('descricao').value;
                     const images = document.getElementById('imagens').files;
-
 
                     const itemsRef = ref(database, 'cadastros/venda');
                     const snapshot = await get(itemsRef);
@@ -411,14 +407,15 @@
                     const imagesRef = ref(database, `cadastros/venda/${newIndex}/imagens`);
                     await set(imagesRef, imageUrls);
 
-                   // alert('Dados e imagens cadastrados com sucesso!');
-                   // $('#createDataModal').modal('hide');
+                    // alert('Dados e imagens cadastrados com sucesso!');
+                     $('#createDataModal').modal('hide');
 
-                      // Esconder o spinner de carregamento
-                        document.getElementById('loadingSpinner').style.display = 'none';
+                    // Esconder o spinner de carregamento
+                    document.getElementById('loadingSpinner').style.display = 'none';
                 });
             }
 
+            // Adicionando um evento de envio ao formulário de edição
             const editDataForm = document.getElementById('editDataForm');
             if (editDataForm) {
                 editDataForm.addEventListener('submit', async function (event) {
@@ -463,12 +460,14 @@
             const addPropertiesLink = document.getElementById('add-properties');
             const viewPropertiesLink = document.getElementById('view-properties');
 
+            // Adicionando eventos de clique para alternar entre as guias
             addPropertiesLink.addEventListener('click', function (event) {
                 event.preventDefault();
                 secImoveisDiv.style.display = 'block';
                 infoImoveisDiv.style.display = 'none';
             });
 
+            // Adicionando eventos de clique para alternar entre as guias
             viewPropertiesLink.addEventListener('click', function (event) {
                 event.preventDefault();
                 secImoveisDiv.style.display = 'none';
@@ -476,6 +475,7 @@
                 fetchAndDisplayProperties();
             });
 
+            // Função para buscar e exibir propriedades
             function fetchAndDisplayProperties() {
                 const itemsRef = ref(database, 'cadastros/venda');
                 onValue(itemsRef, (snapshot) => {
@@ -557,6 +557,7 @@
                 });
             }
 
+            // Chamar a função fetchAndDisplayProperties para exibir propriedades
             document.addEventListener('click', function (event) {
                 if (event.target && event.target.matches('.btn-primary[data-toggle="modal"]')) {
                     const card = event.target.closest('.card');
