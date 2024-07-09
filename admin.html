@@ -61,7 +61,7 @@
 
 
         </div>
-        
+
         <!-- Modal para adicionar -->
         <div class="modal fade" id="createDataModal" tabindex="-1" aria-labelledby="createDataModalLabel"
             aria-hidden="true">
@@ -151,6 +151,7 @@
                                 <label for="imagens">Imagens</label>
                                 <input type="file" class="form-control-file" id="imagens" multiple required>
                             </div>
+
                             <div class="btn">
                                 <button type="submit" class="btn btn-primary">Salvar</button>
                             </div>
@@ -161,7 +162,7 @@
             </div>
         </div>
 
-
+     
         <!-- Modal para edição -->
         <div class="modal fade" id="editDataModal" tabindex="-1" aria-labelledby="editDataModalLabel"
             aria-hidden="true">
@@ -247,6 +248,16 @@
                 </div>
             </div>
         </div>
+
+        <div id="loadingSpinner" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1050;">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Carregando...</span>
+                </div>
+            </div>
+        </div>
+        
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -339,6 +350,12 @@
             if (createDataForm) {
                 createDataForm.addEventListener('submit', async function (event) {
                     event.preventDefault();
+
+
+    // Mostrar o spinner de carregamento
+    document.getElementById('loadingSpinner').style.display = 'block';
+
+
                     const disponibilidade = document.getElementById('availability').value;
                     const categoria = document.getElementById('edit-categoria').value;
                     const codigo = document.getElementById('edit-codigo').value;
@@ -394,8 +411,11 @@
                     const imagesRef = ref(database, `cadastros/venda/${newIndex}/imagens`);
                     await set(imagesRef, imageUrls);
 
-                    alert('Dados e imagens cadastrados com sucesso!');
-                    $('#createDataModal').modal('hide');
+                   // alert('Dados e imagens cadastrados com sucesso!');
+                   // $('#createDataModal').modal('hide');
+
+                      // Esconder o spinner de carregamento
+                        document.getElementById('loadingSpinner').style.display = 'none';
                 });
             }
 
