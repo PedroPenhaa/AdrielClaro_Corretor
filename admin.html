@@ -55,105 +55,103 @@
         </div>
 
         <!-- Modal para adicionar -->
-        <div class="modal fade" id="createDataModal" tabindex="-1" aria-labelledby="createDataModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="createDataModalLabel">Novo Cadastro de Imóvel</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+      <!-- Modal para adicionar -->
+<div class="modal fade" id="createDataModal" tabindex="-1" aria-labelledby="createDataModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createDataModalLabel">Novo Cadastro de Imóvel</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="createDataForm">
+                    <div class="form-row">
+                        <div class="form-group  col-md-3">
+                            <label for="availability">Disponibilidade</label>
+                            <select name="availability" id="availability" class="form-control custom-select">
+                                <option value="1">Aluguel</option>
+                                <option value="2">Venda</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="edit-categoria">Categoria</label>
+                            <select name="edit-categoria" id="edit-categoria" class="form-control custom-select">
+                                <option value="1">Apartamento</option>
+                                <option value="2">Casa</option>
+                                <option value="3">Sítio e Chácaras</option>
+                                <option value="4">Terra</option>
+                                <option value="5">Terreno</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="edit-codigo">Código</label>
+                            <input type="text" class="form-control" id="edit-codigo" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="cidade">Cidade</label>
+                            <input type="text" class="form-control" id="cidade" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="bairro">Bairro</label>
+                            <input type="text" class="form-control" id="bairro" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="endereco">Endereço</label>
+                            <input type="text" class="form-control" id="endereco" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="numero">Número</label>
+                            <input type="text" class="form-control" id="numero" required>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <form id="createDataForm">
-                            <div class="form-row">
-                                
-
-                                <div class="filter-item col-md-6">
-                                    <label for="availability">Disponibilidade</label>
-                                    <select name="availability" id="availability">
-                                        <option value="1">Aluguel</option>
-                                        <option value="2">Venda</option>
-                                    </select>
-                                </div>
-
-
-                                <div class="form-group col-md-6">
-                                    <label for="edit-categoria">Categoria</label>
-                                   
-                                    <select name="edit-categoria" id="edit-categoria" >
-                                        <option value="1">Apartamento</option>
-                                        <option value="2">Casa</option>
-                                        <option value="3">Sítio e Chácaras</option>
-                                        <option value="4">Terra</option>
-                                        <option value="5">Terreno</option>
-                                    </select>
-                                   
-                                </div>
-
-                                <div class="form-group col-md-2">
-                                    <label for="edit-codigo">Código</label>
-                                    <input type="text" class="form-control" id="edit-codigo" required>
-                                </div>
-
-                                <div class="form-group col-md-5">
-                                    <label for="cidade">Cidade</label>
-                                    <input type="text" class="form-control" id="cidade" required>
-                                </div>
-                                <div class="form-group col-md-5">
-                                    <label for="bairro">Bairro</label>
-                                    <input type="text" class="form-control" id="bairro" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-8">
-                                    <label for="endereco">Endereço</label>
-                                    <input type="text" class="form-control" id="endereco" required>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="numero">Número</label>
-                                    <input type="text" class="form-control" id="numero" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-3">
-                                    <label for="cep">Cep</label>
-                                    <input type="text" class="form-control" id="cep" required>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="quartos">Quartos</label>
-                                    <input type="text" class="form-control" id="quartos" required>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="garagem">Garagem</label>
-                                    <input type="text" class="form-control" id="garagem" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-3">
-                                    <label for="metros_quadrados">M2</label>
-                                    <input type="text" class="form-control" id="metros_quadrados" required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="valor">Valor</label>
-                                    <input type="text" class="form-control" id="valor" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="descricao">Descrição</label>
-                                <input type="text" class="form-control" id="descricao" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="imagens">Imagens</label>
-                                <input type="file" class="form-control-file" id="imagens" multiple required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Salvar</button>
-                        </form>
+                    <div class="form-row">
+                        
+                       
                     </div>
-                </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="cep">Cep</label>
+                            <input type="text" class="form-control" id="cep" required>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="quartos">Quartos</label>
+                            <input type="text" class="form-control" id="quartos" required>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="garagem">Garagem</label>
+                            <input type="text" class="form-control" id="garagem" required>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="metros_quadrados">M2</label>
+                            <input type="text" class="form-control" id="metros_quadrados" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="valor">Valor</label>
+                            <input type="text" class="form-control" id="valor" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="descricao">Descrição</label>
+                        <textarea class="form-control" id="descricao" rows="3" required></textarea>
+<!--                         <input type="text" class="form-control" id="descricao" required>
+ -->                    </div>
+                    <div class="form-group">
+                        <label for="imagens">Imagens</label>
+                        <input type="file" class="form-control-file" id="imagens" multiple required>
+                    </div>
+                    <div class="btn">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                   
+                </form>
             </div>
         </div>
+    </div>
+</div>
+
 
         <!-- Modal para edição -->
         <div class="modal fade" id="editDataModal" tabindex="-1" aria-labelledby="editDataModalLabel"

@@ -87,6 +87,13 @@ body {
                 border-radius: 10px;
                 font-size: 1.2rem;
                 font-weight: bold;
+                
+            }
+            button:hover{
+                color: var(  --color-highlight);
+                background-color: white;
+                border: 1px solid var(  --color-highlight);
+            
             }
         }
     }
@@ -140,7 +147,8 @@ body {
 
 
         .close {
-            color: $modal-header-color;
+            color:  var(--color-highlight);
+            font-size: 1.5rem;
         }
     }
 
@@ -152,8 +160,32 @@ body {
                 font-weight: bold;
             }
 
-            input, .form-control-file {
-                margin-top: 5px;
+          
+
+            #descricao {
+                height: 100px;
+            }
+        }
+        .btn{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2px;
+            button{
+                padding: 2rem;
+                background-color: var(  --color-highlight);
+                border-radius: 10px;
+                font-size: 1.2rem;
+                font-weight: bold;
+                width: 10rem;
+                
+            }
+            button:hover{
+                color: var(  --color-highlight);
+                background-color: white;
+                border: 1px solid var(  --color-highlight);
+            
             }
         }
     }
