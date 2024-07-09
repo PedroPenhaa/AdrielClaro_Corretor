@@ -14,6 +14,11 @@
     <div class="sidebar">
         <img src="./assets/logos/logo_3.png" alt="">
 
+        <div class="header-text">
+            <p>ENGENHEIRO CIVIL E CORRETOR DE IMÓVEIS</p>
+            <p>CREA MG 380290 - CRECI 53770</p>
+        </div>
+
         <ul class="nav flex-column">
             <li class="nav-item"><a class="nav-link active" href="#" id="add-properties">Painel de Controle</a></li>
             <li class="nav-item"><a class="nav-link active" href="#" id="view-properties">Ver Imóveis</a></li>
@@ -25,132 +30,136 @@
         </div>
 
         <div class="sec-imoveis">
-           
+
             <div class="info-panel">
+
+
                 <div class="info-box">
                     <strong>Imóveis Cadastrados</strong>
-                    <p>56</p>
+                    <p id="numeroImoveis"></p> 
+                </div>
+
+                <div class="info-box">
+                    <strong>Imóveis Venda</strong>
+                    <p id="vendasCount"></p>
                 </div>
                 <div class="info-box">
-                    <strong>11 New Tasks!</strong>
-                    <p>View Details</p>
-                </div>
-                <div class="info-box">
-                    <strong>123 New Orders!</strong>
-                    <p>View Details</p>
+                    <strong>Imóveis Aluguel</strong>
+                    <p id="alugueisCount"></p>
                 </div>
                 <div class="info-box">
                     <strong>13 New Tickets!</strong>
                     <p>View Details</p>
                 </div>
             </div>
-    
+
             <div class="info-info">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createDataModal">
                     Adicionar Imóvel
                 </button>
             </div>
 
-            
-        </div>
 
+        </div>
+        
         <!-- Modal para adicionar -->
-      <!-- Modal para adicionar -->
-<div class="modal fade" id="createDataModal" tabindex="-1" aria-labelledby="createDataModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="createDataModalLabel">Novo Cadastro de Imóvel</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="createDataForm">
-                    <div class="form-row">
-                        <div class="form-group  col-md-3">
-                            <label for="availability">Disponibilidade</label>
-                            <select name="availability" id="availability" class="form-control custom-select">
-                                <option value="1">Aluguel</option>
-                                <option value="2">Venda</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="edit-categoria">Categoria</label>
-                            <select name="edit-categoria" id="edit-categoria" class="form-control custom-select">
-                                <option value="1">Apartamento</option>
-                                <option value="2">Casa</option>
-                                <option value="3">Sítio e Chácaras</option>
-                                <option value="4">Terra</option>
-                                <option value="5">Terreno</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="edit-codigo">Código</label>
-                            <input type="text" class="form-control" id="edit-codigo" required>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="cidade">Cidade</label>
-                            <input type="text" class="form-control" id="cidade" required>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="bairro">Bairro</label>
-                            <input type="text" class="form-control" id="bairro" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="endereco">Endereço</label>
-                            <input type="text" class="form-control" id="endereco" required>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="numero">Número</label>
-                            <input type="text" class="form-control" id="numero" required>
-                        </div>
+        <div class="modal fade" id="createDataModal" tabindex="-1" aria-labelledby="createDataModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createDataModalLabel">Novo Cadastro de Imóvel</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="form-row">
-                        
-                       
+                    <div class="modal-body">
+                        <form id="createDataForm">
+                            <div class="form-row">
+                                <div class="form-group  col-md-3">
+                                    <label for="availability">Disponibilidade</label>
+                                    <select name="availability" id="availability" class="form-control custom-select">
+                                        <option value="1">Aluguel</option>
+                                        <option value="2">Venda</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="edit-categoria">Categoria</label>
+                                    <select name="edit-categoria" id="edit-categoria"
+                                        class="form-control custom-select">
+                                        <option value="1">Apartamento</option>
+                                        <option value="2">Casa</option>
+                                        <option value="3">Sítio e Chácaras</option>
+                                        <option value="4">Terra</option>
+                                        <option value="5">Terreno</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="edit-codigo">Código</label>
+                                    <input type="text" class="form-control" id="edit-codigo" required>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="cidade">Cidade</label>
+                                    <input type="text" class="form-control" id="cidade" required>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="bairro">Bairro</label>
+                                    <input type="text" class="form-control" id="bairro" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="endereco">Endereço</label>
+                                    <input type="text" class="form-control" id="endereco" required>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="numero">Número</label>
+                                    <input type="text" class="form-control" id="numero" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+
+
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="cep">Cep</label>
+                                    <input type="text" class="form-control" id="cep" required>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="quartos">Quartos</label>
+                                    <input type="text" class="form-control" id="quartos" required>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="garagem">Garagem</label>
+                                    <input type="text" class="form-control" id="garagem" required>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="metros_quadrados">M2</label>
+                                    <input type="text" class="form-control" id="metros_quadrados" required>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="valor">Valor</label>
+                                    <input type="text" class="form-control" id="valor" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="descricao">Descrição</label>
+                                <textarea class="form-control" id="descricao" rows="3" required></textarea>
+                                <input type="text" class="form-control" id="descricao" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="imagens">Imagens</label>
+                                <input type="file" class="form-control-file" id="imagens" multiple required>
+                            </div>
+                            <div class="btn">
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+                            </div>
+
+                        </form>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-3">
-                            <label for="cep">Cep</label>
-                            <input type="text" class="form-control" id="cep" required>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="quartos">Quartos</label>
-                            <input type="text" class="form-control" id="quartos" required>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="garagem">Garagem</label>
-                            <input type="text" class="form-control" id="garagem" required>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="metros_quadrados">M2</label>
-                            <input type="text" class="form-control" id="metros_quadrados" required>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="valor">Valor</label>
-                            <input type="text" class="form-control" id="valor" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="descricao">Descrição</label>
-                        <textarea class="form-control" id="descricao" rows="3" required></textarea>
-<!--                         <input type="text" class="form-control" id="descricao" required>
- -->                    </div>
-                    <div class="form-group">
-                        <label for="imagens">Imagens</label>
-                        <input type="file" class="form-control-file" id="imagens" multiple required>
-                    </div>
-                    <div class="btn">
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                    </div>
-                   
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
 
         <!-- Modal para edição -->
@@ -174,15 +183,15 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="edit-categoria">Categoria</label>
-                                   
-                                    <select name="edit-categoria" id="edit-categoria" >
+
+                                    <select name="edit-categoria" id="edit-categoria">
                                         <option value="1">Apartamento</option>
                                         <option value="2">Casa</option>
                                         <option value="3">Sítio e Chácaras</option>
                                         <option value="4">Terra</option>
                                         <option value="5">Terreno</option>
                                     </select>
-                                   
+
                                 </div>
 
                                 <div class="form-group col-md-6">
@@ -264,26 +273,87 @@
         const database = getDatabase(app);
         const storage = getStorage(app);
 
+
         document.addEventListener('DOMContentLoaded', function () {
+
+
+
+
+            fetchCounts();
+            fetchPropertyCount(); // Chama a função para buscar e exibir o número de imóveis cadastrados logo após o carregamento da página
+
+            // Função para buscar e exibir o número de imóveis cadastrados
+            function fetchPropertyCount() {
+        const countRef = ref(database, 'cadastros/venda');
+        onValue(countRef, (snapshot) => {
+            if (snapshot.exists()) {
+                const totalProperties = Object.keys(snapshot.val()).length; // Calcula o número de chaves se o snapshot existe
+                animateValue(document.getElementById('numeroImoveis'), 0, totalProperties, 500); // Adicionando animação
+            } else {
+                animateValue(document.getElementById('numeroImoveis'), 0, 0, 500); // Animação mesmo se o valor for 0
+            }
+        });
+    }
+
+            function fetchCounts() {
+        const refVendas = ref(database, 'cadastros/venda');
+        onValue(refVendas, (snapshot) => {
+            let countVendas = 0;
+            let countAlugueis = 0;
+
+            snapshot.forEach((childSnapshot) => {
+                const item = childSnapshot.val().dados; // Assumindo que os dados estão em um objeto `dados`
+                if (item.disponibilidade === "1") {
+                    countVendas++;
+                } else if (item.disponibilidade === "2") {
+                    countAlugueis++;
+                }
+            });
+
+            // Animar os contadores com uma duração mais rápida
+            animateValue(document.getElementById('vendasCount'), 0, countVendas, 500); // 500ms de duração da animação
+            animateValue(document.getElementById('alugueisCount'), 0, countAlugueis, 500);
+        });
+    }
+
+
+
+            function animateValue(obj, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    obj.textContent = Math.floor(progress * (end - start) + start);
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
             const createDataForm = document.getElementById('createDataForm');
             const infoImoveisDiv = document.querySelector('.info-imóveis');
             const secImoveisDiv = document.querySelector('.sec-imoveis');
 
+
             if (createDataForm) {
                 createDataForm.addEventListener('submit', async function (event) {
                     event.preventDefault();
-
+                    const disponibilidade = document.getElementById('availability').value;
+                    const categoria = document.getElementById('edit-categoria').value;
+                    const codigo = document.getElementById('edit-codigo').value;
                     const cidade = document.getElementById('cidade').value;
                     const bairro = document.getElementById('bairro').value;
                     const endereco = document.getElementById('endereco').value;
                     const numero = document.getElementById('numero').value;
                     const cep = document.getElementById('cep').value;
-                    const descricao = document.getElementById('descricao').value;
                     const quartos = document.getElementById('quartos').value;
                     const garagem = document.getElementById('garagem').value;
                     const metros_quadrados = document.getElementById('metros_quadrados').value;
                     const valor = document.getElementById('valor').value;
+                    const descricao = document.getElementById('descricao').value;
                     const images = document.getElementById('imagens').files;
+
 
                     const itemsRef = ref(database, 'cadastros/venda');
                     const snapshot = await get(itemsRef);
@@ -296,16 +366,19 @@
 
                     const immovelRef = ref(database, `cadastros/venda/${newIndex}/dados`);
                     await set(immovelRef, {
+                        disponibilidade: disponibilidade,
+                        categoria: categoria,
+                        codigo: codigo,
                         cidade: cidade,
                         bairro: bairro,
                         endereco: endereco,
                         numero: numero,
                         cep: cep,
-                        descricao: descricao,
                         quartos: quartos,
                         garagem: garagem,
                         metros_quadrados: metros_quadrados,
-                        valor: valor
+                        valor: valor,
+                        descricao: descricao
                     });
 
                     let imageUrls = {};
@@ -331,7 +404,9 @@
                 editDataForm.addEventListener('submit', async function (event) {
                     event.preventDefault();
 
-                    const itemId = document.getElementById('edit-id').value;
+                    const id = document.getElementById('edit-id').value;
+                    const disponibilidade = document.getElementById('edit-availability').value;
+                    const categoria = document.getElementById('edit-categoria').value;
                     const cidade = document.getElementById('edit-cidade').value;
                     const bairro = document.getElementById('edit-bairro').value;
                     const endereco = document.getElementById('edit-endereco').value;
@@ -345,16 +420,18 @@
 
                     const immovelRef = ref(database, `cadastros/venda/${itemId}/dados`);
                     await set(immovelRef, {
+                        disponibilidade: disponibilidade,
+                        categoria: categoria,
                         cidade: cidade,
                         bairro: bairro,
                         endereco: endereco,
                         numero: numero,
                         cep: cep,
-                        descricao: descricao,
                         quartos: quartos,
                         garagem: garagem,
                         metros_quadrados: metros_quadrados,
-                        valor: valor
+                        valor: valor,
+                        descricao: descricao
                     });
 
                     alert('Dados atualizados com sucesso!');
@@ -498,26 +575,26 @@
             });
 
             // Função para excluir dados
-async function deleteData(id) {
-    const immovelRef = ref(database, `cadastros/venda/${id}`);
-    await remove(immovelRef);
+            async function deleteData(id) {
+                const immovelRef = ref(database, `cadastros/venda/${id}`);
+                await remove(immovelRef);
 
-    const imagesRef = ref(database, `cadastros/venda/${id}/imagens`);
-    const imagesSnapshot = await get(imagesRef);
-    if (imagesSnapshot.exists()) {
-        const images = imagesSnapshot.val();
-        for (let key in images) {
-            const imageRef = storageRef(storage, images[key]);
-            await deleteObject(imageRef);
-        }
-    }
+                const imagesRef = ref(database, `cadastros/venda/${id}/imagens`);
+                const imagesSnapshot = await get(imagesRef);
+                if (imagesSnapshot.exists()) {
+                    const images = imagesSnapshot.val();
+                    for (let key in images) {
+                        const imageRef = storageRef(storage, images[key]);
+                        await deleteObject(imageRef);
+                    }
+                }
 
-    alert('Dados excluídos com sucesso!');
-    fetchAndDisplayProperties(); // Atualize a lista de propriedades
-}
+                alert('Dados excluídos com sucesso!');
+                fetchAndDisplayProperties(); // Atualize a lista de propriedades
+            }
 
-// Tornar a função deleteData global
-window.deleteData = deleteData;
+            // Tornar a função deleteData global
+            window.deleteData = deleteData;
         });
     </script>
 </body>
