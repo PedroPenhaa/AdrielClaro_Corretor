@@ -96,6 +96,7 @@ body {
 
 // Modal styles
 .modal-content {
+    border-radius: 20px;
     .modal-header {
         background-color: $modal-header-bg;
         color: $modal-header-color;
