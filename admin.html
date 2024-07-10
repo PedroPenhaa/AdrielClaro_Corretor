@@ -76,77 +76,87 @@
                     <div class="modal-body">
                         <form id="createDataForm">
                             <div class="form-row">
+                                <!-- Disponibilidade -->
                                 <div class="form-group  col-md-3">
                                     <label for="availability">Disponibilidade</label>
                                     <select name="availability" id="availability" class="form-control custom-select">
-                                        <option value="1">Aluguel</option>
-                                        <option value="2">Venda</option>
+                                        <option value="Aluguel">Aluguel</option>
+                                        <option value="Venda">Venda</option>
                                     </select>
                                 </div>
+                                <!-- Categoria -->
                                 <div class="form-group col-md-3">
                                     <label for="edit-categoria">Categoria</label>
                                     <select name="edit-categoria" id="edit-categoria"
                                         class="form-control custom-select">
-                                        <option value="1">Apartamento</option>
-                                        <option value="2">Casa</option>
-                                        <option value="3">Sítio e Chácaras</option>
-                                        <option value="4">Terra</option>
-                                        <option value="5">Terreno</option>
+                                        <option value="Apartamento">Apartamento</option>
+                                        <option value="Casa">Casa</option>
+                                        <option value="Sítio e Chácaras">Sítio e Chácaras</option>
+                                        <option value="Terra">Terra</option>
+                                        <option value="Terreno">Terreno</option>
                                     </select>
                                 </div>
+                                <!-- Código -->
                                 <div class="form-group col-md-3">
                                     <label for="edit-codigo">Código</label>
                                     <input type="text" class="form-control" id="edit-codigo" required>
                                 </div>
+                                <!-- Cidade -->
                                 <div class="form-group col-md-3">
                                     <label for="cidade">Cidade</label>
                                     <input type="text" class="form-control" id="cidade" required>
                                 </div>
+                                <!-- Bairro -->
                                 <div class="form-group col-md-3">
                                     <label for="bairro">Bairro</label>
                                     <input type="text" class="form-control" id="bairro" required>
                                 </div>
+                                <!-- Endereço -->
                                 <div class="form-group col-md-6">
                                     <label for="endereco">Endereço</label>
                                     <input type="text" class="form-control" id="endereco" required>
                                 </div>
+                                <!-- Número da casa --> 
                                 <div class="form-group col-md-3">
                                     <label for="numero">Número</label>
                                     <input type="text" class="form-control" id="numero" required>
                                 </div>
                             </div>
+                       
                             <div class="form-row">
-
-
-                            </div>
-                            <div class="form-row">
+                                <!-- Cep -->
                                 <div class="form-group col-md-3">
                                     <label for="cep">Cep</label>
                                     <input type="text" class="form-control" id="cep" required>
                                 </div>
+                                  <!-- Quartos -->
                                 <div class="form-group col-md-2">
                                     <label for="quartos">Quartos</label>
                                     <input type="text" class="form-control" id="quartos" required>
                                 </div>
+                                  <!-- Garagem -->
                                 <div class="form-group col-md-2">
                                     <label for="garagem">Garagem</label>
                                     <input type="text" class="form-control" id="garagem" required>
                                 </div>
+                                  <!-- Metros Quadrados -->
                                 <div class="form-group col-md-2">
                                     <label for="metros_quadrados">M2</label>
                                     <input type="text" class="form-control" id="metros_quadrados" required>
                                 </div>
+                                  <!-- Valor -->
                                 <div class="form-group col-md-3">
                                     <label for="valor">Valor</label>
                                     <input type="text" class="form-control" id="valor" required>
                                 </div>
                             </div>
 
+                              <!-- Descrição -->
                             <div class="form-group">
                                 <label for="descricao">Descrição</label>
                                 <textarea class="form-control" id="descricao" rows="3" required></textarea>
-                                <input type="text" class="form-control" id="descricao" required>
                             </div>
+                              <!-- Imagens -->
                             <div class="form-group">
                                 <label for="imagens">Imagens</label>
                                 <input type="file" class="form-control-file" id="imagens" multiple required>
@@ -313,9 +323,9 @@
 
                     snapshot.forEach((childSnapshot) => {
                         const item = childSnapshot.val().dados; // Assumindo que os dados estão em um objeto `dados`
-                        if (item.disponibilidade === "1") {
+                        if (item.disponibilidade === "Venda") {
                             countVendas++;
-                        } else if (item.disponibilidade === "2") {
+                        } else if (item.disponibilidade === "Aluguel") {
                             countAlugueis++;
                         }
                     });
@@ -516,15 +526,28 @@
                                             </a>
                                         </div>
                                     </div>
+
+
+
+
+
+                                    
                                     <div class="card-body">
-                                        <div class="edit" >
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDataModal">
-                                                <i class="fas fa-edit"></i> Editar
-                                            </button>
-                                            <button type="button" class="btn btn-danger" onclick="deleteData('${itemId}')">
-                                                <i class="fas fa-trash"></i> Excluir
-                                            </button>
-                                        </div>
+                                        <div class =" header-card">
+                                            <div class="info-header">
+                                                <p>${data.disponibilidade + ' - '}</p>
+                                                <p>${data.categoria}</p>
+                                            </div>
+                                        
+                                            <div class="edit" >
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDataModal">
+                                                    <i class="fas fa-edit"></i> Editar
+                                                </button>
+                                                <button type="button" class="btn btn-danger" onclick="deleteData('${itemId}')">
+                                                    <i class="fas fa-trash"></i> Excluir
+                                                </button>
+                                            </div>
+                                        </div
 
                                         <h5 class="card-title">${data.endereco}</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">${data.bairro}, ${data.cidade}</h6>
