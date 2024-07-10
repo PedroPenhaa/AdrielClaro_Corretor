@@ -186,16 +186,21 @@
                     </div>
                     <div class="modal-body">
                         <form id="editDataForm">
-                            <input type="hidden" id="edit-id">
+                           <input type="hidden" id="edit-id">
                             <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="edit-codigo">Código</label>
-                                    <input type="text" class="form-control" id="edit-codigo" required>
+                                <!-- Disponibilidade Edit -->
+                                <div class="form-group  col-md-3">
+                                    <label for="edit-availability">Disponibilidade</label>
+                                    <select name="edit-availability" id="edit-availability" class="form-control custom-select">
+                                        <option value="Aluguel">Aluguel</option>
+                                        <option value="Venda">Venda</option>
+                                    </select>
                                 </div>
+                                 <!-- Categoria Edit -->
                                 <div class="form-group col-md-6">
-                                    <label for="edit-categoria">Categoria</label>
+                                    <label for="categoria">Categoria</label>
 
-                                    <select name="edit-categoria" id="edit-categoria">
+                                    <select name="categoria" id="categoria">
                                         <option value="1">Apartamento</option>
                                         <option value="2">Casa</option>
                                         <option value="3">Sítio e Chácaras</option>
@@ -203,6 +208,14 @@
                                         <option value="5">Terreno</option>
                                     </select>
 
+                                </div>
+
+                             
+
+                                <!-- Código -->
+                                <div class="form-group col-md-6">
+                                    <label for="codigo">Código</label>
+                                    <input type="text" class="form-control" id="codigo" required>
                                 </div>
 
                                 <div class="form-group col-md-6">
@@ -431,9 +444,14 @@
                 editDataForm.addEventListener('submit', async function (event) {
                     event.preventDefault();
 
-                    const id = document.getElementById('edit-id').value;
+                
+                    const itemId = document.getElementById('edit-id').value;
                     const disponibilidade = document.getElementById('edit-availability').value;
-                    const categoria = document.getElementById('edit-categoria').value;
+                    const categoria = document.getElementById('categoria').value;
+                    const codigo = document.getElementById('codigo').value;
+
+          
+                   
                     const cidade = document.getElementById('edit-cidade').value;
                     const bairro = document.getElementById('edit-bairro').value;
                     const endereco = document.getElementById('edit-endereco').value;
@@ -446,9 +464,11 @@
                     const descricao = document.getElementById('edit-descricao').value;
 
                     const immovelRef = ref(database, `cadastros/venda/${itemId}/dados`);
+
                     await set(immovelRef, {
                         disponibilidade: disponibilidade,
                         categoria: categoria,
+                        codigo: codigo,    
                         cidade: cidade,
                         bairro: bairro,
                         endereco: endereco,
