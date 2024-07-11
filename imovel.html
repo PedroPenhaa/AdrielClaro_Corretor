@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="dist/css/main.css">
     <title>Informação do Imóvel</title>
 </head>
+
 <body>
     <main>
         <header class="header-imovel">
@@ -21,22 +23,29 @@
             <div id="imovel">
 
 
-               <div class="photos">
-                  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                     <div class="carousel-inner">
-                       
-                     </div>
-                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                         <span class="sr-only">Previous</span>
-                     </a>
-                     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                         <span class="sr-only">Next</span>
-                     </a>
-                 </div>
-               </div>
-               
+                <div class="photos">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="informacoes-imovel">
+
+                </div>
+
+
             </div>
         </div>
     </main>
@@ -54,45 +63,76 @@
             const imovelId = urlParams.get('id');
 
             if (imovelId) {
-              // Configuração do Firebase
- const firebaseConfig = {
-   apiKey: "AIzaSyD5CRo97EPoWGlUASNz0qPftVmN1fwxk6M",
-   authDomain: "adriel-consultor-imobiliario.firebaseapp.com",
-   databaseURL: "https://adriel-consultor-imobiliario-default-rtdb.firebaseio.com",
-   projectId: "adriel-consultor-imobiliario",
-   storageBucket: "adriel-consultor-imobiliario.appspot.com",
-   messagingSenderId: "55769079311",
-   appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
-   measurementId: "G-1BP7CKYQM1"
-};
-
+                // Configuração do Firebase
+                const firebaseConfig = {
+                    apiKey: "AIzaSyD5CRo97EPoWGlUASNz0qPftVmN1fwxk6M",
+                    authDomain: "adriel-consultor-imobiliario.firebaseapp.com",
+                    databaseURL: "https://adriel-consultor-imobiliario-default-rtdb.firebaseio.com",
+                    projectId: "adriel-consultor-imobiliario",
+                    storageBucket: "adriel-consultor-imobiliario.appspot.com",
+                    messagingSenderId: "55769079311",
+                    appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
+                    measurementId: "G-1BP7CKYQM1"
+                };
 
                 const app = initializeApp(firebaseConfig);
-                const database = getDatabase(app);
-                const storage = getStorage(app);
+        const database = getDatabase(app);
+        const storage = getStorage(app);
 
-                const itemRef = ref(database, 'cadastros/venda/' + imovelId);
-                onValue(itemRef, (snapshot) => {
-                    const images = snapshot.val().imagens;
-                    const carouselInner = document.querySelector('.carousel-inner');
-                    let activeSet = false;
+        const allItemsRef = ref(database, 'cadastros/venda');
+
+        onValue(allItemsRef, (snapshot) => {
+            const items = snapshot.val();
+            let itemFound = false;
+
+            for (let key in items) {
+                if (items[key].dados && items[key].dados.codigo === imovelId) {
+                    itemFound = true;
+                    const images = items[key].imagens;
+                    const data = items[key].dados;
 
                     if (images) {
+                        const carouselInner = document.querySelector('.carousel-inner');
+                        carouselInner.innerHTML = ''; // Limpa o conteúdo anterior
+                        let activeSet = false;
+
                         Object.keys(images).forEach((key, index) => {
                             getDownloadURL(storageRef(storage, images[key])).then((url) => {
                                 const carouselItem = document.createElement('div');
                                 carouselItem.className = `carousel-item ${!activeSet ? 'active' : ''}`;
-                                activeSet = true; // Set the first image as active
-                                carouselItem.innerHTML = `<img src="${url}" class="d-block" alt="Imagem ${index + 1}">`;
+                                activeSet = true;
+                                carouselItem.innerHTML = `<img src="${url}" class="d-block w-100" alt="Imagem ${index + 1}">`;
                                 carouselInner.appendChild(carouselItem);
                             });
                         });
                     }
-                });
-            } else {
-                document.body.innerHTML = `<h1>ID do imóvel não especificado.</h1>`;
+
+                    const infoDiv = document.querySelector('.informacoes-imovel');
+                    infoDiv.innerHTML = `
+                        <div><strong></strong> ${data.endereco}</div>
+                        <div><strong>Bairro:</strong> ${data.bairro}</div>
+                        <div><strong>Cidade:</strong> ${data.cidade}</div>
+                        <div><strong>CEP:</strong> ${data.cep}</div>
+                        <div><strong>Categoria:</strong> ${data.categoria}</div>
+                        <div><strong>Valor:</strong> R$${data.valor}</div>
+                        <div><strong>Quartos:</strong> ${data.quartos}</div>
+                        <div><strong>Garagem:</strong> ${data.garagem}</div>
+                        <div><strong>Metros Quadrados:</strong> ${data.metros_quadrados}m²</div>
+                        <div><strong>Descrição:</strong> ${data.descricao}</div>
+                    `;
+                    break;
+                }
+            }
+
+            if (!itemFound) {
+                document.body.innerHTML = `<h1>Imóvel não encontrado com o código: ${imovelId}</h1>`;
             }
         });
+    } else {
+        document.body.innerHTML = `<h1>ID do imóvel não especificado.</h1>`;
+    }
+});
     </script>
 </body>
+
 </html>
