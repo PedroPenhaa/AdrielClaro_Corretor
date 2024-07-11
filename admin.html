@@ -34,7 +34,7 @@
                 <button type="button" class="btn btn-primary" id="limparBtn">Limpar</button>
             </div>
         </div>
-        
+
 
         <div class="info-imóveis" style="width: 100%;  ">
         </div>
@@ -126,50 +126,74 @@
                                     <label for="endereco">Endereço</label>
                                     <input type="text" class="form-control" id="endereco" required>
                                 </div>
-                                <!-- Número da casa --> 
+                                <!-- Número da casa -->
                                 <div class="form-group col-md-3">
                                     <label for="numero">Número</label>
                                     <input type="text" class="form-control" id="numero" required>
                                 </div>
                             </div>
-                       
+
                             <div class="form-row">
                                 <!-- Cep -->
                                 <div class="form-group col-md-3">
                                     <label for="cep">Cep</label>
                                     <input type="text" class="form-control" id="cep" required>
                                 </div>
-                                  <!-- Quartos -->
+                                <!-- Quartos -->
                                 <div class="form-group col-md-2">
                                     <label for="quartos">Quartos</label>
                                     <input type="text" class="form-control" id="quartos" required>
                                 </div>
-                                  <!-- Garagem -->
+                                <!-- Garagem -->
                                 <div class="form-group col-md-2">
                                     <label for="garagem">Garagem</label>
                                     <input type="text" class="form-control" id="garagem" required>
                                 </div>
-                                  <!-- Metros Quadrados -->
+                                <!-- Metros Quadrados -->
                                 <div class="form-group col-md-2">
                                     <label for="metros_quadrados">M2</label>
                                     <input type="text" class="form-control" id="metros_quadrados" required>
                                 </div>
-                                  <!-- Valor -->
+                                <!-- Valor -->
                                 <div class="form-group col-md-3">
                                     <label for="valor">Valor</label>
                                     <input type="text" class="form-control" id="valor" required>
                                 </div>
                             </div>
 
-                              <!-- Descrição -->
+                            <!-- Descrição -->
                             <div class="form-group">
                                 <label for="descricao">Descrição</label>
                                 <textarea class="form-control" id="descricao" rows="3" required></textarea>
                             </div>
-                              <!-- Imagens -->
-                            <div class="form-group">
-                                <label for="imagens">Imagens</label>
-                                <input type="file" class="form-control-file" id="imagens" multiple required>
+
+                            <div class="form-row" style="display: flex; justify-content: space-between;">
+                                <!-- Imagens -->
+                                <div class="form-group  col-md-8">
+                                    <label for="imagens">Imagens</label>
+                                    <input type="file" class="form-control-file" id="imagens" multiple required>
+                                </div>
+
+
+
+
+                                <!-- Destaque -->
+                                <div class="form-group  col-md-4">
+                                    <label>Destaque</label>
+                                    <div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="destaqueSim" name="destaque"
+                                                class="custom-control-input" value="Sim" required>
+                                            <label class="custom-control-label" for="destaqueSim">Sim</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="destaqueNao" name="destaque"
+                                                class="custom-control-input" value="Não" required>
+                                            <label class="custom-control-label" for="destaqueNao">Não</label>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
 
                             <div class="btn">
@@ -196,17 +220,18 @@
                     </div>
                     <div class="modal-body">
                         <form id="editDataForm">
-                           <input type="hidden" id="edit-id">
+                            <input type="hidden" id="edit-id">
                             <div class="form-row">
                                 <!-- Disponibilidade Edit -->
                                 <div class="form-group  col-md-3">
                                     <label for="edit-availability">Disponibilidade</label>
-                                    <select name="edit-availability" id="edit-availability" class="form-control custom-select">
+                                    <select name="edit-availability" id="edit-availability"
+                                        class="form-control custom-select">
                                         <option value="Aluguel">Aluguel</option>
                                         <option value="Venda">Venda</option>
                                     </select>
                                 </div>
-                                 <!-- Categoria Edit -->
+                                <!-- Categoria Edit -->
                                 <div class="form-group col-md-6">
                                     <label for="categoria">Categoria</label>
 
@@ -220,7 +245,7 @@
 
                                 </div>
 
-                             
+
 
                                 <!-- Código -->
                                 <div class="form-group col-md-6">
@@ -275,6 +300,34 @@
                                 <label for="edit-descricao">Descrição</label>
                                 <input type="text" class="form-control" id="edit-descricao" required>
                             </div>
+
+                            <div class="form-row" style="display: flex; justify-content: space-between;">
+                                <!-- Imagens 
+                                <div class="form-group  col-md-8">
+                                    <label for="imagens">Imagens</label>
+                                    <input type="file" class="form-control-file" id="edit-imagens" multiple required>
+                                </div>
+-->
+
+
+
+                               <!-- Destaque - Modal de Edição -->
+<div class="form-group col-md-4">
+    <label>Destaque</label>
+    <div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="editDestaqueSim" name="edit-destaque" class="custom-control-input" value="Sim" required>
+            <label class="custom-control-label" for="editDestaqueSim">Sim</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="editDestaqueNao" name="edit-destaque" class="custom-control-input" value="Não" required>
+            <label class="custom-control-label" for="editDestaqueNao">Não</label>
+        </div>
+    </div>
+</div>
+                            </div>
+
+
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </form>
                     </div>
@@ -322,7 +375,7 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             fetchCounts();
-            fetchPropertyCount(); 
+            fetchPropertyCount();
 
             // Função para buscar e exibir o número de imóveis cadastrados
             function fetchPropertyCount() {
@@ -401,6 +454,7 @@
                     const valor = document.getElementById('valor').value;
                     const descricao = document.getElementById('descricao').value;
                     const images = document.getElementById('imagens').files;
+                    const destaque = document.querySelector('input[name="destaque"]:checked').value;
 
                     const itemsRef = ref(database, 'cadastros/venda');
                     const snapshot = await get(itemsRef);
@@ -425,7 +479,8 @@
                         garagem: garagem,
                         metros_quadrados: metros_quadrados,
                         valor: valor,
-                        descricao: descricao
+                        descricao: descricao,
+                        destaque
                     });
 
                     let imageUrls = {};
@@ -442,7 +497,7 @@
                     await set(imagesRef, imageUrls);
 
                     // alert('Dados e imagens cadastrados com sucesso!');
-                     $('#createDataModal').modal('hide');
+                    $('#createDataModal').modal('hide');
 
                     // Esconder o spinner de carregamento
                     document.getElementById('loadingSpinner').style.display = 'none';
@@ -455,14 +510,14 @@
                 editDataForm.addEventListener('submit', async function (event) {
                     event.preventDefault();
 
-                
+
                     const itemId = document.getElementById('edit-id').value;
                     const disponibilidade = document.getElementById('edit-availability').value;
                     const categoria = document.getElementById('categoria').value;
                     const codigo = document.getElementById('codigo').value;
 
-          
-                   
+
+
                     const cidade = document.getElementById('edit-cidade').value;
                     const bairro = document.getElementById('edit-bairro').value;
                     const endereco = document.getElementById('edit-endereco').value;
@@ -473,13 +528,14 @@
                     const metros_quadrados = document.getElementById('edit-metros_quadrados').value;
                     const valor = document.getElementById('edit-valor').value;
                     const descricao = document.getElementById('edit-descricao').value;
+                    const destaque = document.querySelector('input[name="edit-destaque"]:checked').value;
 
                     const immovelRef = ref(database, `cadastros/venda/${itemId}/dados`);
 
                     await set(immovelRef, {
                         disponibilidade: disponibilidade,
                         categoria: categoria,
-                        codigo: codigo,    
+                        codigo: codigo,
                         cidade: cidade,
                         bairro: bairro,
                         endereco: endereco,
@@ -489,7 +545,11 @@
                         garagem: garagem,
                         metros_quadrados: metros_quadrados,
                         valor: valor,
-                        descricao: descricao
+                        descricao: descricao,
+                        destaque,
+
+                    
+            
                     });
 
                     alert('Dados atualizados com sucesso!');
@@ -520,30 +580,30 @@
 
             // Função para buscar e exibir propriedades
             function fetchAndDisplayProperties(filterCode = '') {
-        const itemsRef = ref(database, 'cadastros/venda');
-        onValue(itemsRef, (snapshot) => {
-            infoImoveisDiv.innerHTML = '';  // Limpar conteúdo anterior
-            snapshot.forEach((childSnapshot) => {
-                const itemId = childSnapshot.key;
-                const data = childSnapshot.val().dados;
-                const images = childSnapshot.val().imagens; // Pega o objeto de imagens
+                const itemsRef = ref(database, 'cadastros/venda');
+                onValue(itemsRef, (snapshot) => {
+                    infoImoveisDiv.innerHTML = '';  // Limpar conteúdo anterior
+                    snapshot.forEach((childSnapshot) => {
+                        const itemId = childSnapshot.key;
+                        const data = childSnapshot.val().dados;
+                        const images = childSnapshot.val().imagens; // Pega o objeto de imagens
 
-                if (data) {
-                    if (filterCode === '' || data.codigo === filterCode) {  // Verifica se o código do filtro está presente
-                        let carouselInnerHtml = '';
+                        if (data) {
+                            if (filterCode === '' || data.codigo === filterCode) {  // Verifica se o código do filtro está presente
+                                let carouselInnerHtml = '';
 
-                        // Verifica se existem imagens e cria itens do carrossel para cada uma
-                        if (images && Object.keys(images).length > 0) {
-                            Object.keys(images).forEach((key, index) => {
-                                carouselInnerHtml += `
+                                // Verifica se existem imagens e cria itens do carrossel para cada uma
+                                if (images && Object.keys(images).length > 0) {
+                                    Object.keys(images).forEach((key, index) => {
+                                        carouselInnerHtml += `
                                     <div class="carousel-item ${index === 0 ? 'active' : ''}">
                                         <img src="${images[key]}" class="d-block w-100 carousel-img">
                                     </div>
                                 `;
-                            });
-                        }
+                                    });
+                                }
 
-                        const cardHtml = `
+                                const cardHtml = `
                             <div class="card" data-item-id="${itemId}">
                                 <div class="carousel-container">
                                     <div id="carousel${itemId}" class="carousel slide" data-ride="carousel">
@@ -604,29 +664,29 @@
                                 </div>
                             </div>
                         `;
-                        infoImoveisDiv.innerHTML += cardHtml;
-                    }
-                }
+                                infoImoveisDiv.innerHTML += cardHtml;
+                            }
+                        }
+                    });
+                }, {
+                    onlyOnce: true
+                });
+            }
+
+            // Adicionando evento de clique ao botão de pesquisa
+            document.getElementById('pesquisarBtn').addEventListener('click', function () {
+                const codigoFiltro = document.getElementById('codigoFiltro').value;
+                fetchAndDisplayProperties(codigoFiltro);
             });
-        }, {
-            onlyOnce: true
-        });
-    }
 
-    // Adicionando evento de clique ao botão de pesquisa
-    document.getElementById('pesquisarBtn').addEventListener('click', function () {
-        const codigoFiltro = document.getElementById('codigoFiltro').value;
-        fetchAndDisplayProperties(codigoFiltro);
-    });
+            // Adicionando evento de clique ao botão de limpar
+            document.getElementById('limparBtn').addEventListener('click', function () {
+                document.getElementById('codigoFiltro').value = '';
+                fetchAndDisplayProperties();
+            });
 
-    // Adicionando evento de clique ao botão de limpar
-    document.getElementById('limparBtn').addEventListener('click', function () {
-        document.getElementById('codigoFiltro').value = '';
-        fetchAndDisplayProperties();
-    });
-
-    // Função para buscar e exibir propriedades
-   // Chama a função inicialmente para carregar todos os imóveis
+            // Função para buscar e exibir propriedades
+            // Chama a função inicialmente para carregar todos os imóveis
 
 
             // Chamar a função fetchAndDisplayProperties para exibir propriedades
