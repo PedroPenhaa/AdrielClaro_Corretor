@@ -60,6 +60,7 @@
             width: 100%;
             @include flex(row, center, start);
             gap: 10rem;
+            min-height: 100vh;
          }
 
 
@@ -73,15 +74,16 @@
          }
 
          .card {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
             border-radius: 10px;
             overflow: hidden;
-            transition: transform 0.3s ease-in-out;
+            transition: transform .3s ease-in-out;
             min-width: 330px;
             max-width: 330px;
             height: auto;
             display: flex;
             flex-direction: column;
+            margin-bottom: -65px;
 
             &:hover {
                transform: translateY(-10px);
@@ -114,7 +116,7 @@
                   margin-top: -2px;
 
                   img {
-                     width: 100%;
+                     min-width: 110%;
                      max-height: 200px;
                   }
                }
