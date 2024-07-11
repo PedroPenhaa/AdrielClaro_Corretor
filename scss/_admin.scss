@@ -63,6 +63,34 @@ body {
     margin-left: 250px;
     //padding: 20px;
 
+    .filtro{
+        background-color: black;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        .filtro-box{
+            display: flex;
+            gap: 20px;
+            #codigoFiltro{
+                border-radius: 5px;
+                padding-left: 5px;
+            }
+            button{
+                padding: 8px;
+                background-color: var(--color-highlight);
+                border-radius: 10px;
+                font-size: 1.2rem;
+                font-weight: 700;
+            }
+          
+            button:hover {
+                background-color: var(--color-tertiary);
+            }
+        }
+    }
+
     .sec-imoveis{
         background-color: var( --color-background);
         width: 100%;
@@ -247,6 +275,9 @@ body {
             border-radius: 8px;
         }
 
+       
+
+       
         .info {
             margin-top: 15px;
 
@@ -280,11 +311,26 @@ body {
     }
 
     .carousel-container {
-        width: 480px;
+        min-width: 480px;
         border-radius: 20px;
         margin: auto;
     }
 }
+
+.header-card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .info-header{
+        display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    }
+}
+
 
 // Additional dynamically injected styles
 .edit {
