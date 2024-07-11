@@ -10,7 +10,9 @@
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="dist/css/main.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <style>
+    <link rel="stylesheet" href="path/to/your/compiled/css/file.css" />
+
+    <!-- <style>
         #loadingSpinner {
             display: none;
             position: fixed;
@@ -28,7 +30,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
-    </style>
+    </style> -->
 </head>
 
 <body>
@@ -160,6 +162,7 @@
                                     <div class="info-card">
                                         <strong> Disponível para ${data.disponibilidade.toLowerCase()}</strong>
                                     </div>
+
                                     <div class="swiper-container swiper-${swiperIndex}">
                                         <div class="swiper-wrapper">
                                             ${carouselInnerHtml}
@@ -168,6 +171,7 @@
                                         <div class="swiper-button-prev"></div>
                                         <div class="swiper-button-next"></div>
                                     </div>
+                                    
                                     <div class="card-body">
                                         <h5 class="card-title">${data.endereco}</h5>
                                         <p class="card-text"><strong>R$${data.valor}</strong></p>
@@ -180,6 +184,8 @@
                                             <a href="#" class="btn btn-primary">Ver mais</a>
                                         </div>
                                     </div>
+
+
                                 </div>
                             </div>
                         `;
