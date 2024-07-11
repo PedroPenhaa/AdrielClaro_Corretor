@@ -1,91 +1,101 @@
-body {
-   width: 100%;
-   height: 100vh;
+$color-control-icon: #333; // Cor dos ícones de navegação
 
-   main {
+body {
+  width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
+  margin: 0;
+  padding: 0;
+
+  main {
       display: flex;
       flex-direction: column;
 
-      .header-imovel {
-         background-color: black;
-         color: $sidebar-color;
-         max-height: 30vh;
-         padding: 20px;
-         width: 100%;
-         position: fixed;
-         display: flex;
-         flex-direction: row;
-         align-items: center;
-         justify-content: center;
-         gap: 40px;
+    .header-imovel {
+      background-color: black;
+      color: white; // Cor do texto no cabeçalho
+      max-height: 30vh;
+      padding: 20px;
+      width: 100%;
+      position: fixed;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
 
-         img {
-            width: 130px;
+      img {
+        width: 130px;
+        height: auto;
+      }
+
+      .header-text {
+        p {
+          font-weight: bold;
+          color: white;
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .content {
+      margin-top: 30vh; // Margem superior para evitar sobreposição com o cabeçalho
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+      
+
+      h1 {
+        color: var(  --color-highlight);// Cor do título
+        font-size: 2.3rem;
+        font-weight: bold;
+        margin: -40px 0 30px 0;
+      }
+
+      #imovel {
+        display: flex;
+        align-items: center;
+       
+        flex-direction: row;
+        padding-left: 150px;
+        padding-right: 150px;
+        width: 100%;
+
+        .photos {
+          width: 50%;
+
+          .carousel {
+            width: 100%;
             height: auto;
-         }
 
-         .header-text {
-            p {
-               font-weight: bold;
-               color: white;
-               font-size: 1.2rem;
+            .carousel-inner {
+              width: 100%;
+              height: auto;
+              border-radius: 20px;
+              .carousel-item {
+                img {
+                  border-radius: 20px;
+                  width: 550px; // Largura fixa
+                  height: 400px; // Altura fixa
+                  object-fit: cover; // Garante que a imagem cubra o espaço sem deformar
+                  min-width: 550px; // Largura mínima
+                  max-width: 550px; // Largura máxima
+                  min-height: 400px; // Altura mínima
+                  max-height: 400px; // Altura máxima
+                }
+              }
             }
-         }
-      }
 
-
-      .content {
-         margin-top: 20vh;
-
-
-         display: flex;
-         align-items: center;
-         justify-content: center;
-         flex-direction: column;
-         width: 100%;
-         padding: 5rem;
-
-
-         h1 {
-            color: var(--color-highlight);
-            font-size: 2.3rem;
-            font-weight: bold;
-         }
-
-         #imovel {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: row ;
-            padding-left: 150px;
-            padding-right: 150px;
-            .photos {
-               width: 35%;
-               swiper-container {
-                  width: 50%;
-                  height: 70vh;
-                  padding-top: 50px;
-                  padding-bottom: 50px;
-               }
-
-               swiper-slide {
-                  background-position: center;
-                  background-size: cover;
-                  width: 400px;
-                  height: 400px;
-               }
-
-               swiper-slide img {
-                  display: block;
-                  width: 100%;
-               }
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+              background-color: $color-control-icon; // Cor dos ícones de controle
+              border-radius: 50%; // Ícones circulares
             }
-         }
-
-
-
-
-
+          }
+        }
       }
-   }
+    }
+  }
 }

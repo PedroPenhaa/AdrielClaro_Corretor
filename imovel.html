@@ -1,132 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="dist/css/main.css">
-   <title>Informação do Imóvel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="dist/css/main.css">
+    <title>Informação do Imóvel</title>
 </head>
-
 <body>
-
-
-
-
-
-
-
-
-
-
-   <main>
-      <header class="header-imovel">
-
-
-         <img src="./assets/logos/logo_3.png" alt="">
-
-         <div class="header-text">
-            <p>ENGENHEIRO CIVIL E CORRETOR DE IMÓVEIS</p>
-            <p>CREA MG 380290 - CRECI 53770</p>
-         </div>
-
-
-      </header>
-
-
-      <div class="content">
-         <h1>Informações do Imóvel</h1>
-         <div id="imovel">
-
-
-            <div class="photos">
-               <swiper-container class="mySwiper" pagination="true" effect="coverflow" grab-cursor="true"
-                  centered-slides="true" slides-per-view="auto" coverflow-effect-rotate="50"
-                  coverflow-effect-stretch="0" coverflow-effect-depth="100" coverflow-effect-modifier="1"
-                  coverflow-effect-slide-shadows="true">
-                  <swiper-slide>
-                     <img src=" https://swiperjs.com/demos/images/nature-1.jpg" />
-                  </swiper-slide>
-                  <swiper-slide>
-                     <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-                  </swiper-slide>
-                  <swiper-slide>
-                     <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-                  </swiper-slide>
-                  <swiper-slide>
-                     <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-                  </swiper-slide>
-                  <swiper-slide>
-                     <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-                  </swiper-slide>
-                  <swiper-slide>
-                     <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-                  </swiper-slide>
-                  <swiper-slide>
-                     <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-                  </swiper-slide>
-                  <swiper-slide>
-                     <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-                  </swiper-slide>
-                  <swiper-slide>
-                     <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-                  </swiper-slide>
-               </swiper-container>
+    <main>
+        <header class="header-imovel">
+            <img src="./assets/logos/logo_3.png" alt="">
+            <div class="header-text">
+                <p>ENGENHEIRO CIVIL E CORRETOR DE IMÓVEIS</p>
+                <p>CREA MG 380290 - CRECI 53770</p>
             </div>
-         </div>
+        </header>
+        <div class="content">
+            <h1>Informações do Imóvel</h1>
+            <div id="imovel">
 
 
+               <div class="photos">
+                  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                     <div class="carousel-inner">
+                       
+                     </div>
+                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                         <span class="sr-only">Previous</span>
+                     </a>
+                     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                         <span class="sr-only">Next</span>
+                     </a>
+                 </div>
+               </div>
+               
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+        import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js';
+        import { getStorage, ref as storageRef, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const imovelId = urlParams.get('id');
+
+            if (imovelId) {
+              // Configuração do Firebase
+ const firebaseConfig = {
+   apiKey: "AIzaSyD5CRo97EPoWGlUASNz0qPftVmN1fwxk6M",
+   authDomain: "adriel-consultor-imobiliario.firebaseapp.com",
+   databaseURL: "https://adriel-consultor-imobiliario-default-rtdb.firebaseio.com",
+   projectId: "adriel-consultor-imobiliario",
+   storageBucket: "adriel-consultor-imobiliario.appspot.com",
+   messagingSenderId: "55769079311",
+   appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
+   measurementId: "G-1BP7CKYQM1"
+};
 
 
+                const app = initializeApp(firebaseConfig);
+                const database = getDatabase(app);
+                const storage = getStorage(app);
 
-      </div>
-   </main>
+                const itemRef = ref(database, 'cadastros/venda/' + imovelId);
+                onValue(itemRef, (snapshot) => {
+                    const images = snapshot.val().imagens;
+                    const carouselInner = document.querySelector('.carousel-inner');
+                    let activeSet = false;
 
-
-
-   
-   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-
-
-   <script type="module">
-      import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
-      import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js';
-
-      document.addEventListener('DOMContentLoaded', function () {
-         const urlParams = new URLSearchParams(window.location.search);
-         const imovelId = urlParams.get('id');
-
-         if (imovelId) {
-            const firebaseConfig = {
-               // Sua configuração do Firebase aqui
-            };
-
-            const app = initializeApp(firebaseConfig);
-            const database = getDatabase(app);
-
-            const itemRef = ref(database, 'cadastros/venda/' + imovelId);
-            onValue(itemRef, (snapshot) => {
-               const data = snapshot.val().dados;
-               // Certifique-se que a propriedade 'dados' e suas sub-propriedades existem antes de acessá-las
-               if (data) {
-                  document.body.innerHTML = `
-                          <h1>${data.endereco}</h1>
-                         
-                      `;
-               } else {
-                  document.body.innerHTML = `<h1>Imóvel não encontrado.</h1>`;
-               }
-            });
-         } else {
-            document.body.innerHTML = `<h1>ID do imóvel não especificado.</h1>`;
-         }
-      });
-   </script>
-
-
-
-
-
+                    if (images) {
+                        Object.keys(images).forEach((key, index) => {
+                            getDownloadURL(storageRef(storage, images[key])).then((url) => {
+                                const carouselItem = document.createElement('div');
+                                carouselItem.className = `carousel-item ${!activeSet ? 'active' : ''}`;
+                                activeSet = true; // Set the first image as active
+                                carouselItem.innerHTML = `<img src="${url}" class="d-block" alt="Imagem ${index + 1}">`;
+                                carouselInner.appendChild(carouselItem);
+                            });
+                        });
+                    }
+                });
+            } else {
+                document.body.innerHTML = `<h1>ID do imóvel não especificado.</h1>`;
+            }
+        });
+    </script>
 </body>
-
 </html>
