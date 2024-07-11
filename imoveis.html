@@ -158,7 +158,7 @@
 
                         const cardHtml = `
                             <div class="col-md-3">
-                                <div class="card">
+                                <div class="card" id="${itemId}">
                                     <div class="info-card">
                                         <strong> Disponível para ${data.disponibilidade.toLowerCase()}</strong>
                                     </div>
@@ -173,15 +173,27 @@
                                     </div>
                                     
                                     <div class="card-body">
-                                        <h5 class="card-title">${data.endereco}</h5>
-                                        <p class="card-text"><strong>R$${data.valor}</strong></p>
-                                        <p class="card-info"><i class="fas fa-bed"></i> ${data.quartos} Dormitórios</p>
-                                        <div class="info-2">
-                                            <p class="card-info"><i class="fas fa-car"></i> ${data.garagem} Garagens</p>
-                                            <p class="card-info"><i class="fas fa-ruler-combined"></i> ${data.metros_quadrados}m²</p>
-                                        </div>
+
+                                        <div class="header-card">
+                                            <h5 class="card-title">${data.endereco}</h5>
+                                            <p class="card-text"><strong>R${data.valor}</strong></p>
+                                        </div
+                                      
+                                        <div class="icons-card">
+                                            <p class="card-info"><i class="fas fa-bed"></i> ${data.quartos} Dormitórios</p>
+                                            <div class="info-2">
+                                                <p class="card-info"><i class="fas fa-car"></i> ${data.garagem} Garagens</p>
+                                                <p class="card-info"><i class="fas fa-ruler-combined"></i> ${data.metros_quadrados}m²</p>
+                                            </div>
+                                        </div>    
+
+                                        <div class="infos-card">
+                                            <h5 class="card-title">${data.codigo}</h5>
+                                            <!--<h5 class="card-title" style="    max-height: 20px;">${data.descricao}</h5>-->
+                                        </div>    
+
                                         <div class="btn">
-                                            <a href="#" class="btn btn-primary">Ver mais</a>
+                                            <a href="imovel.html?id=${itemId}" class="btn btn-primary">Ver mais</a>
                                         </div>
                                     </div>
 

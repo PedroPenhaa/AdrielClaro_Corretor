@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="dist/css/main.css">
+   <title>Informação do Imóvel</title>
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+
+   <main>
+      <header class="header-imovel">
+
+
+         <img src="./assets/logos/logo_3.png" alt="">
+
+         <div class="header-text">
+            <p>ENGENHEIRO CIVIL E CORRETOR DE IMÓVEIS</p>
+            <p>CREA MG 380290 - CRECI 53770</p>
+         </div>
+
+
+      </header>
+
+
+      <div class="content">
+         <h1>Informações do Imóvel</h1>
+         <div id="imovel">
+
+
+            <div class="photos">
+               <swiper-container class="mySwiper" pagination="true" effect="coverflow" grab-cursor="true"
+                  centered-slides="true" slides-per-view="auto" coverflow-effect-rotate="50"
+                  coverflow-effect-stretch="0" coverflow-effect-depth="100" coverflow-effect-modifier="1"
+                  coverflow-effect-slide-shadows="true">
+                  <swiper-slide>
+                     <img src=" https://swiperjs.com/demos/images/nature-1.jpg" />
+                  </swiper-slide>
+                  <swiper-slide>
+                     <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                  </swiper-slide>
+                  <swiper-slide>
+                     <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                  </swiper-slide>
+                  <swiper-slide>
+                     <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                  </swiper-slide>
+                  <swiper-slide>
+                     <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+                  </swiper-slide>
+                  <swiper-slide>
+                     <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+                  </swiper-slide>
+                  <swiper-slide>
+                     <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+                  </swiper-slide>
+                  <swiper-slide>
+                     <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+                  </swiper-slide>
+                  <swiper-slide>
+                     <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
+                  </swiper-slide>
+               </swiper-container>
+            </div>
+         </div>
+
+
+
+
+
+      </div>
+   </main>
+
+
+
+   
+   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+
+
+   <script type="module">
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+      import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js';
+
+      document.addEventListener('DOMContentLoaded', function () {
+         const urlParams = new URLSearchParams(window.location.search);
+         const imovelId = urlParams.get('id');
+
+         if (imovelId) {
+            const firebaseConfig = {
+               // Sua configuração do Firebase aqui
+            };
+
+            const app = initializeApp(firebaseConfig);
+            const database = getDatabase(app);
+
+            const itemRef = ref(database, 'cadastros/venda/' + imovelId);
+            onValue(itemRef, (snapshot) => {
+               const data = snapshot.val().dados;
+               // Certifique-se que a propriedade 'dados' e suas sub-propriedades existem antes de acessá-las
+               if (data) {
+                  document.body.innerHTML = `
+                          <h1>${data.endereco}</h1>
+                         
+                      `;
+               } else {
+                  document.body.innerHTML = `<h1>Imóvel não encontrado.</h1>`;
+               }
+            });
+         } else {
+            document.body.innerHTML = `<h1>ID do imóvel não especificado.</h1>`;
+         }
+      });
+   </script>
+
+
+
+
+
+</body>
+
+</html>
