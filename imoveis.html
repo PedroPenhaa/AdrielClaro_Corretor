@@ -1,210 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Adriel Claro - Corretor</title>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-   <link rel="stylesheet" href="dist/css/main.css">
-   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adriel Claro - Corretor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="dist/css/main.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        #loadingSpinner {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1050;
+        }
+
+        #loadingSpinner .spinner-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
+
 <body>
-   <main>
-      <section class="container-fluid" id="s__imoveis_all">
-         <div class="filter fade-in-left fade-element">
-            <a href="#">
-               <img src="./assets/logos/logo_3.png" alt="Logo" class="img-fluid logo-img">
-            </a>
-            <form>
-               <div class="filters">
-                  <div class="filter-item">
-                     <label for="availability">Disponibilidade</label>
-                     <select name="availability" id="availability">
-                        <option value="1">Aluguel</option>
-                        <option value="2">Venda</option>
-                     </select>
-                  </div>
-                  <div class="filter-item">
-                     <label for="classification">Classificação do Imóvel</label>
-                     <select name="classification" id="classification">
-                        <option value="1">Apartamento</option>
-                        <option value="2">Casa</option>
-                        <option value="3">Sítio e Chácaras</option>
-                        <option value="4">Terra</option>
-                        <option value="5">Terreno</option>
-                     </select>
-                  </div>
-                  <div class="filter-item">
-                     <label for="minValue">Valor mínimo</label>
-                     <input type="text" name="minValue" id="minValue" placeholder="R$ 0,00">
-                  </div>
-                  <div class="filter-item">
-                     <label for="maxValue">Valor máximo</label>
-                     <input type="text" name="maxValue" id="maxValue" placeholder="R$ 0,00">
-                  </div>
-                  <div class="filter-item">
-                     <button type="submit" class="btn btn-primary">
-                        <img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Lupa" style="width: 20px;">
-                     </button>
-                  </div>
-               </div>
-            </form>
-         </div>
-       
-         <div class="informacoes_sec">
-            <div class="venda">
-               <h1>Imóveis para venda</h1>
-               <div class="row">
-                  <!-- Card 1 -->
-                  <div class="col-md-3">
-                     <div class="card">
-                        <div class="info-card">
-                           <strong> Disponível para venda</strong>
-                        </div>
-                        <!-- Swiper -->
-                        <div class="swiper-container">
-                          <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="./assets/bg/casa_1.jpg" alt="Imagem 1" class="img-fluid"></div>
-                            <div class="swiper-slide"><img src="./assets/bg/campestre.jpg" alt="Imagem 2" class="img-fluid"></div>
-                            <div class="swiper-slide"><img src="./assets/bg/campestre1.jpg" alt="Imagem 3" class="img-fluid"></div>
-                          </div>
-                          <!-- Add Pagination -->
-                          <div class="swiper-pagination"></div>
-                          <!-- Add Navigation -->
-                          <div class="swiper-button-prev"></div>
-                          <div class="swiper-button-next"></div>
-                        </div>
-                        
-                        <div class="card-body">
-                          <h5 class="card-title">Casa em Condomínio – terras de San Pedro</h5>
-                          <p class="card-text"><strong>R$1.300.000,00</strong></p>
-                          <p class="card-info"><i class="fas fa-bed"></i> 3 Dormitórios, sendo 3 suítes</p>
-                          
-                          <div class="info-2">
-                           <p class="card-info"><i class="fas fa-car"></i> 4 Garagens</p>
-                           <p class="card-info"><i class="fas fa-ruler-combined"></i> 217m²</p>
-
-                          </div>
-                         
-                          <div class="btn">
-                           <a href="#" class="btn btn-primary">Ver mais</a>
-                          </div>
-                 
-                        </div>
-                      </div>
-                  </div>
-                  
-                   <!-- Card 1 -->
-                   <div class="col-md-3">
-                     <div class="card">
-                        <div class="info-card">
-                           <strong> Disponível para venda</strong>
-                        </div>
-                        <!-- Swiper -->
-                        <div class="swiper-container">
-                          <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="./assets/bg/casa_1.jpg" alt="Imagem 1" class="img-fluid"></div>
-                            <div class="swiper-slide"><img src="./assets/bg/campestre.jpg" alt="Imagem 2" class="img-fluid"></div>
-                            <div class="swiper-slide"><img src="./assets/bg/campestre1.jpg" alt="Imagem 3" class="img-fluid"></div>
-                          </div>
-                          <!-- Add Pagination -->
-                          <div class="swiper-pagination"></div>
-                          <!-- Add Navigation -->
-                          <div class="swiper-button-prev"></div>
-                          <div class="swiper-button-next"></div>
-                        </div>
-                        
-                        <div class="card-body">
-                          <h5 class="card-title">Casa em Condomínio – terras de San Pedro</h5>
-                          <p class="card-text"><strong>R$1.300.000,00</strong></p>
-                          <p class="card-info"><i class="fas fa-bed"></i> 3 Dormitórios, sendo 3 suítes</p>
-                          
-                          <div class="info-2">
-                           <p class="card-info"><i class="fas fa-car"></i> 4 Garagens</p>
-                           <p class="card-info"><i class="fas fa-ruler-combined"></i> 217m²</p>
-
-                          </div>
-                         
-                          <div class="btn">
-                           <a href="#" class="btn btn-primary">Ver mais</a>
-                          </div>
-                 
-                        </div>
-                      </div>
-                  </div>
-
-                   <!-- Card 1 -->
-                   <div class="col-md-3">
-                     <div class="card">
-                        <div class="info-card">
-                           <strong> Disponível para venda</strong>
-                        </div>
-                        <!-- Swiper -->
-                        <div class="swiper-container">
-                          <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="./assets/bg/casa_1.jpg" alt="Imagem 1" class="img-fluid"></div>
-                            <div class="swiper-slide"><img src="./assets/bg/campestre.jpg" alt="Imagem 2" class="img-fluid"></div>
-                            <div class="swiper-slide"><img src="./assets/bg/campestre1.jpg" alt="Imagem 3" class="img-fluid"></div>
-                          </div>
-                          <!-- Add Pagination -->
-                          <div class="swiper-pagination"></div>
-                          <!-- Add Navigation -->
-                          <div class="swiper-button-prev"></div>
-                          <div class="swiper-button-next"></div>
-                        </div>
-                        
-                        <div class="card-body">
-                          <h5 class="card-title">Casa em Condomínio – terras de San Pedro</h5>
-                          <p class="card-text"><strong>R$1.300.000,00</strong></p>
-                          <p class="card-info"><i class="fas fa-bed"></i> 3 Dormitórios, sendo 3 suítes</p>
-                          
-                          <div class="info-2">
-                           <p class="card-info"><i class="fas fa-car"></i> 4 Garagens</p>
-                           <p class="card-info"><i class="fas fa-ruler-combined"></i> 217m²</p>
-
-                          </div>
-                         
-                          <div class="btn">
-                           <a href="#" class="btn btn-primary">Ver mais</a>
-                          </div>
-                 
-                        </div>
-                      </div>
-                  </div>
-
-                 
-
-
-
-
-
-               </div>
+    <div id="loadingSpinner">
+        <div class="spinner-container">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Carregando...</span>
             </div>
-         </div>
-      </section>
-   </main>
+        </div>
+    </div>
 
+    <main style="display: none;">
+        <section class="container-fluid" id="s__imoveis_all">
+            <div class="filter fade-in-left fade-element">
+                <a href="#">
+                    <img src="./assets/logos/logo_3.png" alt="Logo" class="img-fluid logo-img">
+                </a>
+                <form>
+                    <div class="filters">
+                        <div class="filter-item">
+                            <label for="availability">Disponibilidade</label>
+                            <select name="availability" id="availability">
+                                <option value="1">Aluguel</option>
+                                <option value="2">Venda</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label for="classification">Classificação do Imóvel</label>
+                            <select name="classification" id="classification">
+                                <option value="1">Apartamento</option>
+                                <option value="2">Casa</option>
+                                <option value="3">Sítio e Chácaras</option>
+                                <option value="4">Terra</option>
+                                <option value="5">Terreno</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label for="minValue">Valor mínimo</label>
+                            <input type="text" name="minValue" id="minValue" placeholder="R$ 0,00">
+                        </div>
+                        <div class="filter-item">
+                            <label for="maxValue">Valor máximo</label>
+                            <input type="text" name="maxValue" id="maxValue" placeholder="R$ 0,00">
+                        </div>
+                        <div class="filter-item">
+                            <button type="submit" class="btn btn-primary">
+                                <img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Lupa"
+                                    style="width: 20px;">
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
+            <div class="informacoes_sec">
+                <div class="venda">
+                    <h1>Imóveis para venda</h1>
+                    <div class="row" id="properties-list">
+                        <!-- Cards serão inseridos aqui dinamicamente -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-   <script>
-     var swiper = new Swiper('.swiper-container', {
-       slidesPerView: 1,
-       spaceBetween: 30,
-       loop: true,
-       pagination: {
-         el: '.swiper-pagination',
-         clickable: true,
-       },
-       navigation: {
-         nextEl: '.swiper-button-next',
-         prevEl: '.swiper-button-prev',
-       },
-     });
-   </script>
-   
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+        import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js';
+        import { getStorage, ref as storageRef, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
 
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyD5CRo97EPoWGlUASNz0qPftVmN1fwxk6M",
+            authDomain: "adriel-consultor-imobiliario.firebaseapp.com",
+            databaseURL: "https://adriel-consultor-imobiliario-default-rtdb.firebaseio.com",
+            projectId: "adriel-consultor-imobiliario",
+            storageBucket: "adriel-consultor-imobiliario.appspot.com",
+            messagingSenderId: "55769079311",
+            appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
+            measurementId: "G-1BP7CKYQM1"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const storage = getStorage(app);
+
+        // Função para buscar e exibir propriedades
+        async function fetchAndDisplayProperties() {
+            const itemsRef = ref(database, 'cadastros/venda');
+            const propertiesList = document.getElementById('properties-list');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+
+            onValue(itemsRef, async (snapshot) => {
+                propertiesList.innerHTML = ''; // Limpar conteúdo anterior
+
+                let swiperIndex = 0;
+                const promises = [];
+
+                snapshot.forEach((childSnapshot) => {
+                    swiperIndex++;
+                    const itemId = childSnapshot.key;
+                    const data = childSnapshot.val().dados;
+                    const images = childSnapshot.val().imagens;
+
+                    let carouselInnerHtml = '';
+                    const imagePromises = [];
+
+                    // Verifica se existem imagens e cria itens do carrossel para cada uma
+                    if (images && Object.keys(images).length > 0) {
+                        for (const key of Object.keys(images)) {
+                            const imageUrlPromise = getDownloadURL(storageRef(storage, images[key]));
+                            imagePromises.push(imageUrlPromise);
+                        }
+                    }
+
+                    const cardPromise = Promise.all(imagePromises).then((imageUrls) => {
+                        imageUrls.forEach((url, index) => {
+                            carouselInnerHtml += `
+                                <div class="swiper-slide">
+                                    <img src="${url}" alt="Imagem ${index + 1}" class="img-fluid">
+                                </div>
+                            `;
+                        });
+
+                        const cardHtml = `
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="info-card">
+                                        <strong> Disponível para ${data.disponibilidade.toLowerCase()}</strong>
+                                    </div>
+                                    <div class="swiper-container swiper-${swiperIndex}">
+                                        <div class="swiper-wrapper">
+                                            ${carouselInnerHtml}
+                                        </div>
+                                        <div class="swiper-pagination"></div>
+                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-button-next"></div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">${data.endereco}</h5>
+                                        <p class="card-text"><strong>R$${data.valor}</strong></p>
+                                        <p class="card-info"><i class="fas fa-bed"></i> ${data.quartos} Dormitórios</p>
+                                        <div class="info-2">
+                                            <p class="card-info"><i class="fas fa-car"></i> ${data.garagem} Garagens</p>
+                                            <p class="card-info"><i class="fas fa-ruler-combined"></i> ${data.metros_quadrados}m²</p>
+                                        </div>
+                                        <div class="btn">
+                                            <a href="#" class="btn btn-primary">Ver mais</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        propertiesList.innerHTML += cardHtml;
+
+                        // Inicializar o Swiper para o novo card
+                        new Swiper(`.swiper-${swiperIndex}`, {
+                            slidesPerView: 1,
+                            spaceBetween: 30,
+                            loop: true,
+                            pagination: {
+                                el: `.swiper-${swiperIndex} .swiper-pagination`,
+                                clickable: true,
+                            },
+                            navigation: {
+                                nextEl: `.swiper-${swiperIndex} .swiper-button-next`,
+                                prevEl: `.swiper-${swiperIndex} .swiper-button-prev`,
+                            },
+                        });
+                    });
+
+                    promises.push(cardPromise);
+                });
+
+                await Promise.all(promises);
+                // Esconder o spinner de carregamento e mostrar o conteúdo principal
+                loadingSpinner.style.display = 'none';
+                document.querySelector('main').style.display = 'block';
+            });
+        }
+
+        // Mostrar o spinner de carregamento quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('loadingSpinner').style.display = 'block';
+            fetchAndDisplayProperties();
+        });
+    </script>
 </body>
+
 </html>
