@@ -58,8 +58,8 @@
                     <p id="alugueisCount"></p>
                 </div>
                 <div class="info-box">
-                    <strong>13 New Tickets!</strong>
-                    <p>View Details</p>
+                    <strong>Imóveis destaque</strong>
+                    <p id="destaqueCount"></p>
                 </div>
             </div>
 
@@ -396,19 +396,25 @@
                 onValue(refVendas, (snapshot) => {
                     let countVendas = 0;
                     let countAlugueis = 0;
+                    let countDestaque = 0;
 
+                  
                     snapshot.forEach((childSnapshot) => {
                         const item = childSnapshot.val().dados; // Assumindo que os dados estão em um objeto `dados`
                         if (item.disponibilidade === "Venda") {
                             countVendas++;
                         } else if (item.disponibilidade === "Aluguel") {
                             countAlugueis++;
+                        } else if (item.destaque === "Sim") {
+                            countDestaque++;
                         }
                     });
 
                     // Animar os contadores com uma duração mais rápida
-                    animateValue(document.getElementById('vendasCount'), 0, countVendas, 500); // 500ms de duração da animação
+                    animateValue(document.getElementById('vendasCount'), 0, countVendas, 500);
                     animateValue(document.getElementById('alugueisCount'), 0, countAlugueis, 500);
+                    animateValue(document.getElementById('destaqueCount'), 0, countAlugueis, 500);
+
                 });
             }
 
