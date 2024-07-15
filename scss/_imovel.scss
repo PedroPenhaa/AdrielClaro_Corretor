@@ -85,12 +85,13 @@ $color-control-icon: #333; // Cor dos ícones de navegação
         color: var(  --color-highlight);// Cor do título
         font-size: 2.3rem;
         font-weight: bold;
-        margin: 0 0 20px 0;
+        margin: 0 0 15px 0;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 
       }
 
       #imovel {
+        margin-top: -20px;
         overflow-y: hidden;
         display: flex;
         align-items: center;
@@ -163,19 +164,48 @@ $color-control-icon: #333; // Cor dos ícones de navegação
     .header-card-imovel{
       display: flex;
       flex-direction: column;
-            align-items: start;
+      align-items: start;
       justify-content: center;
-      .title-card{
-        font-weight: bold;
-        font-size: 1.6rem;
-        color: black;
-      
+
+      .endereco-imovel{
+        .title-card{
+          font-weight: bold;
+          font-size: 1.4rem;
+          color: black;
+        }
+      }
+
+     
+
+      .codigoo-imovel{
+        
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+        justify-content: space-between;
+//gap: 150px;
+
+        .bairro-city{
+          font-size: 1.4rem;
+          color: #666;
+        }
+
+        .title-card{
+                  
+          display: flex;
+          flex-direction: row;
+          font-weight: bold;
+          font-size: 1.4rem;
+          color: black;
+          p{
+            margin-right: 5px;
+            font-size: 1.4rem;
+          }
+        }
       }
   
-      .bairro-city{
-        font-size: 1.4rem;
-        color: #666;
-      }
+     
     }
     .infos-details{
       display: flex;
@@ -186,7 +216,7 @@ $color-control-icon: #333; // Cor dos ícones de navegação
       justify-content: center;
     }
     .description{
-
+      text-align: justify;
       font-size: 1.2rem;
       color: #666;
       margin-top: 20px;
