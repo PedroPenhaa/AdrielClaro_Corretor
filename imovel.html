@@ -6,22 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="dist/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Informação do Imóvel</title>
 </head>
 
-<body>
-    <main>
+<body class="body-imovel">
+    <main class="main-imovel">
         <header class="header-imovel">
-            <img src="./assets/logos/logo_3.png" alt="">
-            <div class="header-text">
-                <p>ENGENHEIRO CIVIL E CORRETOR DE IMÓVEIS</p>
-                <p>CREA MG 380290 - CRECI 53770</p>
+
+            <div class="left">
+                <a href="./imoveis.html" class="btn btn-link" role="button">
+                    <i class="fas fa-arrow-left"></i> 
+                </a>
             </div>
+            
+
+            <div class="center">
+                <img src="./assets/logos/logo_3.png" alt="">
+                <div class="header-text">
+                    <p>ENGENHEIRO CIVIL E CORRETOR DE IMÓVEIS</p>
+                    <p>CREA MG 380290 - CRECI 53770</p>
+                </div>
+            </div>
+
+            
+            
+            
+            <div class="links-imovel">
+                <a href="https://wa.me/SEUNUMEROWHATSAPP" target="_blank" class="contact-icon">
+                    <i class="fab fa-whatsapp fa-2x"></i>
+                </a>
+                <a href="https://instagram.com/SEUINSTAGRAM" target="_blank" class="contact-icon">
+                    <i class="fab fa-instagram fa-2x"></i>
+                </a>
+                <a href="https://facebook.com/SEUFACEBOOK" target="_blank" class="contact-icon">
+                    <i class="fab fa-facebook fa-2x"></i>
+                </a>
+                <a href="tel:+SEUTELEFONE" class="contact-icon">
+                    <i class="fas fa-phone fa-2x"></i>
+                </a>
+            </div>
+            
         </header>
+
+
         <div class="content">
             <h1>Informações do Imóvel</h1>
             <div id="imovel">
-
 
                 <div class="photos">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -48,6 +79,11 @@
 
             </div>
         </div>
+
+        <div class="footer-imoveis">
+            <p>Desenvolvido por <strong> Pedro Penha</strong></p>
+         
+          </div>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -109,17 +145,31 @@
 
                     const infoDiv = document.querySelector('.informacoes-imovel');
                     infoDiv.innerHTML = `
-                        <div><strong></strong> ${data.endereco}</div>
-                        <div><strong>Bairro:</strong> ${data.bairro}</div>
-                        <div><strong>Cidade:</strong> ${data.cidade}</div>
-                        <div><strong>CEP:</strong> ${data.cep}</div>
-                        <div><strong>Categoria:</strong> ${data.categoria}</div>
-                        <div><strong>Valor:</strong> R$${data.valor}</div>
-                        <div><strong>Quartos:</strong> ${data.quartos}</div>
-                        <div><strong>Garagem:</strong> ${data.garagem}</div>
-                        <div><strong>Metros Quadrados:</strong> ${data.metros_quadrados}m²</div>
-                        <div><strong>Descrição:</strong> ${data.descricao}</div>
-                    `;
+
+                        <div class="header-card-imovel">
+                            
+                        <div class="title-card"> ${data.endereco} - ${data.cep} </div>
+                        <div class="bairro-city"><strong></strong> ${data.bairro}, ${data.cidade}</div>
+                        </div>    
+                     
+                        <div class ="infos-details">
+                            <div><strong><i class="fas fa-bed"></i></strong> ${data.quartos}</div>
+                            <div><strong><i class="fas fa-car"></i></strong> ${data.garagem}</div>
+                            <div><strong><i class="fas fa-ruler-combined"></i></strong> ${data.metros_quadrados}m²</div>
+                            <div><strong><i class="fas fa-dollar-sign"></i></strong> ${data.valor}</div>
+                        </div>    
+                        
+                        <div class="description"><strong>Descrição:</strong> ${data.descricao}</div>
+                   
+                        <div class="whatsapp-button">
+                            <a href="https://wa.me/seu_numero_de_telefone" target="_blank">
+                                <button type="button" style="display: flex; align-items: center; background-color: #25d366; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 16px; cursor: pointer;">
+                                <i class="fab fa-whatsapp" style="margin-right: 10px;"></i> Saiba Mais
+                                </button>
+                            </a>
+                        </div>
+
+                        `;
                     break;
                 }
             }
