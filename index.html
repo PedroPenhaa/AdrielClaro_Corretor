@@ -10,7 +10,32 @@
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="dist/css/main.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- Removi o link quebrado -->
 </head>
+
+<style>
+    .swiper-container {
+    width: 100%;
+    height: 200px;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #000; /* Ajuste a cor das setas conforme necessário */
+}
+
+.swiper-pagination-bullet {
+    background-color: #000; /* Ajuste a cor dos bullets conforme necessário */
+}
+
+</style>
 
 <body>
     <main>
@@ -19,7 +44,6 @@
         <!--=====================================================================-->
         <header class="container-fluid">
             <div class="custom-header">
-
                 <a href="./login.html">
                     <img src="./assets/logos/logo_3.png" alt="Logo" class="logo-img">
                     <div class="header-text">
@@ -27,7 +51,6 @@
                         <p>CREA MG 380290 - CRECI 53770</p>
                     </div>
                 </a>
-
                 <div class="infos">
                     <div class="links">
                         <a href="https://wa.me/SEUNUMEROWHATSAPP" target="_blank" class="contact-icon">
@@ -43,7 +66,6 @@
                             <i class="fas fa-phone fa-2x"></i>
                         </a>
                     </div>
-
                     <nav>
                         <ul class="nav-links">
                             <li><a href="#">Home</a></li>
@@ -57,9 +79,7 @@
                             <span></span>
                         </div>
                     </nav>
-
                 </div>
-
             </div>
         </header>
 
@@ -137,159 +157,11 @@
         <section class="container-fluid" id="s__imoveis">
             <div class="container">
                 <h2 class="fade-in-bottom"> Imóveis em Destaque </h2>
-                <div class="row mt-2 fade-in-left"  >
-                    <!-- Card 1 -->
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
-                            <div class="card-body">
-                                <p>Categoria: <a>Venda</a></p>
-                                <p class="card-text">R$ 500.000,00</p>
-                                <div class="card-info">
-                                    <div class="info-details">
-                                        <div class="info1">
-                                            <p><i class="fas fa-bed"></i> 1 Quarto</p>
-                                            <p><i class="fas fa-bath"></i> 1 Banheiro</p>
-                                        </div>
-                                        
-                                        <div class="info2">
-      
-                                            <p><i class="fas fa-car"></i> 1 Garagem</p>
-                                            <p><i class="fas fa-ruler-combined"></i> 100 m²</p>
-                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="#" class="btn btn-primary">Ver mais</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
-                            <div class="card-body">
-                                <p>Categoria: <a>Venda</a></p>
-                                <p class="card-text">R$ 500.000,00</p>
-                                <div class="card-info">
-                                    <div class="info-details">
-                                        <div class="info1">
-                                            <p><i class="fas fa-bed"></i> 1 Quarto</p>
-                                            <p><i class="fas fa-bath"></i> 1 Banheiro</p>
-                                        </div>
-                                        
-                                        <div class="info2">
-      
-                                            <p><i class="fas fa-car"></i> 1 Garagem</p>
-                                            <p><i class="fas fa-ruler-combined"></i> 100 m²</p>
-                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="#" class="btn btn-primary">Ver mais</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
-                            <div class="card-body">
-                                <p>Categoria: <a>Venda</a></p>
-                                <p class="card-text">R$ 500.000,00</p>
-                                <div class="card-info">
-                                    <div class="info-details">
-                                        <div class="info1">
-                                            <p><i class="fas fa-bed"></i> 1 Quarto</p>
-                                            <p><i class="fas fa-bath"></i> 1 Banheiro</p>
-                                        </div>
-                                        
-                                        <div class="info2">
-      
-                                            <p><i class="fas fa-car"></i> 1 Garagem</p>
-                                            <p><i class="fas fa-ruler-combined"></i> 100 m²</p>
-                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="#" class="btn btn-primary">Ver mais</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row mt-2 fade-in-left" id="featured-properties">
+                    <!-- Cards serão inseridos aqui dinamicamente -->
                 </div>
-
-                <div class="row mt-2 section2 fade-in-right">
-                    <!-- Card 1 -->
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
-                            <div class="card-body">
-                                <p>Categoria: <a>Venda</a></p>
-                                <p class="card-text">R$ 500.000,00</p>
-                                <div class="card-info">
-                                    <div class="info-details">
-                                        <p><i class="fas fa-bed"></i> 1 Quarto</p>
-                                        <p><i class="fas fa-bath"></i> 1 Banheiro</p>
-                                        <p><i class="fas fa-car"></i> 1 Garagem</p>
-                                        <p><i class="fas fa-ruler-combined"></i> 100 m²</p>
-                                    </div>
-                                </div>
-                                <a href="#" class="btn btn-primary">Ver mais</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
-                            <div class="card-body">
-                                <p>Categoria: <a>Venda</a></p>
-                                <p class="card-text">R$ 500.000,00</p>
-                                <div class="card-info">
-                                    <div class="info-details">
-                                        <div class="info1">
-                                            <p><i class="fas fa-bed"></i> 1 Quarto</p>
-                                            <p><i class="fas fa-bath"></i> 1 Banheiro</p>
-                                        </div>
-                                        
-                                        <div class="info2">
-      
-                                            <p><i class="fas fa-car"></i> 1 Garagem</p>
-                                            <p><i class="fas fa-ruler-combined"></i> 100 m²</p>
-                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="#" class="btn btn-primary">Ver mais</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="./assets/bg/casa_1.jpg" alt="Imóvel" class="card-img-top img-fluid">
-                            <div class="card-body">
-                                <p>Categoria: <a>Venda</a></p>
-                                <p class="card-text">R$ 500.000,00</p>
-                                <div class="card-info">
-                                    <div class="info-details">
-                                        <div class="info1">
-                                            <p><i class="fas fa-bed"></i> 1 Quarto</p>
-                                            <p><i class="fas fa-bath"></i> 1 Banheiro</p>
-                                        </div>
-                                        
-                                        <div class="info2">
-      
-                                            <p><i class="fas fa-car"></i> 1 Garagem</p>
-                                            <p><i class="fas fa-ruler-combined"></i> 100 m²</p>
-                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="#" class="btn btn-primary">Ver mais</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row mt-2 section2 fade-in-right" id="additional-properties">
+                    <!-- Additional Cards serão inseridos aqui dinamicamente -->
                 </div>
                 <a href="./imoveis.html" class="btn">Ver mais..</a>
             </div>
@@ -437,12 +309,9 @@
                             <p><i class="fas fa-map-marker-alt"></i>Praça Brasil, 22 - Centro, Campestre - MG, 37730-000</p>
 
                     </div>
-
-
                     <div class="contact-icons">
                         <p class="lead">Estamos sempre disponíveis para atendê-lo! Para mais informações, entre em
                             contato por um dos nossos canais ou visite nossa loja no endereço abaixo.</p>
-
                         <div class="icons">
                             <a href="https://wa.me/SEUNUMEROWHATSAPP" target="_blank" class="contact-icon">
                                 <i class="fab fa-whatsapp fa-2x"></i>
@@ -456,16 +325,9 @@
                             <a href="tel:+SEUTELEFONE" class="contact-icon">
                                 <i class="fas fa-phone fa-2x"></i>
                             </a>
-
                         </div>
-
-
                     </div>
-
-
-
                 </div>
-
             </div>
         </section>
 
@@ -529,6 +391,148 @@
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="/js/all.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+        import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js';
+        import { getStorage, ref as storageRef, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
+    
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyD5CRo97EPoWGlUASNz0qPftVmN1fwxk6M",
+            authDomain: "adriel-consultor-imobiliario.firebaseapp.com",
+            databaseURL: "https://adriel-consultor-imobiliario-default-rtdb.firebaseio.com",
+            projectId: "adriel-consultor-imobiliario",
+            storageBucket: "adriel-consultor-imobiliario.appspot.com",
+            messagingSenderId: "55769079311",
+            appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
+            measurementId: "G-1BP7CKYQM1"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const storage = getStorage(app);
+    
+        // Função para buscar e exibir propriedades
+        async function fetchAndDisplayProperties() {
+            const itemsRef = ref(database, 'cadastros/venda');
+            const featuredPropertiesList = document.getElementById('featured-properties');
+            const additionalPropertiesList = document.getElementById('additional-properties');
+    
+            onValue(itemsRef, async (snapshot) => {
+                featuredPropertiesList.innerHTML = ''; // Limpar conteúdo anterior
+                additionalPropertiesList.innerHTML = ''; // Limpar conteúdo anterior
+    
+                let cardIndex = 0;
+                const promises = [];
+    
+                snapshot.forEach((childSnapshot) => {
+                    cardIndex++;
+                    const itemId = childSnapshot.key;
+                    const data = childSnapshot.val().dados;
+                    const images = childSnapshot.val().imagens;
+    
+                    const imagePromises = [];
+                    const imageElements = [];
+    
+                    // Verifica se existem imagens e cria itens do carrossel para cada uma
+                    if (images && Object.keys(images).length > 0) {
+                        for (const key of Object.keys(images)) {
+                            const imageUrlPromise = getDownloadURL(storageRef(storage, images[key])).then(url => {
+                                imageElements.push(`
+                                    <div class="swiper-slide">
+                                        <img src="${url}" alt="Imagem ${imageElements.length + 1}" class="img-fluid">
+                                    </div>
+                                `);
+                            }).catch(() => {
+                                imageElements.push(`
+                                    <div class="swiper-slide">
+                                        <img src="./assets/bg/casa_1.jpg" alt="Imagem ${imageElements.length + 1}" class="img-fluid">
+                                    </div>
+                                `);
+                            });
+                            imagePromises.push(imageUrlPromise);
+                        }
+                    } else {
+                        imageElements.push(`
+                            <div class="swiper-slide">
+                                <img src="./assets/bg/casa_1.jpg" alt="Imagem 1" class="img-fluid">
+                            </div>
+                        `);
+                    }
+    
+                    const cardPromise = Promise.all(imagePromises).then(() => {
+                        const carouselInnerHtml = imageElements.join('');
+    
+                        const cardHtml = `
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="swiper-container swiper-${cardIndex}">
+                                        <div class="swiper-wrapper">
+                                            ${carouselInnerHtml}
+                                        </div>
+                                        <div class="swiper-pagination"></div>
+                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-button-next"></div>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>Categoria: <a>${data.disponibilidade}</a></p>
+                                        <p class="card-text">R$ ${data.valor}</p>
+                                        <div class="card-info">
+                                            <div class="info-details">
+                                                <div class="info1">
+                                                    <p><i class="fas fa-bed"></i> ${data.quartos} Quarto(s)</p>
+                                                    <p><i class="fas fa-bath"></i> ${data.banheiros} Banheiro(s)</p>
+                                                </div>
+                                                <div class="info2">
+                                                    <p><i class="fas fa-car"></i> ${data.garagem} Garagem(ns)</p>
+                                                    <p><i class="fas fa-ruler-combined"></i> ${data.metros_quadrados} m²</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="imovel.html?id=${data.codigo}" class="btn btn-primary">Ver mais</a>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+    
+                        if (cardIndex <= 3) {
+                            featuredPropertiesList.innerHTML += cardHtml;
+                        } else {
+                            additionalPropertiesList.innerHTML += cardHtml;
+                        }
+    
+                        // Inicializar o Swiper para o novo card
+                        new Swiper(`.swiper-${cardIndex}`, {
+                            slidesPerView: 1,
+                            spaceBetween: 30,
+                            loop: true,
+                            pagination: {
+                                el: `.swiper-${cardIndex} .swiper-pagination`,
+                                clickable: true,
+                            },
+                            navigation: {
+                                nextEl: `.swiper-${cardIndex} .swiper-button-next`,
+                                prevEl: `.swiper-${cardIndex} .swiper-button-prev`,
+                            },
+                        });
+                    });
+    
+                    promises.push(cardPromise);
+                });
+    
+                await Promise.all(promises);
+            });
+        }
+    
+        // Mostrar o spinner de carregamento quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchAndDisplayProperties();
+        });
+    </script>
+    
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -557,29 +561,22 @@
             });
         });
 
-
         document.addEventListener('DOMContentLoaded', function() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            } else {
-                entry.target.classList.remove('active');
-            }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    } else {
+                        entry.target.classList.remove('active');
+                    }
+                });
+            }, {
+                threshold: 0.5 // Ajuste este valor conforme necessário para disparar o efeito quando 50% do elemento estiver visível
+            });
+
+            // Adicione a classe 'fade-element' aos elementos que devem ter a animação
+            document.querySelectorAll('.fade-element').forEach(el => observer.observe(el));
         });
-    }, {
-        threshold: 0.5 // Ajuste este valor conforme necessário para disparar o efeito quando 50% do elemento estiver visível
-    });
-
-    // Adicione a classe 'fade-element' aos elementos que devem ter a animação
-    document.querySelectorAll('.fade-element').forEach(el => observer.observe(el));
-});
-
-
-
-
-
-
     </script>
 
 </body>
