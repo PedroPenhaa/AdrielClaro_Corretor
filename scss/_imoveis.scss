@@ -183,7 +183,36 @@
          
       }
    }
+
+
+   
 }
+
+.footer-imoveis {
+
+   width: 100%;
+   height: 5vh;
+   text-align: center;
+   padding: 10px;
+   background-color: black;
+   display: flex;
+   display: none;
+   align-items: center;
+   justify-content: center;
+    p { 
+     margin-top: 10px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 10px;
+     color: white;
+     strong{
+       margin-left: 5px  ;
+       font-size: 10px;
+     }
+   }
+ 
+ }
 
 // Responsivo para dispositivos móveis
 @media (max-width: 768px) {
@@ -197,39 +226,135 @@
          position: relative;
          border-right: none;
          border-bottom: 5px solid var(--color-highlight);
+
+         a{
+            width: 100%;
+            display: flex;
+            align-self: center;
+            justify-content: center;
+            img{
+               width: 150px;
+               height: auto;
+            }
+        
+         }
+         form{
+            .filters{
+              
+            
+            }
+         }
       }
 
       .informacoes_sec {
          margin-left: 0;
          padding: 20px;
-
+        
+        
          .venda {
-            .row {
-               flex-direction: column;
-               gap: 2rem;
-            }
 
             h1 {
                font-size: 2rem;
-               margin: 1rem 0;
+               margin: 2rem 0 4rem 0;
+            }
+          
+            .row {
+               flex-direction: column;
+               gap: 2rem;
+               margin: 0;
             }
 
+           
+
             #properties-list {
-               .card {
-                  min-width: 100%;
-                  max-width: 100%;
-                  margin-bottom: 20px;
-                  .swiper-container {
-                     height: 150px;
-                     .swiper-slide {
-                        img {
-                           min-width: 100%;
+               width: 100%;
+
+
+               .col-md-3{
+
+                  margin-left: -15px;
+
+                  width: 100%;
+
+
+
+                  .card {
+                     min-width: 105%;
+                     max-width: 105%;
+                     margin-bottom: 20px;
+                     display: flex;
+                     flex-direction: column;
+                     .swiper-container {
+                        width: 100%;
+                        height: 150px;
+                        .swiper-slide {
+                           img {
+                              min-width: 110%;
+                           }
                         }
+
+
+
+                     }
+
+                     .card-body{
+                        margin-top: 25px;
+                        gap: 5px;
+                        display: flex;
+                        flex-direction: column;
+                        .header-card{
+                           gap: 15px;
+                        }
+
+                        .infos-card{
+                           .card-title{
+                              p{
+                                 font-size: 0.2rem;
+                               
+
+                              }
+                              
+                           
+                           }
+
+                           
+                        }
+
+
                      }
                   }
+
                }
+
+               
             }
          }
       }
    }
+
+   .footer-imoveis {
+
+      width: 100%;
+      height: 5vh;
+      text-align: center;
+      padding: 10px;
+      background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+       p { 
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        color: white;
+        strong{
+          margin-left: 5px  ;
+          font-size: 10px;
+        }
+      }
+    
+    }
+   
 }

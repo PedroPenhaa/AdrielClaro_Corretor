@@ -16,10 +16,10 @@
 
             <div class="left">
                 <a href="./imoveis.html" class="btn btn-link" role="button">
-                    <i class="fas fa-arrow-left"></i> 
+                    <i class="fas fa-arrow-left"></i>
                 </a>
             </div>
-            
+
 
             <div class="center">
                 <a href="./index.html"><img src="./assets/logos/logo_3.png" alt=""></a>
@@ -29,9 +29,9 @@
                 </div>
             </div>
 
-            
-            
-            
+
+
+
             <div class="links-imovel">
                 <a href="https://wa.me/SEUNUMEROWHATSAPP" target="_blank" class="contact-icon">
                     <i class="fab fa-whatsapp fa-2x"></i>
@@ -46,7 +46,7 @@
                     <i class="fas fa-phone fa-2x"></i>
                 </a>
             </div>
-            
+
         </header>
 
 
@@ -82,8 +82,8 @@
 
         <div class="footer-imoveis">
             <p>Desenvolvido por <strong> Pedro Penha</strong></p>
-         
-          </div>
+
+        </div>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -112,39 +112,39 @@
                 };
 
                 const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-        const storage = getStorage(app);
+                const database = getDatabase(app);
+                const storage = getStorage(app);
 
-        const allItemsRef = ref(database, 'cadastros/venda');
+                const allItemsRef = ref(database, 'cadastros/venda');
 
-        onValue(allItemsRef, (snapshot) => {
-            const items = snapshot.val();
-            let itemFound = false;
+                onValue(allItemsRef, (snapshot) => {
+                    const items = snapshot.val();
+                    let itemFound = false;
 
-            for (let key in items) {
-                if (items[key].dados && items[key].dados.codigo === imovelId) {
-                    itemFound = true;
-                    const images = items[key].imagens;
-                    const data = items[key].dados;
+                    for (let key in items) {
+                        if (items[key].dados && items[key].dados.codigo === imovelId) {
+                            itemFound = true;
+                            const images = items[key].imagens;
+                            const data = items[key].dados;
 
-                    if (images) {
-                        const carouselInner = document.querySelector('.carousel-inner');
-                        carouselInner.innerHTML = ''; // Limpa o conteúdo anterior
-                        let activeSet = false;
+                            if (images) {
+                                const carouselInner = document.querySelector('.carousel-inner');
+                                carouselInner.innerHTML = ''; // Limpa o conteúdo anterior
+                                let activeSet = false;
 
-                        Object.keys(images).forEach((key, index) => {
-                            getDownloadURL(storageRef(storage, images[key])).then((url) => {
-                                const carouselItem = document.createElement('div');
-                                carouselItem.className = `carousel-item ${!activeSet ? 'active' : ''}`;
-                                activeSet = true;
-                                carouselItem.innerHTML = `<img src="${url}" class="d-block w-100" alt="Imagem ${index + 1}">`;
-                                carouselInner.appendChild(carouselItem);
-                            });
-                        });
-                    }
+                                Object.keys(images).forEach((key, index) => {
+                                    getDownloadURL(storageRef(storage, images[key])).then((url) => {
+                                        const carouselItem = document.createElement('div');
+                                        carouselItem.className = `carousel-item ${!activeSet ? 'active' : ''}`;
+                                        activeSet = true;
+                                        carouselItem.innerHTML = `<img src="${url}" class="d-block w-100" alt="Imagem ${index + 1}">`;
+                                        carouselInner.appendChild(carouselItem);
+                                    });
+                                });
+                            }
 
-                    const infoDiv = document.querySelector('.informacoes-imovel');
-                    infoDiv.innerHTML = `
+                            const infoDiv = document.querySelector('.informacoes-imovel');
+                            infoDiv.innerHTML = `
 
                         <div class="header-card-imovel">
                             
@@ -176,18 +176,18 @@
     </a>
 </div>
                         `;
-                    break;
-                }
-            }
+                            break;
+                        }
+                    }
 
-            if (!itemFound) {
-                document.body.innerHTML = `<h1>Imóvel não encontrado com o código: ${imovelId}</h1>`;
+                    if (!itemFound) {
+                        document.body.innerHTML = `<h1>Imóvel não encontrado com o código: ${imovelId}</h1>`;
+                    }
+                });
+            } else {
+                document.body.innerHTML = `<h1>ID do imóvel não especificado.</h1>`;
             }
         });
-    } else {
-        document.body.innerHTML = `<h1>ID do imóvel não especificado.</h1>`;
-    }
-});
     </script>
 </body>
 
