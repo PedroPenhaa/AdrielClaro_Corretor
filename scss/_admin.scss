@@ -383,3 +383,157 @@ body {
 .carousel-control-prev-icon, .carousel-control-next-icon {
     background-color: $control-icon-color;
 }
+
+// Responsive styles for mobile
+@media (max-width: 767px) {
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        position: static;
+        padding: 10px;
+   
+
+        a{
+            margin: 0 80px;
+            width: 200px;
+            height: auto;
+        }
+
+        .nav {
+            padding-top: 10px;
+            flex-direction: row;
+            justify-content: space-around;
+            margin-left: -80px;
+            li{
+                a{
+                    font-size: 1.3rem;
+                }
+            }
+
+        }
+
+        .header-text {
+            margin-top: 5px;
+            p {
+                font-size: 0.7rem;
+            }
+        }
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 10px;
+
+        .filtro {
+            flex-direction: column;
+            padding: 10px;
+            .filtro-box {
+                flex-direction: column;
+                gap: 10px;
+                button {
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        .sec-imoveis {
+            padding: 10px;
+
+            .info-panel {
+                flex-direction: column;
+               
+                gap: 10px;
+
+                .info-box {
+                    min-width: 100%;
+                    strong {
+                        font-size: 1.2rem;
+                    }
+                    p {
+
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+
+            .info-info {
+                margin-top: 60px;
+                align-items: start;
+                button {
+                    
+                    padding: 1.5rem;
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        .modal-content {
+            width: 100%;
+            padding: 10px;
+
+            .modal-body {
+                .form-group {
+                    margin-bottom: 10px;
+                }
+
+                .btn {
+                    button {
+                        padding: 1.5rem;
+                        font-size: 1rem;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        .card {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 10px;
+
+            .card-body {
+                padding: 10px;
+
+                .info {
+                    margin-top: 10px;
+
+                    .card-title {
+                        font-size: 1.2rem;
+                    }
+
+                    .card-subtitle {
+                        font-size: 1rem;
+                    }
+
+                    .card-text {
+                        font-size: 0.9rem;
+                    }
+                }
+            }
+
+            .carousel-img {
+                height: 200px;
+            }
+
+            .carousel-container {
+                min-width: 100%;
+            }
+        }
+
+        .edit {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .infos {
+            .sec-infos {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .descricao {
+                margin-top: 5px;
+            }
+        }
+    }
+}
