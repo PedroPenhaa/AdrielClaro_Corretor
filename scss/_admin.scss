@@ -427,6 +427,11 @@ body {
         .filtro {
             flex-direction: column;
             padding: 10px;
+            display: block;
+  width: 107%;
+  margin-left: -12px;
+  padding: 20px;
+  margin-top: -15px;
             .filtro-box {
                 flex-direction: column;
                 gap: 10px;
