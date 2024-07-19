@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="path/to/your/compiled/css/file.css" />
 
-    <!-- <style>
+    <style>
         #loadingSpinner {
             display: none;
             position: fixed;
@@ -30,7 +30,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
-    </style> -->
+    </style>
 </head>
 
 <body>
@@ -48,7 +48,18 @@
                 <a href="#">
                     <img src="./assets/logos/logo_3.png" alt="Logo" class="img-fluid logo-img">
                 </a>
-                <form>
+
+                <!-- Botão para exibir o formulário no modo mobile -->
+                <div class="btn-filtro-mobile">
+
+                    <button id="toggleFilterForm" class="btn btn-primary d-md-none">
+                        <i class="fas fa-filter"></i> <p>Filtrar</p>
+                    </button>
+                </div>
+
+             
+
+                <form id="filterForm" class="d-none d-md-block">
                     <div class="filters">
                         <div class="filter-item">
                             <label for="availability">Disponibilidade</label>
@@ -182,12 +193,16 @@
                                         <div class="header-card">
                                             <h5 class="card-title">${data.endereco}</h5>
                                             <p class="card-text"><strong>R${data.valor}</strong></p>
-                                        </div
+                                        </div>
                                       
                                         <div class="icons-card">
-                                            <p class="card-info"><i class="fas fa-bed"></i> ${data.quartos} Dormitórios</p>
+                                           
+                                            <div class="info-1">
+                                                <p class="card-info"><i class="fas fa-bed"></i> ${data.quartos} Dormitórios</p>
+                                                <p class="card-info"><i class="fas fa-map-marker-alt"></i> ${data.bairro}</p>
+                                            </div>
                                             <div class="info-2">
-                                                <p class="card-info"><i class="fas fa-car"></i> ${data.garagem} Garagens</p>
+                                                <p class="card-info"><i class="fas fa-car"></i> ${data.garagem} Garagem</p>
                                                 <p class="card-info"><i class="fas fa-ruler-combined"></i> ${data.metros_quadrados}m²</p>
                                             </div>
                                         </div>    
@@ -241,9 +256,18 @@
             fetchAndDisplayProperties();
         });
 
-    
+        // Função para mostrar/esconder o formulário de filtros no modo mobile
+        document.getElementById('toggleFilterForm').addEventListener('click', () => {
+            const filterForm = document.getElementById('filterForm');
+            filterForm.classList.toggle('d-none');
+        });
 
-
+        // Função para esconder o formulário de filtros após submissão
+        document.getElementById('filterForm').addEventListener('submit', (e) => {
+            e.preventDefault(); // Remova esta linha se você deseja que o formulário envie os dados
+            const filterForm = document.getElementById('filterForm');
+            filterForm.classList.add('d-none');
+        });
     </script>
 </body>
 
