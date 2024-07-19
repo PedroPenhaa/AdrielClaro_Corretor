@@ -246,8 +246,19 @@
         overflow: hidden;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
+        .info-card {
+          margin-top: -15px;
+          z-index: 2023;
+          padding: 5px;
+          width: 115%;
+          @include flex(row, center, center);
+          background: var(--color-tertiary);
+          color: var(--color-background);
+          border-bottom: 3px solid var(--primary-yellow);
+       }
+
         img {
-          width: 100%;
+          width: 150%;
           height: 200px;
           object-fit: cover;
         }

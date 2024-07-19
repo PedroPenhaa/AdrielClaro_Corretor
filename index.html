@@ -21,15 +21,20 @@
 }
 
 .swiper-slide {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+/*     width: 300px !important;
+    margin-left: -18px !important ; */
 }
 
-.swiper-button-next,
-.swiper-button-prev {
-    color: #000; /* Ajuste a cor das setas conforme necessário */
-}
+.swiper-button-prev,
+                  .swiper-button-next {
+                     color: var(--color-background);
+                     text-shadow: 0px 4px 6px rgba(0, 0, 0, 1);
+                     margin-top: -100px;
+                  }
 
 .swiper-pagination-bullet {
     background-color: #000; /* Ajuste a cor dos bullets conforme necessário */
@@ -468,6 +473,11 @@
                         const cardHtml = `
                             <div class="col-md-4">
                                 <div class="card">
+                                    <div class="info-card">
+                                        <strong> Disponível para ${data.disponibilidade}</strong>
+                                    </div>
+
+
                                     <div class="swiper-container swiper-${cardIndex}">
                                         <div class="swiper-wrapper">
                                             ${carouselInnerHtml}

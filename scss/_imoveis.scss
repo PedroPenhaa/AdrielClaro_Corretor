@@ -121,24 +121,17 @@
                      text-shadow: 0px 4px 6px rgba(0, 0, 0, 1);
                      margin-top: -100px;
                   }
-                  .swiper-pagination-bullet {
-                     position: absolute;
-                     bottom: 180px;
-                     left: 50%;
-                     transform: translateX(-50%);
-                     z-index: 10;
-                     width: 12px;
-                     height: 12px;
-                     background: #ccc;
-                     border-radius: 50%;
-                     opacity: 0.9;
-                     margin-top: -20px;
+
+                  .swiper-pagination {
+                     margin-top: -50px;
+                 
+                     .swiper-pagination-bullet {
+                 
+                        background-color: #000; /* Ajuste a cor dos bullets conforme necessário */
+                    }
                   }
-                  .swiper-pagination-bullet-active {
-                     background: #fff;
-                     opacity: 1;
-                     z-index: 11;
-                  }
+
+                 
                }
                .card-body {
                   padding: 10px 15px;

@@ -10,7 +10,6 @@
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="dist/css/main.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="path/to/your/compiled/css/file.css" />
 
     <style>
         #loadingSpinner {
@@ -51,31 +50,31 @@
 
                 <!-- Botão para exibir o formulário no modo mobile -->
                 <div class="btn-filtro-mobile">
-
                     <button id="toggleFilterForm" class="btn btn-primary d-md-none">
-                        <i class="fas fa-filter"></i> <p>Filtrar</p>
+                        <i class="fas fa-filter"></i>
+                        <p>Filtrar</p>
                     </button>
                 </div>
-
-             
 
                 <form id="filterForm" class="d-none d-md-block">
                     <div class="filters">
                         <div class="filter-item">
                             <label for="availability">Disponibilidade</label>
                             <select name="availability" id="availability">
-                                <option value="1">Aluguel</option>
-                                <option value="2">Venda</option>
+                                <option value="">Selecione</option>
+                                <option value="Aluguel">Aluguel</option>
+                                <option value="Venda">Venda</option>
                             </select>
                         </div>
                         <div class="filter-item">
                             <label for="classification">Classificação do Imóvel</label>
                             <select name="classification" id="classification">
-                                <option value="1">Apartamento</option>
-                                <option value="2">Casa</option>
-                                <option value="3">Sítio e Chácaras</option>
-                                <option value="4">Terra</option>
-                                <option value="5">Terreno</option>
+                                <option value="">Selecione</option>
+                                <option value="Apartamento">Apartamento</option>
+                                <option value="Casa">Casa</option>
+                                <option value="Sítio e Chácaras">Sítio e Chácaras</option>
+                                <option value="Terra">Terra</option>
+                                <option value="Terreno">Terreno</option>
                             </select>
                         </div>
                         <div class="filter-item">
@@ -108,7 +107,6 @@
 
         <div class="footer-imoveis">
             <p>Desenvolvido por <strong> Pedro Penha</strong></p>
-
         </div>
     </main>
 
@@ -118,24 +116,24 @@
         import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js';
         import { getStorage, ref as storageRef, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
 
-        // Configuração do Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyD5CRo97EPoWGlUASNz0qPftVmN1fwxk6M",
-            authDomain: "adriel-consultor-imobiliario.firebaseapp.com",
-            databaseURL: "https://adriel-consultor-imobiliario-default-rtdb.firebaseio.com",
-            projectId: "adriel-consultor-imobiliario",
-            storageBucket: "adriel-consultor-imobiliario.appspot.com",
-            messagingSenderId: "55769079311",
-            appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
-            measurementId: "G-1BP7CKYQM1"
-        };
+    // Configuração do Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyD5CRo97EPoWGlUASNz0qPftVmN1fwxk6M",
+        authDomain: "adriel-consultor-imobiliario.firebaseapp.com",
+        databaseURL: "https://adriel-consultor-imobiliario-default-rtdb.firebaseio.com",
+        projectId: "adriel-consultor-imobiliario",
+        storageBucket: "adriel-consultor-imobiliario.appspot.com",
+        messagingSenderId: "55769079311",
+        appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
+        measurementId: "G-1BP7CKYQM1"
+    };
 
-        const app = initializeApp(firebaseConfig);
+    const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
         const storage = getStorage(app);
 
-        // Função para buscar e exibir propriedades
-        async function fetchAndDisplayProperties() {
+        // Função para buscar e exibir propriedades com filtros
+        async function fetchAndDisplayProperties(filters = {}) {
             const itemsRef = ref(database, 'cadastros/venda');
             const propertiesList = document.getElementById('properties-list');
             const loadingSpinner = document.getElementById('loadingSpinner');
@@ -147,9 +145,25 @@
                 const promises = [];
 
                 snapshot.forEach((childSnapshot) => {
+                    const data = childSnapshot.val().dados;
+
+                    // Aplicar filtros
+                    if (filters.availability && filters.availability !== '' && data.disponibilidade !== filters.availability) {
+                        return;
+                    }
+                    if (filters.classification && filters.classification !== '' && data.categoria !== filters.classification) {
+                        return;
+                    }
+                    const valorNumerico = parseFloat(data.valor.replace('.', '').replace(',', '.'));
+                    if (filters.minValue && filters.minValue !== '' && valorNumerico < parseFloat(filters.minValue.replace('.', '').replace(',', '.'))) {
+                        return;
+                    }
+                    if (filters.maxValue && filters.maxValue !== '' && valorNumerico > parseFloat(filters.maxValue.replace('.', '').replace(',', '.'))) {
+                        return;
+                    }
+
                     swiperIndex++;
                     const itemId = childSnapshot.key;
-                    const data = childSnapshot.val().dados;
                     const images = childSnapshot.val().imagens;
 
                     let carouselInnerHtml = '';
@@ -176,7 +190,7 @@
                             <div class="col-md-3">
                                 <div class="card" id="${itemId}">
                                     <div class="info-card">
-                                        <strong> Disponível para ${data.disponibilidade.toLowerCase()}</strong>
+                                        <strong> Disponível para ${data.disponibilidade}</strong>
                                     </div>
 
                                     <div class="swiper-container swiper-${swiperIndex}">
@@ -189,14 +203,11 @@
                                     </div>
                                     
                                     <div class="card-body">
-
                                         <div class="header-card">
                                             <h5 class="card-title">${data.endereco}</h5>
                                             <p class="card-text"><strong>R${data.valor}</strong></p>
                                         </div>
-                                      
                                         <div class="icons-card">
-                                           
                                             <div class="info-1">
                                                 <p class="card-info"><i class="fas fa-bed"></i> ${data.quartos} Dormitórios</p>
                                                 <p class="card-info"><i class="fas fa-map-marker-alt"></i> ${data.bairro}</p>
@@ -205,19 +216,14 @@
                                                 <p class="card-info"><i class="fas fa-car"></i> ${data.garagem} Garagem</p>
                                                 <p class="card-info"><i class="fas fa-ruler-combined"></i> ${data.metros_quadrados}m²</p>
                                             </div>
-                                        </div>    
-
+                                        </div>
                                         <div class="infos-card">
                                             <h5 class="card-title"><p>Código - ${data.codigo}</p></h5>
-                                            <!--<h5 class="card-title" style="    max-height: 20px;">${data.descricao}</h5>-->
                                         </div>    
-
                                         <div class="btn">
                                             <a href="imovel.html?id=${data.codigo}" class="btn btn-primary">Ver mais</a>
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
                         `;
@@ -262,9 +268,20 @@
             filterForm.classList.toggle('d-none');
         });
 
-        // Função para esconder o formulário de filtros após submissão
+        // Função para capturar e aplicar os filtros
         document.getElementById('filterForm').addEventListener('submit', (e) => {
             e.preventDefault(); // Remova esta linha se você deseja que o formulário envie os dados
+
+            const filters = {
+                availability: document.getElementById('availability').value,
+                classification: document.getElementById('classification').value,
+                minValue: document.getElementById('minValue').value.replace('R$ ', '').replace('.', '').replace(',', '.'),
+                maxValue: document.getElementById('maxValue').value.replace('R$ ', '').replace('.', '').replace(',', '.')
+            };
+
+            fetchAndDisplayProperties(filters);
+
+            // Esconder o formulário de filtros após submissão
             const filterForm = document.getElementById('filterForm');
             filterForm.classList.add('d-none');
         });
