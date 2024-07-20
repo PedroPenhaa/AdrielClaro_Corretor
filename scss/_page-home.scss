@@ -215,7 +215,7 @@
       font-size: 40px;
       font-weight: 800;
       letter-spacing: -.8px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
       margin: 4rem 0;
     }
 
@@ -255,6 +255,13 @@
           background: var(--color-tertiary);
           color: var(--color-background);
           border-bottom: 3px solid var(--primary-yellow);
+       }
+
+       .swiper-container {
+        width: 300px;
+        .swiper-pagination {
+          top: 200px;
+        }
        }
 
         img {
@@ -323,35 +330,42 @@
             }
           }
 
-          .btn {
-            padding: 10px 20px;
-            font-size: 1rem;
-            color: #fff;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-
-            &:hover {
-              background-color: #0056b3;
-            }
-          }
+        
+          .btn{
+            margin-top: 20px;
+            background-color: var(  --color-highlight);
+            border-radius: 10px;
+            font-size: 1.2rem;
+            color: white;
+            font-weight: bold;
+            width: 10rem;
+            
+        }
+        .btn:hover{
+            color: var(  --color-highlight);
+            background-color: white;
+            border: 1px solid var(  --color-highlight);
+        
+        }
         }
       }
     }
 
     .btn {
-      margin-top: 2rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
       padding: 10px 20px;
       font-size: 2rem;
       color: var(--primary-yellow);
       background-color: none;
+      font-weight: bold;
       border: none;
       border-radius: 5px;
       cursor: pointer;
 
       &:hover {
-        background-color: var(--dark-green);
+        background-color: var(--color-highlight);
+        color: white;
       }
 
     }
@@ -375,6 +389,11 @@
           margin-bottom: 20px; // Ajustar conforme necessário
 
           .card {
+            max-width: 335px;
+            height: 500px;
+            .swiper-container {
+              width: 350px;
+             }
             .card-body {
               .card-info {
                 .info-details {

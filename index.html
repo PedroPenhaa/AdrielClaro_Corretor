@@ -487,17 +487,22 @@
                                         <div class="swiper-button-next"></div>
                                     </div>
                                     <div class="card-body">
-                                        <p>Categoria: <a>${data.disponibilidade}</a></p>
-                                        <p class="card-text">R$ ${data.valor}</p>
+                                        <div>
+                                            <p><a>${data.endereco}, ${data.numero}</a></p>
+                                        </div> 
+                                        <div style="display:flex; flex-direction:row; width:100%  justify-content: center;  align-items: center; gap: 40px;">
+                                            <p class="card-text" style="width:40%"">Código ${data.categoria} -  ${data.codigo}</p>
+                                            <p class="card-text" style="width:60%; font-size:15px;">R$ ${data.valor}</p>
+                                        </div>
                                         <div class="card-info">
-                                            <div class="info-details">
-                                                <div class="info1">
+                                            <div class="info-details"  style="display:flex; flex-direction:row; width:100%  justify-content: center;  align-items: center; gap: 40px;">
+                                                <div class="info1" style="display:flex; flex-direction:column; gap:10px">
                                                     <p><i class="fas fa-bed"></i> ${data.quartos} Quarto(s)</p>
-                                                    <p><i class="fas fa-bath"></i> ${data.banheiros} Banheiro(s)</p>
+                                                    <p><i class="fas fa-car"></i> ${data.garagem} Garagem</p>
                                                 </div>
-                                                <div class="info2">
-                                                    <p><i class="fas fa-car"></i> ${data.garagem} Garagem(ns)</p>
+                                                <div class="info2"  style="display:flex; flex-direction:column; gap:10px">
                                                     <p><i class="fas fa-ruler-combined"></i> ${data.metros_quadrados} m²</p>
+                                                    <p><i class="fas fa-map-marker-alt"></i> ${data.bairro}</p>
                                                 </div>
                                             </div>
                                         </div>
