@@ -19,7 +19,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background-color: var(--color-tertiary);
             z-index: 1050;
         }
 
@@ -29,18 +29,24 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
+
+        
+
+
     </style>
 </head>
 
 <body>
     <div id="loadingSpinner">
         <div class="spinner-container">
-            <div class="spinner-border text-primary" role="status">
-                <span class="sr-only">Carregando...</span>
+            <!-- Barra de progresso -->
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" 
+                     style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </div>
     </div>
-
+    
     <main style="display: none;">
         <section class="container-fluid" id="s__imoveis_all">
             <div class="filter fade-in-left fade-element">
@@ -115,38 +121,48 @@
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
         import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js';
         import { getStorage, ref as storageRef, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js';
-
-    // Configuração do Firebase
-    const firebaseConfig = {
-        apiKey: "AIzaSyD5CRo97EPoWGlUASNz0qPftVmN1fwxk6M",
-        authDomain: "adriel-consultor-imobiliario.firebaseapp.com",
-        databaseURL: "https://adriel-consultor-imobiliario-default-rtdb.firebaseio.com",
-        projectId: "adriel-consultor-imobiliario",
-        storageBucket: "adriel-consultor-imobiliario.appspot.com",
-        messagingSenderId: "55769079311",
-        appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
-        measurementId: "G-1BP7CKYQM1"
-    };
-
-    const app = initializeApp(firebaseConfig);
+    
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyD5CRo97EPoWGlUASNz0qPftVmN1fwxk6M",
+            authDomain: "adriel-consultor-imobiliario.firebaseapp.com",
+            databaseURL: "https://adriel-consultor-imobiliario-default-rtdb.firebaseio.com",
+            projectId: "adriel-consultor-imobiliario",
+            storageBucket: "adriel-consultor-imobiliario.appspot.com",
+            messagingSenderId: "55769079311",
+            appId: "1:55769079311:web:1dbdfb5b8f80a2b5bbcd7a",
+            measurementId: "G-1BP7CKYQM1"
+        };
+    
+        const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
         const storage = getStorage(app);
-
+    
+        // Função para atualizar a barra de progresso
+        function updateProgressBar(progress) {
+            const progressBar = document.querySelector('#loadingSpinner .progress-bar');
+            progressBar.style.width = progress + '%';
+            progressBar.setAttribute('aria-valuenow', progress);
+        }
+    
         // Função para buscar e exibir propriedades com filtros
         async function fetchAndDisplayProperties(filters = {}) {
             const itemsRef = ref(database, 'cadastros/venda');
             const propertiesList = document.getElementById('properties-list');
             const loadingSpinner = document.getElementById('loadingSpinner');
-
+    
+            updateProgressBar(0); // Inicializa a barra de progresso com 0%
+    
             onValue(itemsRef, async (snapshot) => {
                 propertiesList.innerHTML = ''; // Limpar conteúdo anterior
-
+    
                 let swiperIndex = 0;
                 const promises = [];
-
+                let progressStep = 100 / snapshot.size; // Calcula o passo do progresso baseado no número de itens
+    
                 snapshot.forEach((childSnapshot) => {
                     const data = childSnapshot.val().dados;
-
+    
                     // Aplicar filtros
                     if (filters.availability && filters.availability !== '' && data.disponibilidade !== filters.availability) {
                         return;
@@ -161,14 +177,14 @@
                     if (filters.maxValue && filters.maxValue !== '' && valorNumerico > parseFloat(filters.maxValue.replace('.', '').replace(',', '.'))) {
                         return;
                     }
-
+    
                     swiperIndex++;
                     const itemId = childSnapshot.key;
                     const images = childSnapshot.val().imagens;
-
+    
                     let carouselInnerHtml = '';
                     const imagePromises = [];
-
+    
                     // Verifica se existem imagens e cria itens do carrossel para cada uma
                     if (images && Object.keys(images).length > 0) {
                         for (const key of Object.keys(images)) {
@@ -176,7 +192,7 @@
                             imagePromises.push(imageUrlPromise);
                         }
                     }
-
+    
                     const cardPromise = Promise.all(imagePromises).then((imageUrls) => {
                         imageUrls.forEach((url, index) => {
                             carouselInnerHtml += `
@@ -185,14 +201,14 @@
                                 </div>
                             `;
                         });
-
+    
                         const cardHtml = `
                             <div class="col-md-3">
                                 <div class="card" id="${itemId}">
                                     <div class="info-card">
                                         <strong> Disponível para ${data.disponibilidade}</strong>
                                     </div>
-
+    
                                     <div class="swiper-container swiper-${swiperIndex}">
                                         <div class="swiper-wrapper">
                                             ${carouselInnerHtml}
@@ -227,9 +243,9 @@
                                 </div>
                             </div>
                         `;
-
+    
                         propertiesList.innerHTML += cardHtml;
-
+    
                         // Inicializar o Swiper para o novo card
                         new Swiper(`.swiper-${swiperIndex}`, {
                             slidesPerView: 1,
@@ -244,48 +260,65 @@
                                 prevEl: `.swiper-${swiperIndex} .swiper-button-prev`,
                             },
                         });
+    
+                        // Atualiza a barra de progresso
+                        updateProgressBar(progressStep * (swiperIndex + 1));
                     });
-
+    
                     promises.push(cardPromise);
                 });
-
+    
                 await Promise.all(promises);
                 // Esconder o spinner de carregamento e mostrar o conteúdo principal
                 loadingSpinner.style.display = 'none';
                 document.querySelector('main').style.display = 'block';
             });
         }
-
+    
         // Mostrar o spinner de carregamento quando o DOM estiver carregado
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('loadingSpinner').style.display = 'block';
             fetchAndDisplayProperties();
         });
-
+    
         // Função para mostrar/esconder o formulário de filtros no modo mobile
         document.getElementById('toggleFilterForm').addEventListener('click', () => {
             const filterForm = document.getElementById('filterForm');
             filterForm.classList.toggle('d-none');
         });
-
+    
         // Função para capturar e aplicar os filtros
         document.getElementById('filterForm').addEventListener('submit', (e) => {
             e.preventDefault(); // Remova esta linha se você deseja que o formulário envie os dados
-
+    
             const filters = {
                 availability: document.getElementById('availability').value,
                 classification: document.getElementById('classification').value,
                 minValue: document.getElementById('minValue').value.replace('R$ ', '').replace('.', '').replace(',', '.'),
                 maxValue: document.getElementById('maxValue').value.replace('R$ ', '').replace('.', '').replace(',', '.')
             };
-
+    
             fetchAndDisplayProperties(filters);
-
+    
             // Esconder o formulário de filtros após submissão
             const filterForm = document.getElementById('filterForm');
             filterForm.classList.add('d-none');
         });
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const filters = {
+                availability: params.get('availability'),
+                classification: params.get('classification'),
+                minValue: params.get('minValue'),
+                maxValue: params.get('maxValue')
+            };
+    
+            // Aqui você pode chamar sua função para buscar e exibir as propriedades já aplicando os filtros
+            fetchAndDisplayProperties(filters);
+        });
     </script>
+    
 </body>
 
 </html>
