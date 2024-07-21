@@ -105,6 +105,8 @@ header {
 
 @media (max-width: 768px) {
   header {
+ 
+
     .custom-header {
 
       display: flex;
@@ -114,7 +116,7 @@ header {
       justify-content: space-between;
 
       @include flex(row, center, left);
-      padding: 1.2rem 3rem 1rem 3rem;
+      padding: 2rem 3rem 1rem 3rem;
       margin: 0;
 
       a {
@@ -162,7 +164,7 @@ header {
             min-width: 380px;
             height: 200px;
             background-color: #000;
-            margin: 15px 0 0 -320px;
+            margin: 5px 0 0 -320px;
             z-index: 2024;
           }
 

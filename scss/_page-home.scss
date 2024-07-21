@@ -379,7 +379,14 @@
     height: auto;
 
     .container {
-
+       width: 100%;
+      h2{
+        font-size: 2.8rem;
+        min-width: 100%;
+        text-align: center;
+        color: var(--color-tertiary);
+        margin: 1rem 0 2rem 0;
+      }
       .row {
 
         .col-md-4 {
@@ -530,7 +537,11 @@
 
     .container {
       h2 {
-        margin: 0 0 1rem 0;
+        font-size: 2.8rem;
+        min-width: 100%;
+        text-align: center;
+        color: white;
+        margin: 1rem 0 2rem 0;
       }
 
       .content {
@@ -556,6 +567,8 @@
   padding: 4rem;
 
   .container {
+    width: 80%;
+    padding: 0 10rem;
     @include flex(column, center, center);
 
     h2 {
@@ -568,17 +581,14 @@
 
     .sec {
       @include flex(row, center, center);
-      gap: 9rem;
+      gap: 5rem;
 
-      .video,
-      .info {
-        width: 50%;
-      }
-
+     
       .video {
+       
         iframe {
           height: 40rem;
-          ;
+          max-width: 500px;
           border: 1px solid #ddd;
           border-radius: 10px;
           overflow: hidden;
@@ -587,6 +597,8 @@
       }
 
       .info {
+
+        max-width:  40rem;
         margin-top: -4rem;
         @include flex(column, start, top);
         align-items: start;
@@ -596,7 +608,7 @@
 
         p {
           font-size: 1.8rem;
-          color: #666;
+              color: var(--color-tertiary);
           text-align: justify;
         }
 
@@ -611,10 +623,11 @@
           }
 
           p {
-            width: 50rem;
+            width: 40rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             /* Adiciona sombra ao texto para melhorar a legibilidade */
             font-weight: bold;
+            font-size: 1.2rem;
             /* Torna o texto mais forte */
             margin-bottom: 2rem
           }
@@ -636,8 +649,11 @@
 
     .container {
       h2 {
-        @include flex(column, center, center);
-        margin: 0 0 2rem 0;
+        font-size: 2.8rem;
+        min-width: 100%;
+        text-align: center;
+        color: var(--color-tertiary);
+        margin: 1rem 0 2rem 0;
       }
 
       .sec {
@@ -667,6 +683,7 @@
           p {
             font-size: 1.5rem;
             width: 90%;
+  
           }
 
 
@@ -755,9 +772,11 @@
         gap: 1rem;
 
         h2 {
-          margin: 0.70rem 0 33px 0rem;
-          color: var(--primary-yellow);
-          font-weight: bold;
+          font-size: 2.8rem;
+          min-width: 100%;
+          text-align: center;
+          color: var(--color-tertiary);
+          margin: 1rem 0 2rem 0;
           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
@@ -765,6 +784,7 @@
           @include flex(row, center, center);
           gap: 1.5rem;
           font-size: 1.5rem;
+          color: black;
           text-align: justify;
           font-weight: bold;
           margin-top: 3rem;
@@ -791,7 +811,7 @@
         p {
           font-size: 2rem;
           font-weight: bold;
-          color: var(--primary-yellow);
+          color: var(--color-tertiary);
           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
@@ -951,7 +971,6 @@
     }
   }
 }
-
 
 
 

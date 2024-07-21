@@ -10,43 +10,76 @@
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="dist/css/main.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <!-- Removi o link quebrado -->
 </head>
 
 <style>
     .swiper-container {
-    width: 100%;
-    height: 200px;
+        width: 100%;
+        height: 200px;
+    }
+
+    .swiper-slide {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        color: var(--color-background);
+        text-shadow: 0px 4px 6px rgba(0, 0, 0, 1);
+        margin-top: -100px;
+    }
+
+    .swiper-pagination-bullet {
+        background-color: #000;
+    }
+
+    .whatsapp-icon {
+        display: none; /* Esconde o ícone inicialmente */
+        margin-bottom: 50px;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1000;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #25d366; /* Cor oficial do WhatsApp */
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra mais intensa para o ícone */
+        text-decoration: none; /* Remove underline de links */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação suave para transformação e sombra */
+    }
+
+    a:hover {
+        background-color: #1ebe51; /* Cor levemente mais escura do WhatsApp */
+        transform: scale(1.1); /* Aumenta o tamanho do botão em 10% */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); /* Sombra mais profunda no hover */
+    }
+
+    a i {
+        font-size: 24px; /* Ajuste o tamanho do ícone conforme necessário */
+    }
 }
 
-.swiper-slide {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-/*     width: 300px !important;
-    margin-left: -18px !important ; */
-}
-
-.swiper-button-prev,
-                  .swiper-button-next {
-                     color: var(--color-background);
-                     text-shadow: 0px 4px 6px rgba(0, 0, 0, 1);
-                     margin-top: -100px;
-                  }
-
-.swiper-pagination-bullet {
-    background-color: #000; /* Ajuste a cor dos bullets conforme necessário */
+.whatsapp-icon.show {
+    display: flex; /* Mostra o ícone quando a classe 'show' é adicionada */
 }
 
 </style>
 
+
 <body>
     <main>
-        <!--=====================================================================-->
-        <!--=========== HEADER  ============-->
-        <!--=====================================================================-->
+        <!-- HEADER -->
         <header class="container-fluid">
             <div class="custom-header">
                 <a href="./login.html">
@@ -57,7 +90,7 @@
                     </div>
                 </a>
                 <div class="infos">
-                    <div class="links">
+                    <div class="links" id="social-links">
                         <a href="https://wa.me/SEUNUMEROWHATSAPP" target="_blank" class="contact-icon">
                             <i class="fab fa-whatsapp fa-2x"></i>
                         </a>
@@ -72,7 +105,7 @@
                         </a>
                     </div>
                     <nav>
-                        <ul class="nav-links">
+                        <ul class="nav-links" id="nav-links">
                             <li><a href="#">Home</a></li>
                             <li><a href="#">Sobre</a></li>
                             <li><a href="#">Imóveis</a></li>
@@ -383,6 +416,18 @@
                 <p>Desenvolvido por Pedro Penha</p>
             </div>
         </footer>
+
+     
+
+
+              <!-- WHATSAPP ICON -->
+        <div class="whatsapp-icon">
+            <a href="https://wa.me/SEUNUMEROWHATSAPP" target="_blank">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+
+
     </main>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -491,7 +536,7 @@
                                             <p><a>${data.endereco}, ${data.numero}</a></p>
                                         </div> 
                                         <div style="display:flex; flex-direction:row; width:100%  justify-content: center;  align-items: center; gap: 40px;">
-                                            <p class="card-text" style="width:40%"">Código ${data.categoria} -  ${data.codigo}</p>
+                                            <p class="card-text" style="width:50% font-size:12px"">Código ${data.categoria} -  ${data.codigo}</p>
                                             <p class="card-text" style="width:60%; font-size:15px;">R$ ${data.valor}</p>
                                         </div>
                                         <div class="card-info">
@@ -569,10 +614,7 @@
 
             console.log(swiper); // Para verificar se o Swiper está inicializado corretamente
 
-            // Toggle menu on small screens
-            document.getElementById('hamburger-menu').addEventListener('click', function () {
-                document.querySelector('nav ul').classList.toggle('active');
-            });
+         
         });
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -593,6 +635,76 @@
         });
     </script>
 
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var swiper = new Swiper('.swiper-container', {
+            loop: true,
+            autoplay: {
+                disableOnInteraction: false,
+            },
+            speed: 2000,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+
+        // Intersection Observer for fade-in elements
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        document.querySelectorAll('.fade-element').forEach(el => observer.observe(el));
+    });
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuButton = document.getElementById('hamburger-menu');
+    const navLinks = document.getElementById('nav-links');
+    const social-links = document.getElementById('social-links');
+
+    menuButton.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        social-links.classList.toggle('active');
+    });
+});
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const whatsappIcon = document.querySelector('.whatsapp-icon');
+        const imoveisSection = document.getElementById('s__imoveis');
+        const offsetToShow = imoveisSection.offsetTop; // Pega a posição vertical da seção Imóveis
+    
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset >= offsetToShow) {
+                whatsappIcon.classList.add('show'); // Mostra o ícone
+            } else {
+                whatsappIcon.classList.remove('show'); // Esconde o ícone
+            }
+        });
+    });
+    </script>
+    
+
+  
 </body>
 
 </html>
