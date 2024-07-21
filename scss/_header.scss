@@ -105,9 +105,6 @@ header {
 
 @media (max-width: 768px) {
   header {
-    position: fixed;
-    z-index: 20000;
-
     .custom-header {
 
       display: flex;
