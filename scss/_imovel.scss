@@ -40,6 +40,7 @@ $color-control-icon: #333; // Cor dos ícones de navegação
         flex-direction: row;
         gap: 20px;
         justify-content: center;
+
         img {
           width: 120px;
           height: auto;
@@ -60,6 +61,7 @@ $color-control-icon: #333; // Cor dos ícones de navegação
         justify-content: center;
         flex-direction: row;
         gap: 20px;
+
         a {
           i {
             color: var(--color-highlight);
@@ -141,8 +143,10 @@ $color-control-icon: #333; // Cor dos ícones de navegação
           padding: 50px;
           margin-top: 30px;
           border-radius: 10px;
+
           div {
             margin-bottom: 10px;
+
             strong {
               color: var(--primary-color, #333); // Usando uma variável CSS ou cor padrão
             }
@@ -184,6 +188,7 @@ $color-control-icon: #333; // Cor dos ícones de navegação
           font-weight: bold;
           font-size: 1.4rem;
           color: black;
+
           p {
             margin-right: 5px;
             font-size: 1.4rem;
@@ -244,30 +249,52 @@ $color-control-icon: #333; // Cor dos ícones de navegação
 
   // Media Queries for Mobile Devices
   @media (max-width: 768px) {
-   
+
     .main-imovel {
 
 
 
       .header-imovel {
-        flex-direction: column;
-        padding: 10px;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 1rem;
         gap: 10px;
 
-        .left, .center, .links-imovel {
-          width: 100%;
-          justify-content: center;
+        .links-imovel {
+          display: none;
         }
 
-        .header-text p {
-          font-size: 1rem;
+        .center {
+          width: 90%;
+
+          img {
+            width: 110px;
+            height: auto;
+          }
+
+          .header-text p {
+            width: 100%;
+            text-align: justify;
+            // font-weight: initial;
+            font-size: 0.8rem;
+          }
         }
+
+        /*   .header-text p {
+          font-size: 1rem;
+        } */
       }
 
-      .content {
-        padding: 10px;
+      .content {height: auto;
+        overflow-y: auto;
+        padding: 2rem;
+
         h1 {
-          font-size: 1.8rem;
+          font-size: 2.8rem;
+          min-width: 100%;
+          text-align: center;
+          color: var(--color-tertiary);
+          margin: 1rem 0 2rem 0;
         }
 
         #imovel {
@@ -276,7 +303,17 @@ $color-control-icon: #333; // Cor dos ícones de navegação
           padding-right: 0;
           gap: 20px;
 
-          .photos, .informacoes-imovel {
+          .photos {
+            .carousel{
+              .carousel-control-prev,
+              .carousel-control-next {
+                margin-top:40px;
+              }
+            }
+          }
+
+          .photos,
+          .informacoes-imovel {
             width: 100%;
           }
 
@@ -285,16 +322,65 @@ $color-control-icon: #333; // Cor dos ícones de navegação
             min-width: 100%;
             max-width: 100%;
             height: 250PX;
-            margin-top: 350px;
+            margin-top: 30px;
             min-height: auto;
             max-height: auto;
+
+            
+            .carousel-control-prev {
+              margin-top: 200px;
+            }
           }
+
+          .informacoes-imovel {
+            flex-direction: column;
+            padding: 0;
+            margin-top: 0;
+            .header-card-imovel {
+              padding: 0 2rem;
+              .endereco-imovel {
+                .title-card {
+                  font-size: 1.4rem;
+                }
+              }
+
+              .codigoo-imovel {
+                .title-card {
+                  font-size: 1.2rem;
+                }
+              }
+            }
+
+            .description{
+              padding: 0 2rem;
+              font-size: 1.2rem;
+            
+            } 
+
+            .whatsapp-button {
+              margin: 40px 0 70px 0;
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+            
+
+}
+
+
+
+          }
+
         }
       }
     }
 
     .footer-imoveis {
       padding: 5px;
+      position: absolute;
+      bottom: 0;
+
       p {
         font-size: 8px;
       }

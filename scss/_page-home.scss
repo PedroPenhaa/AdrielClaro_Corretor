@@ -4,6 +4,21 @@
 }
  */
 
+ // Variáveis de fonte
+$font-title: 'Merriweather', serif;
+$font-text: 'Roboto', sans-serif;
+
+// Aplicando as fontes
+body, button, input, textarea, select {
+    font-family: $font-text;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-title;
+    font-weight: 700; // Peso para títulos mais marcantes
+}
+
+
 // ------------------------------------------ // 
 // ------------------ Body ------------------ //
 // ------------------------------------------ // 
@@ -340,6 +355,7 @@
             color: white;
             font-weight: bold;
             width: 10rem;
+            z-index: 22222222222;
             
         }
         .btn:hover{
@@ -398,7 +414,7 @@
 
           .card {
             max-width: 335px;
-            height: 500px;
+            height: 48s0px;
             .swiper-container {
               width: 350px;
              }
@@ -513,7 +529,9 @@
           flex: 0 0 100%;
           max-width: 100%;
           margin-bottom: 20px;
+    
         }
+    
       }
     }
 
@@ -522,6 +540,9 @@
         .col-md-3 {
           flex: 0 0 25%;
           max-width: 25%;
+          .card{
+            max-height: 480px;
+          }
         }
       }
     }
@@ -587,7 +608,7 @@
       .video {
        
         iframe {
-          height: 40rem;
+          height: 39rem;
           max-width: 500px;
           border: 1px solid #ddd;
           border-radius: 10px;

@@ -123,8 +123,8 @@
                   }
 
                   .swiper-pagination {
-                     margin-top: -50px;
-                 
+                  top: 180px;
+                     position: absolute;
                      .swiper-pagination-bullet {
                  
                         background-color: #000; /* Ajuste a cor dos bullets conforme necessário */
@@ -155,6 +155,7 @@
                      gap: 5rem;
                   }
                   .btn {
+                     z-index: 2030;
                      width: 100%;
                      @include flex(row, center, center);
                      .btn-primary {
