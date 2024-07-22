@@ -285,7 +285,8 @@ $color-control-icon: #333; // Cor dos ícones de navegação
         } */
       }
 
-      .content {height: auto;
+      .content {
+        height: auto;
         overflow-y: auto;
         padding: 2rem;
 
@@ -298,10 +299,15 @@ $color-control-icon: #333; // Cor dos ícones de navegação
         }
 
         #imovel {
+          height: auto;
+          overflow-y: auto;
+          padding: 2rem;
+  
           flex-direction: column;
           padding-left: 0;
           padding-right: 0;
           gap: 20px;
+          margin-top: 30px;
 
           .photos {
             .carousel{
@@ -312,6 +318,13 @@ $color-control-icon: #333; // Cor dos ícones de navegação
             }
           }
 
+          .photos{
+            margin: 120px 0;
+            height: 340px;
+            padding-top: 75px;
+          }
+
+
           .photos,
           .informacoes-imovel {
             width: 100%;
@@ -321,10 +334,13 @@ $color-control-icon: #333; // Cor dos ícones de navegação
             width: 100%;
             min-width: 100%;
             max-width: 100%;
-            height: 250PX;
+            height: 350px;
             margin-top: 30px;
             min-height: auto;
             max-height: auto;
+            border-radius: 20px;
+
+        
 
             
             .carousel-control-prev {
@@ -378,7 +394,7 @@ $color-control-icon: #333; // Cor dos ícones de navegação
 
     .footer-imoveis {
       padding: 5px;
-      position: absolute;
+      position: fixed;
       bottom: 0;
 
       p {
