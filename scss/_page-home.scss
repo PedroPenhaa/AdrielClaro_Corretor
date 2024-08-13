@@ -248,14 +248,16 @@ h1, h2, h3, h4, h5, h6 {
         display: flex;
         justify-content: center;
         margin-bottom: 20px;
+        width: 100%;
       }
 
       .card {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
-        max-width: 300px;
+         min-width: 300px;
+    //    max-width: 300px; 
+        flex-basis: calc(45% - 5px);
         border: 1px solid #ddd;
         border-radius: 10px;
         overflow: hidden;
@@ -413,8 +415,8 @@ h1, h2, h3, h4, h5, h6 {
           margin-bottom: 20px; // Ajustar conforme necessário
 
           .card {
-            max-width: 335px;
-            height: 48s0px;
+           flex-basis: 80%;
+            height: 480px;
             .swiper-container {
               width: 350px;
              }
