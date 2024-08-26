@@ -5,7 +5,7 @@ header {
 
   .custom-header {
     @include flex(row, center, left);
-    padding: 3rem 10rem 10px 10rem;
+    padding: 3rem 5rem 10px 5rem;
     margin-top: -25px;
 
     a {
@@ -38,8 +38,8 @@ header {
 
     .infos {
       @include flex(row, center, space-around);
-      width: 70%;
-      margin-left: 360px;
+      width: 90%;
+      margin-left: 290px;
 
       .links {
         @include flex(row, center, right);
@@ -63,7 +63,7 @@ header {
           list-style: none;
           margin: 0;
           padding: 0;
-          gap: 40px;
+          gap: 30px;
 
           li {
             margin-left: 1rem;
@@ -111,7 +111,7 @@ header {
 
       
       @include flex(row, center, center);
-      padding: 2rem 3rem 1rem 3rem;
+      padding: 2rem 27rem 1rem 13rem;
       margin: 0;
       width: 100%;
 
@@ -120,18 +120,21 @@ header {
         align-items: baseline;
 
         .logo-img {
-          width: 80px;
+          width: 90px;
+          margin-left: 28px;
+          margin-bottom: 5px;
         }
 
         .header-text {
           p {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
+            margin-left: -140px;
           }
         }
       }
 
       .infos {
-       // width: 50%;
+      //  width: 20%;
         margin: 0;
 
         .links {
