@@ -15,13 +15,13 @@ header {
       flex-direction: column;
 
       .logo-img {
-        width: 110px;
+        width: 120px;
         height: auto;
         margin: -8px 0 4px 0;
       }
 
       .header-text {
-        display: flex;
+        display: none;
         flex-direction: column;
         margin-left: 1rem;
         width: 23rem;
@@ -37,13 +37,13 @@ header {
     }
 
     .infos {
-      @include flex(column, center, center);
-      width: 100%;
+      @include flex(row, center, space-around);
+      width: 70%;
+      margin-left: 360px;
 
       .links {
         @include flex(row, center, right);
-        width: 100%;
-        gap: 5rem;
+        gap: 2rem;
 
         a {
           i {
@@ -109,18 +109,15 @@ header {
 
     .custom-header {
 
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 280px;
-      justify-content: space-between;
-
-      @include flex(row, center, left);
+      
+      @include flex(row, center, center);
       padding: 2rem 3rem 1rem 3rem;
       margin: 0;
+      width: 100%;
 
       a {
-        width: 40%;
+        // width: 100%;
+        align-items: baseline;
 
         .logo-img {
           width: 80px;
@@ -134,7 +131,8 @@ header {
       }
 
       .infos {
-        width: 50%;
+       // width: 50%;
+        margin: 0;
 
         .links {
           display: none;
@@ -161,10 +159,10 @@ header {
             gap: 5px;
             align-items: start;
             padding: 2rem 5rem;
-            min-width: 450pc;
-            height: 200px;
+            min-width: 26pc;
+            height: 165px;
             background-color: #000;
-            margin: 5px 0 0 -340px;
+            margin: -5px 0 0 100px;
             z-index: 2024;
           }
 
@@ -172,6 +170,7 @@ header {
 
           .hamburger-menu {
             display: flex;
+            margin-left: 450px;
 
             span {
               background: var(--color-highlight);
