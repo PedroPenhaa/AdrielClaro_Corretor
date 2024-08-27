@@ -184,11 +184,15 @@
                                 <div class="filter-item">
                                     <label for="classification">Classificação do Imóvel</label>
                                     <select name="classification" id="classification">
-                                        <option value="1">Apartamento</option>
-                                        <option value="2">Casa</option>
-                                        <option value="3">Sítio e Chácaras</option>
-                                        <option value="4">Terra</option>
-                                        <option value="5">Terreno</option>
+                                        <optgroup label="Urbano">
+                                            <option value="1">Apartamento</option>
+                                            <option value="2">Casa</option>
+                                            <option value="5">Terreno</option>
+                                        </optgroup>
+                                        <optgroup label="Rural">
+                                            <option value="3">Sítio e Chácaras</option>
+                                            <option value="4">Terra</option>
+                                        </optgroup>
                                     </select>
                                 </div>
                            <!--     <div class="filter-item">
