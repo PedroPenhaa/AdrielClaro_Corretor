@@ -1,5 +1,5 @@
 header {
-  background-color: var(--color-primary);
+  background-color: #0B0A0D;
   height:  125px;
   position: relative; // Necessário para o pseudo-elemento
 
@@ -50,6 +50,10 @@ header {
             font-size: 2rem;
             color: var(--color-highlight);
             text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.2);
+          }
+          i:hover {
+            color: white;
+            text-shadow: 2px 2px 4px var(--color-tertiary);
           }
         }
       }
@@ -161,11 +165,11 @@ header {
             justify-content: center;
             gap: 5px;
             align-items: start;
-            padding: 2rem 5rem;
+            padding: 11rem 3rem;
             min-width: 26pc;
             height: 165px;
             background-color: #000;
-            margin: -5px 0 0 100px;
+            margin: 15px 0 0 63px;
             z-index: 2024;
           }
 
@@ -173,7 +177,7 @@ header {
 
           .hamburger-menu {
             display: flex;
-            margin-left: 415px;
+            margin-left: 333px;
 
             span {
               background: var(--color-highlight);

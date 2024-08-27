@@ -2,6 +2,8 @@
   // Adriel Corretor Colors
   // --primary-yellow: #F6D554;
   --primary-yellow: #C2A242;
+  
+  
   --primary-yellow-light: #FFFFCC;
 
   --light-yellow: #FAE78D;
@@ -18,7 +20,9 @@
   --color-secondary: #3C3428; /* Marrom Escuro, bom para cabeçalhos ou barras de navegação */
   --color-tertiary: #7C6947; /* Marrom Médio, ideal para rodapés e subtítulos */
   --color-highlight: #CBA75C; /* Dourado, perfeito para botões e links */
+  // --color-highlight: #F3D253
   --color-background: #E5E5E5; /* Quase Branco, para fundos e áreas de conteúdo */
+
 
   /* Adicionalmente, você pode querer ter uma cor de fundo mais escura para contrastar */
   --color-dark-background: #252525; /* Cinza Escuro, para fundos alternativos ou seções em destaque */
@@ -97,6 +101,7 @@ $hover-color: lighten($primary-color, 10%); // Azul mais claro para hover
 $text-color: #333; // Cor de texto escuro para melhor legibilidade
 
 
+--primary-yellow-dark:  #F3D253;
 
 
  }

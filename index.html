@@ -97,7 +97,7 @@
                 <div class="infos">
                     <nav>
                         <ul class="nav-links" id="nav-links">
-                            <li><a href="#s__home">Início</a></li>
+                         <!--   <li><a href="#s__home">Início</a></li> -->
                             <li><a href="#s__imoveis">Imóveis</a></li>
                             <li><a href="s__serviços#">Serviços</a></li>
                             <li><a href="#s__sobre">Sobre</a></li>
@@ -191,10 +191,11 @@
                                         <option value="5">Terreno</option>
                                     </select>
                                 </div>
-                                <div class="filter-item">
+                           <!--     <div class="filter-item">
                                     <label for="minValue">Valor mínimo</label>
                                     <input type="text" name="minValue" id="minValue" placeholder="R$ 0,00">
                                 </div>
+                            -->    
                                 <div class="filter-item">
                                     <label for="maxValue">Valor máximo</label>
                                     <input type="text" name="maxValue" id="maxValue" placeholder="R$ 0,00">
@@ -500,6 +501,11 @@
                 const promises = [];
     
                 snapshot.forEach((childSnapshot) => {
+
+                    if (cardIndex >= 6) {
+                return;
+            }
+
                     cardIndex++;
                     const itemId = childSnapshot.key;
                     const data = childSnapshot.val().dados;
