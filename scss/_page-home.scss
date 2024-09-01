@@ -80,13 +80,15 @@ h1, h2, h3, h4, h5, h6 {
 
   h1 {
     color: var(--primary-yellow-dark);
+    width: 110%;
 
     font-size: 4rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.2);
     /* Adiciona sombra ao texto para melhorar a legibilidade */
     font-weight: bold;
     /* Torna o texto mais forte */
-    margin-bottom: 2rem
+    margin-bottom: 2rem;
+    margin-left: -45px;
   }
 
   .filter {
@@ -168,9 +170,10 @@ h1, h2, h3, h4, h5, h6 {
       padding: 1rem;
 
       h1 {
-        margin: -5rem 0 4rem 0;
+        margin: -5rem 0 4rem -11px;
         font-size: 2.8rem;
-        width: 100%;
+        width: 107%;
+        text-align: center;
       }
     }
 
@@ -469,6 +472,7 @@ h1, h2, h3, h4, h5, h6 {
 // ------------------------------------------ // 
 #s__serviços {
   padding: 40px 0;
+  height: 100vh;
 
   .container {
     background-image: url('../assets/bg/bg1.jpg');
@@ -477,6 +481,7 @@ h1, h2, h3, h4, h5, h6 {
     background-repeat: no-repeat;
 
     h2 {
+      margin-top: -20px;
       color: var(--white);
       text-align: center;
     }
@@ -499,7 +504,7 @@ h1, h2, h3, h4, h5, h6 {
           background-color: #ffffff;
           transition: transform 0.3s ease, box-shadow 0.3s ease;
           width: 29.5rem;
-          height: 200px;
+          height: 180px;
           border: 1px solid #ddd;
           border-radius: 10px;
           overflow: hidden;
@@ -592,20 +597,19 @@ h1, h2, h3, h4, h5, h6 {
 // ------------------------------------------ // 
 #s__sobre {
   background-color: var(--color-background);
-
+  height: 100vh;
   padding: 4rem;
 
   .container {
-    width: 80%;
+    width: 100%;
     padding: 0 10rem;
     @include flex(column, center, center);
 
     h2 {
-      margin-left: -10rem;
       width: 100%;
-      text-align: start;
+      text-align: center;
       color: black;
-      margin: 0rem 0px 5rem -10rem;
+      margin: 0rem 0px 5rem 0px;
     }
 
     .sec {
@@ -783,8 +787,9 @@ h1, h2, h3, h4, h5, h6 {
 // ----------------- Contato ---------------- //
 // ------------------------------------------ // 
 #s__contato {
+  height: 100vh;
   background-color: var(--color-background);
-
+  background-color: grey;
   padding: 5rem 0 8rem 0;
 
   .container {
