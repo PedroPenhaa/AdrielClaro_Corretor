@@ -371,9 +371,24 @@
         <!--=====================================================================-->
         <!--=========== Contato  ============-->
         <!--=====================================================================-->
-        <section class="container-fluid" id="s__contato">
+        <section class="container-fluid" id="s__contato" style="
+        
+        background-image: url('./assets/bg/fundomatiz.png');
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+//background-attachment: fixed;
+background-color: rgba(0, 0, 0, 0.3);
+background-blend-mode: overlay;
+padding: 50px 0;
+color: #fff;
+
+        
+            ">
+
             <div class="container">
-                <!--         <h1>Contato</h1> -->
+                <h1>Contato</h1>
+                
                 <div class="sec">
                     <div class="map-container">
                         <h2>Onde me encontrar:</h2>
@@ -383,7 +398,7 @@
 
 
                     <div class="contact-icons">
-                        <p class="lead">Estamos sempre disponíveis para atendê-lo! Para mais informações, entre em
+                        <p class="lead" style="color: white ; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);">Estamos sempre disponíveis para atendê-lo! Para mais informações, entre em
                             contato por um dos nossos canais ou visite nossa loja no endereço abaixo.</p>
                         <div class="icons">
                          
@@ -414,19 +429,35 @@
         <section class="container-fluid" id="s__links">
             <div class="container">
                 <div class="links-imoveis sec">
-                    <h2>Nossas Opções</h2>
-                    <ul>
-                        <li><a href="#">Aluguel</a></li>
-                        <li><a href="#">Venda</a></li>
-                        <li><a href="#">Apartamento</a></li>
-                        <li><a href="#">Casa</a></li>
-                        <li><a href="#">Sítio e Chácaras</a></li>
-                        <li><a href="#">Terra</a></li>
-                        <li><a href="#">Terreno</a></li>
-                    </ul>
+                    <h1>Nossas Opções</h1>
+                    
+                    <div style="width: 100%; display: flex; flex-direction: row; gap: 90px; padding-top: 30px;">
+
+                        <div class="urbano">
+                            <h5>Urbano <style>color: var(--primary-yellow);</style></h5>
+                            <ul>
+                                <li><a href="#">Casas</a></li>
+                                <li><a href="#">Apartamentos</a></li>
+                                <li><a href="#">Terrenos</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="rural">
+                            <h5>Rural</h5>
+                            <ul>
+                                <li><a href="#">Sítios</a></li>
+                                <li><a href="#">Chácaras</a></li>
+                                <li><a href="#">Terras</a></li>
+                            </ul>
+                        </div>
+
+
+                        
+                    </div>
+                    
                 </div>
 
-                <div class="links-uteis sec">
+            <!--     <div class="links-uteis sec">
                     <h2>Links úteis</h2>
                     <ul>
                         <li><a href="#">CREA MG</a></li>
@@ -434,15 +465,21 @@
                         <li><a href="#">Prefeitura de Campestre</a></li>
                         <li><a href="#">Cartório de Registro de Imóveis</a></li>
                     </ul>
-                </div>
+                </div> -->
 
-                <div class="links-campestre sec">
+             <!--    <div class="links-campestre sec">
                     <h2>Campestre - MG</h2>
                     <ul>
                         <li><a href="#">Roteiro Turistico em Campestre</a></li>
                         <li><a href="#">Notícias</a></li>
                     </ul>
-                </div>
+                </div> -->
+
+
+                <a href="./login.html">
+                    <img src="./assets/logos/logo_1.png" alt="Logo" class="logo-img">
+                </a>
+                
             </div>
         </section>
 
