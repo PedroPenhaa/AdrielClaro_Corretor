@@ -58,6 +58,15 @@ function serve() {
   gulp.watch('./*.html').on('change', browserSync.reload);
 }
 
+function html() {
+  return gulp.src('./*.html')
+    .pipe(gulp.dest('dist'));
+}
+
+gulp.task('html', html);
+gulp.task('build', gulp.series(html, styles, scripts));
+
+
 // Definir tarefas
 const build = gulp.series(styles, scripts);
 const dev = gulp.series(build, serve);
