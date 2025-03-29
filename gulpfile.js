@@ -4,6 +4,7 @@ const cleanCSS = require('gulp-clean-css');
 const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const browserSync = require('browser-sync').create();
+const replace = require('gulp-replace');
 
 async function getAutoprefixer() {
   const autoprefixerModule = await import('gulp-autoprefixer');
@@ -85,6 +86,16 @@ function copyJs() {
     .pipe(gulp.dest(paths.js.dest));
 }
 
+// Corrigir caminhos nos arquivos HTML
+function fixPaths() {
+  return gulp.src('dist/**/*.html')
+    .pipe(replace(/href="dist\//g, 'href="'))
+    .pipe(replace(/src="dist\//g, 'src="'))
+    .pipe(replace(/href="\.\//g, 'href="'))
+    .pipe(replace(/src="\.\//g, 'src="'))
+    .pipe(gulp.dest('dist'));
+}
+
 // Servir e observar mudanças nos arquivos
 function serve() {
   browserSync.init({
@@ -109,7 +120,8 @@ function serve() {
 
 // Definir tarefas
 const build = gulp.series(
-  gulp.parallel(styles, scripts, copyHtml, copyAssets, copyCss, copyJs)
+  gulp.parallel(styles, scripts, copyHtml, copyAssets, copyCss, copyJs),
+  fixPaths
 );
 
 const dev = gulp.series(build, serve);
