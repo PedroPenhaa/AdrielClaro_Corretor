@@ -1508,120 +1508,6 @@ function fixAllImageReferences() {
   }
 }
 
-// Modificar o index.html original para incluir links para versões de fallback
-function addFallbackLinksToIndex() {
-  console.log('MODIFICANDO INDEX.HTML PARA INCLUIR LINKS DE FALLBACK');
-  
-  try {
-    const indexPath = path.join(__dirname, 'dist/index.html');
-    if (!fs.existsSync(indexPath)) {
-      console.error('Arquivo index.html não encontrado');
-      return Promise.resolve();
-    }
-    
-    let content = fs.readFileSync(indexPath, 'utf8');
-    
-    // Adicionar script de detecção de falha de imagem e barra de aviso
-    const fallbackScript = `
-    <style>
-      .fallback-bar {
-        display: none;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: #f8bf3c;
-        color: #333;
-        text-align: center;
-        padding: 10px;
-        z-index: 9999;
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
-      }
-      .fallback-bar a {
-        display: inline-block;
-        margin: 0 10px;
-        color: #333;
-        font-weight: bold;
-        text-decoration: underline;
-      }
-    </style>
-    <div class="fallback-bar" id="fallbackBar">
-      <p>Problemas com imagens? Tente nossas versões alternativas: 
-        <a href="/site-garantido.html">Versão Garantida</a> | 
-        <a href="/imagens-diretas.html">Verificar Imagens</a> | 
-        <a href="#" onclick="hideBar()">Fechar</a>
-      </p>
-    </div>
-    <script>
-      // Função para detectar falhas de carregamento de imagens
-      document.addEventListener('DOMContentLoaded', function() {
-        var imageErrors = 0;
-        
-        // Verificar se o background principal está carregando
-        setTimeout(function() {
-          var bgElement = document.querySelector('#s__serviços .container');
-          if (bgElement) {
-            var style = getComputedStyle(bgElement);
-            if (style.backgroundImage === 'none' || style.backgroundImage === '') {
-              console.log('Background não carregou');
-              imageErrors++;
-              showFallbackBar();
-            }
-          }
-        }, 1000);
-        
-        // Verificar todas as imagens
-        var images = document.querySelectorAll('img');
-        images.forEach(function(img) {
-          img.addEventListener('error', function() {
-            imageErrors++;
-            console.log('Erro ao carregar imagem:', img.src);
-            if (imageErrors > 1) {
-              showFallbackBar();
-            }
-          });
-        });
-        
-        // Tenta aplicar o background direto da raiz como último recurso
-        setTimeout(function() {
-          var servicos = document.querySelector('#s__serviços .container');
-          if (servicos) {
-            servicos.style.backgroundImage = 'url(/bg1.jpg)';
-          }
-          
-          // Corrigir logo
-          var logoImg = document.querySelector('img.logo-img');
-          if (logoImg) {
-            logoImg.setAttribute('src', '/logo5.png');
-          }
-        }, 500);
-      });
-      
-      function showFallbackBar() {
-        document.getElementById('fallbackBar').style.display = 'block';
-      }
-      
-      function hideBar() {
-        document.getElementById('fallbackBar').style.display = 'none';
-        return false;
-      }
-    </script>
-    `;
-    
-    // Adicionar o script no final do body
-    content = content.replace('</body>', fallbackScript + '</body>');
-    
-    // Salvar o arquivo modificado
-    fs.writeFileSync(indexPath, content);
-    console.log('Index.html modificado com links de fallback');
-    
-    return Promise.resolve();
-  } catch (error) {
-    console.error('Erro ao adicionar links de fallback:', error);
-    return Promise.resolve();
-  }
-}
-
 // Servir e observar mudanças nos arquivos
 function serve() {
   browserSync.init({
@@ -1662,8 +1548,7 @@ const build = gulp.series(
   copyImagesToRoot,
   createFullEmbeddedHtml,
   createInlineHtml,
-  fixAllImageReferences,
-  addFallbackLinksToIndex
+  fixAllImageReferences
 );
 
 const dev = gulp.series(build, serve);

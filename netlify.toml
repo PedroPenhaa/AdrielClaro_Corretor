@@ -1,19 +1,60 @@
+
+# Configuração otimizada para o Netlify
 [build]
   command = "yarn build"
   publish = "dist"
 
-[build.environment]
-  NODE_VERSION = "18"
-  YARN_VERSION = "1.22.22"
+# Configuração para evitar otimização de imagens
+[build.processing]
+  skip_processing = true
+  
+[build.processing.images]
+  compress = false
 
+# Headers para todos os arquivos
+[[headers]]
+  for = "/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+
+# Headers específicos para assets
+[[headers]]
+  for = "/assets/*"
+    [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Headers para imagens na raiz
+[[headers]]
+  for = "/bg1.jpg"
+    [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/logo5.png"
+    [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Headers para imagens de emergência
+[[headers]]
+  for = "/emergency-assets/*"
+    [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Redirecionamentos para Páginas Alternativas
+[[redirects]]
+  from = "/alternativo"
+  to = "/garantido.html"
+  status = 200
+
+[[redirects]]
+  from = "/emergencia"
+  to = "/site-garantido.html"
+  status = 200
+
+# Redirecionamentos para SPA
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  force = false
-
-[dev]
-  command = "yarn serve"
-  port = 8888
-  targetPort = 3000
-  publish = "dist" 
