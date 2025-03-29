@@ -5,6 +5,8 @@ const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const browserSync = require('browser-sync').create();
 const replace = require('gulp-replace');
+const fs = require('fs');
+const path = require('path');
 
 async function getAutoprefixer() {
   const autoprefixerModule = await import('gulp-autoprefixer');
@@ -88,8 +90,43 @@ function copyJs() {
 
 // Copiar arquivo _redirects e netlify.toml para a pasta dist
 function copyRedirects() {
-  return gulp.src(['dist/_redirects', 'dist/netlify.toml'])
-    .pipe(gulp.dest('dist'));
+  // Conteúdo do arquivo _redirects
+  const redirectsContent = `# Redirects para assets específicos
+/assets/*  /assets/:splat  200
+/css/*     /css/:splat     200
+/js/*      /js/:splat      200
+
+# Redirecionar todas as outras para index.html
+/*          /index.html    200`;
+
+  // Conteúdo do arquivo netlify.toml
+  const netlifyTomlContent = `[[headers]]
+  for = "/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"
+    
+[[headers]]
+  for = "/assets/*"
+    [headers.values]
+    Cache-Control = "public, max-age=31536000"
+    
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200`;
+
+  // Cria o diretório dist se não existir
+  const distDir = path.join(__dirname, 'dist');
+  if (!fs.existsSync(distDir)) {
+    fs.mkdirSync(distDir, { recursive: true });
+  }
+
+  // Escreve os arquivos
+  fs.writeFileSync(path.join(distDir, '_redirects'), redirectsContent);
+  fs.writeFileSync(path.join(distDir, 'netlify.toml'), netlifyTomlContent);
+  
+  console.log('Arquivos _redirects e netlify.toml criados com sucesso na pasta dist');
+  return Promise.resolve();
 }
 
 // Corrigir caminhos nos arquivos HTML
