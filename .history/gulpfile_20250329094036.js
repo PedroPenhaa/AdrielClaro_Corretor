@@ -100,10 +100,7 @@ function copyRedirects() {
 /*          /index.html    200`;
 
   // Conteúdo do arquivo netlify.toml
-  const netlifyTomlContent = `[build]
-  publish = "dist"
-  
-[[headers]]
+  const netlifyTomlContent = `[[headers]]
   for = "/*"
     [headers.values]
     Access-Control-Allow-Origin = "*"
@@ -116,13 +113,7 @@ function copyRedirects() {
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
-  
-[[redirects]]
-  from = "/assets/*"
-  to = "/assets/:splat"
-  status = 200
-`;
+  status = 200`;
 
   // Cria o diretório dist se não existir
   const distDir = path.join(__dirname, 'dist');
@@ -141,17 +132,13 @@ function copyRedirects() {
 // Corrigir caminhos nos arquivos HTML
 function fixPaths() {
   return gulp.src('dist/**/*.html')
-    .pipe(replace(/href="dist\//g, 'href="/'))
-    .pipe(replace(/src="dist\//g, 'src="/'))
-    .pipe(replace(/href="\.\//g, 'href="/'))
-    .pipe(replace(/src="\.\//g, 'src="/'))
-    .pipe(replace(/url\(\.\/assets/g, 'url(/assets'))
-    .pipe(replace(/url\('\.\/assets/g, "url('/assets"))
-    .pipe(replace(/url\(\"\.\/assets/g, 'url("/assets'))
-    .pipe(replace(/src="assets\//g, 'src="/assets/'))
-    .pipe(replace(/href="assets\//g, 'href="/assets/'))
-    .pipe(replace(/src='assets\//g, "src='/assets/"))
-    .pipe(replace(/href='assets\//g, "href='/assets/"))
+    .pipe(replace(/href="dist\//g, 'href="'))
+    .pipe(replace(/src="dist\//g, 'src="'))
+    .pipe(replace(/href="\.\//g, 'href="'))
+    .pipe(replace(/src="\.\//g, 'src="'))
+    .pipe(replace(/url\(\.\/assets/g, 'url(assets'))
+    .pipe(replace(/url\('\.\/assets/g, "url('assets"))
+    .pipe(replace(/url\(\"\.\/assets/g, 'url("assets'))
     .pipe(gulp.dest('dist'));
 }
 
