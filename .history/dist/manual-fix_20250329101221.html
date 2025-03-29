@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solução Imediata - Adriel Claro Corretor</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+    h1 { color: #333; margin-bottom: 30px; }
+    .fix-card { border: 1px solid #ddd; padding: 20px; margin-bottom: 30px; border-radius: 8px; }
+    .fix-card h2 { color: #da9115; margin-top: 0; }
+    .instructions { background: #f9f9f9; padding: 15px; border-radius: 5px; margin: 15px 0; }
+    .code-block { background: #f0f0f0; padding: 15px; font-family: monospace; overflow-x: auto; white-space: pre-wrap; border-radius: 5px; }
+    .btn { display: inline-block; background: #da9115; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 20px; }
+    .image-preview { margin: 20px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background: #f9f9f9; }
+    .image-preview img { max-width: 300px; height: auto; display: block; margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <h1>Solução Imediata para Imagens - Adriel Claro Corretor</h1>
+  
+  <div class="fix-card">
+    <h2>Instruções Rápidas</h2>
+    <p>Esta página oferece soluções prontas para o problema de imagens no seu site no Netlify. Escolha uma das opções abaixo:</p>
+    
+    <div class="instructions">
+      <h3>1. Usar imagens inline</h3>
+      <p>Copie o código abaixo e cole diretamente no seu HTML para substituir as imagens problemáticas:</p>
+      
+      <div class="image-preview">
+        <h4>Logo:</h4>
+        <!-- Logo em base64 será inserido aqui pelo JavaScript -->
+        <div id="logo-container"></div>
+      </div>
+      
+      <div class="image-preview">
+        <h4>Background (visualização):</h4>
+        <!-- Background em base64 será visualizado aqui -->
+        <div id="bg-preview" style="width: 100%; height: 200px; background-size: cover; background-position: center;"></div>
+      </div>
+      
+      <div class="code-block" id="inline-code">
+        <!-- Código com imagens será gerado aqui -->
+        Carregando...
+      </div>
+    </div>
+  </div>
+  
+  <div class="fix-card">
+    <h2>Solução Alternativa - Substituição via JavaScript</h2>
+    <p>Se você preferir, copie este script e cole-o no final do seu HTML, antes do fechamento da tag <code>&lt;/body&gt;</code>:</p>
+    
+    <div class="code-block" id="js-solution">
+      <!-- Solução JavaScript será gerada aqui -->
+      Carregando...
+    </div>
+  </div>
+  
+  <div class="fix-card">
+    <h2>Solução para CSS</h2>
+    <p>Se você quiser corrigir apenas o CSS, copie este código e cole-o no seu arquivo CSS:</p>
+    
+    <div class="code-block" id="css-solution">
+      <!-- Solução CSS será gerada aqui -->
+      Carregando...
+    </div>
+  </div>
+  
+  <a href="/" class="btn">Voltar para o site</a>
+  
+  <script>
+    // Carregar imagens como base64 inline
+    function loadImageAsBase64(url, callback) {
+      const img = new Image();
+      img.crossOrigin = "Anonymous";
+      img.onload = function() {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        const dataURL = canvas.toDataURL();
+        callback(dataURL);
+      };
+      img.onerror = function() {
+        // Fallback para XHR se o carregamento direto falhar
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+          const reader = new FileReader();
+          reader.onloadend = function() {
+            callback(reader.result);
+          };
+          reader.readAsDataURL(xhr.response);
+        };
+        xhr.open('GET', url);
+        xhr.responseType = 'blob';
+        xhr.send();
+      };
+      img.src = url;
+    }
+
+    // Carregar o logo
+    loadImageAsBase64('/assets/logos/logo_5.png', function(logoBase64) {
+      // Inserir o logo na preview
+      const logoImg = document.createElement('img');
+      logoImg.src = logoBase64;
+      logoImg.alt = "Logo Adriel Claro";
+      document.getElementById('logo-container').appendChild(logoImg);
+      
+      // Carregar o background
+      loadImageAsBase64('/assets/bg/bg1.jpg', function(bgBase64) {
+        // Aplicar o background na preview
+        document.getElementById('bg-preview').style.backgroundImage = `url(${bgBase64})`;
+        
+        // Gerar o código inline
+        document.getElementById('inline-code').textContent = 
+`<!-- Logo em base64 -->
+<img src="${logoBase64}" alt="Logo Adriel Claro" style="max-width: 200px; height: auto;">
+
+<!-- Estilo inline para background -->
+<style>
+  #s__serviços .container {
+    background-image: url(${bgBase64}) !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+</style>`;
+        
+        // Gerar a solução JavaScript
+        document.getElementById('js-solution').textContent =
+`<script>
+  // Imagens em base64
+  const logoBase64 = "${logoBase64}";
+  const bgBase64 = "${bgBase64}";
+  
+  // Função para aplicar as imagens
+  function fixImages() {
+    // Substituir o logo
+    document.querySelectorAll('img').forEach(function(img) {
+      const src = img.getAttribute('src');
+      if (src && (src.includes('logo') || img.classList.contains('logo-img'))) {
+        img.src = logoBase64;
+      }
+    });
+    
+    // Substituir o background
+    const container = document.querySelector('#s__serviços .container');
+    if (container) {
+      container.style.backgroundImage = 'url(' + bgBase64 + ')';
+      container.style.backgroundSize = 'cover';
+    }
+    
+    // Substituir outros backgrounds
+    document.querySelectorAll('[style*="background-image"]').forEach(function(el) {
+      const style = getComputedStyle(el).backgroundImage;
+      if (style.includes('bg1.jpg')) {
+        el.style.backgroundImage = 'url(' + bgBase64 + ')';
+      }
+    });
+  }
+  
+  // Executar quando o DOM estiver pronto
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fixImages);
+  } else {
+    fixImages();
+  }
+  
+  // Executar depois de carregar a página
+  window.addEventListener('load', fixImages);
+<\\/script>`;
+        
+        // Gerar a solução CSS
+        document.getElementById('css-solution').textContent =
+`/* CSS com imagens em base64 */
+#s__serviços .container {
+  background-image: url(${bgBase64}) !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.hero-section {
+  background-image: url(${bgBase64}) !important;
+}
+
+/* Adicione mais seletores específicos conforme necessário */`;
+      });
+    });
+  </script>
+</body>
+</html> 

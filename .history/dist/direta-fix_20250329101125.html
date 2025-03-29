@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solução Direta - Adriel Claro Corretor</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    header { background: #000; color: #fff; padding: 15px 0; }
+    .btn { background: #daaf2b; color: #000; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin: 10px 0; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 15px 0; background: #f9f9f9; }
+    .banner { width: 100%; height: 300px; background-size: cover; background-position: center; position: relative; color: white; text-align: center; display: flex; align-items: center; justify-content: center; }
+    .banner h1 { font-size: 2.5em; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+    .code { font-family: monospace; background: #f0f0f0; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    .img-preview { max-width: 300px; margin: 10px 0; border: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Solução Direta para o Problema de Imagens - Adriel Claro Corretor</h1>
+    </div>
+  </header>
+
+  <div class="banner" id="mainBanner">
+    <h1>Conectando Pessoas a Grandes Oportunidades!</h1>
+  </div>
+
+  <div class="container">
+    <h2>Como corrigir o problema de imagens no Netlify</h2>
+    
+    <div class="card">
+      <h3>1. Instruções para cópia manual do logo</h3>
+      <p>Copie este código e cole no seu arquivo HTML logo após a tag <code>&lt;body&gt;</code>:</p>
+      <div class="code" id="logoCode"></div>
+      <p>Visualização do logo:</p>
+      <img src="" alt="Logo" id="logoPreview" class="img-preview">
+    </div>
+
+    <div class="card">
+      <h3>2. Instruções para cópia manual do background</h3>
+      <p>Copie este código e cole no seu arquivo CSS ou HTML:</p>
+      <div class="code" id="bgCode"></div>
+    </div>
+
+    <div class="card">
+      <h3>3. Solução completa</h3>
+      <p>Copie este script e cole no seu arquivo HTML logo antes da tag <code>&lt;/body&gt;</code>:</p>
+      <div class="code" id="fullSolution"></div>
+    </div>
+
+    <a href="/" class="btn">Voltar para o site</a>
+  </div>
+
+  <script>
+    // Carregar imagens de fora de forma cross-origin segura
+    function loadImage(url, callback) {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function() {
+        const reader = new FileReader();
+        reader.onloadend = function() {
+          callback(reader.result);
+        }
+        reader.readAsDataURL(xhr.response);
+      };
+      xhr.open('GET', url);
+      xhr.responseType = 'blob';
+      xhr.send();
+    }
+
+    // Carregar o logo
+    loadImage('/assets/logos/logo_5.png', function(logoDataUri) {
+      // Mostrar preview do logo
+      document.getElementById('logoPreview').src = logoDataUri;
+      
+      // Gerar código HTML com o logo em base64
+      document.getElementById('logoCode').textContent = 
+        `<img src="${logoDataUri}" alt="Logo Adriel Claro Corretor" style="max-width: 200px; height: auto;">`;
+      
+      // Carregar o background
+      loadImage('/assets/bg/bg1.jpg', function(bgDataUri) {
+        // Aplicar no banner
+        document.getElementById('mainBanner').style.backgroundImage = `url(${bgDataUri})`;
+        
+        // Gerar código CSS
+        document.getElementById('bgCode').textContent = 
+          `#s__serviços .container {
+  background-image: url(${bgDataUri}) !important;
+  background-size: cover !important;
+  background-position: center !important;
+}`;
+        
+        // Solução completa
+        document.getElementById('fullSolution').textContent = 
+`<script>
+// Imagens em base64 - geradas automaticamente a partir dos arquivos originais
+const logoDataUri = "${logoDataUri}";
+const bgDataUri = "${bgDataUri}";
+
+// Aplicar as imagens assim que o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', function() {
+  // Substituir o logo
+  const logoElements = document.querySelectorAll('img.logo-img, img[src*="logo_5"]');
+  logoElements.forEach(function(img) {
+    img.src = logoDataUri;
+  });
+
+  // Substituir o background
+  const servicoContainer = document.querySelector('#s__serviços .container');
+  if (servicoContainer) {
+    servicoContainer.style.backgroundImage = 'url(' + bgDataUri + ')';
+    servicoContainer.style.backgroundSize = 'cover';
+  }
+  
+  // Substituir outras imagens de fundo
+  document.querySelectorAll('[style*="bg1.jpg"]').forEach(function(el) {
+    el.style.backgroundImage = 'url(' + bgDataUri + ')';
+  });
+});
+<\\/script>`;
+      });
+    });
+  </script>
+</body>
+</html>

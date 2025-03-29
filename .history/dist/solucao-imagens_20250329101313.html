@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solução para Imagens - Adriel Claro Corretor</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; color: #333; line-height: 1.6; }
+    h1 { color: #333; border-bottom: 2px solid #daaf2b; padding-bottom: 10px; margin-bottom: 20px; }
+    h2, h3 { color: #daaf2b; }
+    .step { margin-bottom: 30px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+    .step p { margin-bottom: 15px; }
+    .input-area { display: flex; margin-bottom: 15px; }
+    .input-area input[type="file"] { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+    .input-area button { padding: 10px 15px; background: #daaf2b; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 10px; }
+    .output { background: #f5f5f5; padding: 15px; border-radius: 4px; }
+    .output pre { margin: 0; white-space: pre-wrap; word-break: break-all; }
+    .preview { margin-top: 15px; padding: 15px; border: 1px solid #ddd; border-radius: 4px; }
+    .preview img { max-width: 100%; height: auto; }
+    .copy-btn { padding: 5px 10px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; }
+    .success { color: green; display: none; }
+    .error { color: red; display: none; }
+    .bg-demo { width: 100%; height: 200px; background-size: cover; background-position: center; margin-top: 10px; }
+    .tabs { display: flex; border-bottom: 1px solid #ddd; margin-bottom: 15px; }
+    .tab { padding: 10px 15px; cursor: pointer; }
+    .tab.active { background: #daaf2b; color: white; border-radius: 4px 4px 0 0; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    textarea { width: 100%; height: 150px; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: monospace; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Solução para Problemas de Imagens - Adriel Claro Corretor</h1>
+  <p>Esta ferramenta vai ajudar a resolver problemas de carregamento de imagens no seu site no Netlify. Siga os passos abaixo:</p>
+
+  <div class="step">
+    <h2>Opção 1: Converter suas imagens para Base64</h2>
+    <p>Selecione uma imagem do seu computador e a ferramenta vai convertê-la para um formato que pode ser incorporado diretamente no seu HTML:</p>
+    
+    <div class="input-area">
+      <input type="file" id="image-input" accept="image/*">
+      <button id="convert-btn">Converter</button>
+    </div>
+    
+    <div class="tabs">
+      <div class="tab active" data-tab="html">HTML</div>
+      <div class="tab" data-tab="css">CSS</div>
+      <div class="tab" data-tab="js">JavaScript</div>
+    </div>
+    
+    <div class="tab-content active" data-tab="html">
+      <h3>Código HTML para incorporar a imagem:</h3>
+      <div class="output">
+        <pre id="html-output">Selecione uma imagem para gerar o código...</pre>
+      </div>
+      <button class="copy-btn" data-target="html-output">Copiar código</button>
+      <span class="success" id="html-success">Copiado!</span>
+    </div>
+    
+    <div class="tab-content" data-tab="css">
+      <h3>Código CSS para usar como background:</h3>
+      <div class="output">
+        <pre id="css-output">Selecione uma imagem para gerar o código...</pre>
+      </div>
+      <button class="copy-btn" data-target="css-output">Copiar código</button>
+      <span class="success" id="css-success">Copiado!</span>
+    </div>
+    
+    <div class="tab-content" data-tab="js">
+      <h3>Código JavaScript para aplicar a imagem dinamicamente:</h3>
+      <div class="output">
+        <pre id="js-output">Selecione uma imagem para gerar o código...</pre>
+      </div>
+      <button class="copy-btn" data-target="js-output">Copiar código</button>
+      <span class="success" id="js-success">Copiado!</span>
+    </div>
+    
+    <div class="preview">
+      <h3>Visualização:</h3>
+      <img id="image-preview" src="" alt="Preview da imagem convertida">
+      <div id="bg-preview" class="bg-demo"></div>
+    </div>
+  </div>
+  
+  <div class="step">
+    <h2>Opção 2: Correção para Imagens Específicas</h2>
+    <p>Copie e cole este código no seu HTML para corrigir as imagens principais do site:</p>
+    
+    <h3>No cabeçalho do HTML (dentro da tag &lt;head&gt;):</h3>
+    <textarea id="header-fix" readonly>
+<!-- Correção para as imagens do Adriel Claro Corretor -->
+<style>
+  /* As imagens serão adicionadas aqui como data URIs quando você acessar o site */
+  #s__serviços .container {
+    background-image: url(/emergency-assets/bg1.jpg) !important;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+</style>
+    </textarea>
+    <button class="copy-btn" data-target="header-fix">Copiar código</button>
+    <span class="success" id="header-fix-success">Copiado!</span>
+    
+    <h3>No final do HTML (antes da tag &lt;/body&gt;):</h3>
+    <textarea id="footer-fix" readonly>
+<!-- Script de correção para imagens -->
+<script>
+  // Este script vai detectar e corrigir imagens quebradas no site
+  document.addEventListener('DOMContentLoaded', function() {
+    // Tentar corrigir o logo
+    var logoElements = document.querySelectorAll('img.logo-img, img[src*="logo"]');
+    logoElements.forEach(function(img) {
+      // Verificar se a imagem está quebrada
+      img.onerror = function() {
+        // Tentar alternativas de caminho
+        var paths = [
+          '/assets/logos/logo_5.png',
+          'assets/logos/logo_5.png',
+          '../assets/logos/logo_5.png',
+          '/emergency-assets/logo_5.png'
+        ];
+        
+        // Tentar cada caminho
+        tryImagePaths(img, paths, 0);
+      };
+      
+      // Forçar recarga da imagem para acionar o evento de erro, se estiver quebrada
+      const currentSrc = img.src;
+      img.src = '';
+      img.src = currentSrc;
+    });
+    
+    // Tentar corrigir o background
+    var servicesContainer = document.querySelector('#s__serviços .container');
+    if (servicesContainer) {
+      servicesContainer.style.backgroundImage = 'url(/emergency-assets/bg1.jpg)';
+      servicesContainer.style.backgroundSize = 'cover';
+    }
+    
+    // Função auxiliar para tentar múltiplos caminhos
+    function tryImagePaths(imgElement, paths, index) {
+      if (index >= paths.length) return; // Acabaram as alternativas
+      
+      imgElement.src = paths[index];
+      imgElement.onerror = function() {
+        tryImagePaths(imgElement, paths, index + 1);
+      };
+    }
+  });
+</script>
+    </textarea>
+    <button class="copy-btn" data-target="footer-fix">Copiar código</button>
+    <span class="success" id="footer-fix-success">Copiado!</span>
+  </div>
+  
+  <div class="step">
+    <h2>Opção 3: Verifique a Estrutura do Site</h2>
+    <p>Certifique-se de que:</p>
+    <ol>
+      <li>Todos os arquivos de imagem estão na pasta <code>dist/assets/</code></li>
+      <li>O netlify.toml está configurado corretamente</li>
+      <li>Nas configurações do Netlify, confirme que o diretório de publicação é <code>dist</code></li>
+      <li>Experimente desativar a otimização de assets no Netlify temporariamente</li>
+    </ol>
+  </div>
+
+  <script>
+    // Função para converter imagem para Base64
+    function convertImageToBase64(file, callback) {
+      const reader = new FileReader();
+      reader.onloadend = function() {
+        callback(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+    
+    // Configurar as abas
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        // Remover classe active de todas as abas
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
+        // Adicionar classe active na aba clicada
+        this.classList.add('active');
+        const tabName = this.getAttribute('data-tab');
+        document.querySelector(`.tab-content[data-tab="${tabName}"]`).classList.add('active');
+      });
+    });
+    
+    // Botão de converter
+    document.getElementById('convert-btn').addEventListener('click', function() {
+      const fileInput = document.getElementById('image-input');
+      if (fileInput.files.length === 0) {
+        alert('Por favor, selecione uma imagem primeiro.');
+        return;
+      }
+      
+      const file = fileInput.files[0];
+      convertImageToBase64(file, function(base64) {
+        // Atualizar a visualização
+        document.getElementById('image-preview').src = base64;
+        document.getElementById('bg-preview').style.backgroundImage = `url(${base64})`;
+        
+        // Atualizar os códigos de saída
+        const fileName = file.name;
+        
+        // HTML
+        document.getElementById('html-output').textContent = 
+          `<!-- Imagem incorporada: ${fileName} -->
+<img src="${base64}" alt="${fileName}" style="max-width: 100%; height: auto;">`;
+        
+        // CSS
+        document.getElementById('css-output').textContent = 
+          `/* Background incorporado: ${fileName} */
+.elemento {
+  background-image: url(${base64});
+  background-size: cover;
+  background-position: center;
+}`;
+        
+        // JavaScript
+        document.getElementById('js-output').textContent = 
+          `// Imagem em base64: ${fileName}
+const imageData = "${base64}";
+
+// Aplicar a imagem a um elemento
+document.querySelector('.target-element').src = imageData;
+
+// OU aplicar como background
+document.querySelector('.bg-element').style.backgroundImage = 'url(' + imageData + ')';`;
+      });
+    });
+    
+    // Botões de copiar
+    document.querySelectorAll('.copy-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        const targetElement = document.getElementById(targetId);
+        
+        // Selecionar o texto
+        const isTextarea = targetElement.tagName === 'TEXTAREA';
+        const text = isTextarea ? targetElement.value : targetElement.textContent;
+        
+        // Copiar para o clipboard
+        navigator.clipboard.writeText(text).then(() => {
+          const successId = targetId + '-success';
+          const successElement = document.getElementById(successId) || 
+                                document.getElementById(targetId.replace('-output', '-success'));
+          
+          if (successElement) {
+            successElement.style.display = 'inline';
+            setTimeout(() => {
+              successElement.style.display = 'none';
+            }, 2000);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html> 
