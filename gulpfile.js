@@ -19,6 +19,22 @@ const paths = {
   scripts: {
     src: 'js/scripts/**/*.js',
     dest: 'dist/js'
+  },
+  assets: {
+    src: 'assets/**/*',
+    dest: 'dist/assets'
+  },
+  html: {
+    src: '*.html',
+    dest: 'dist'
+  },
+  css: {
+    src: 'css/**/*',
+    dest: 'dist/css'
+  },
+  js: {
+    src: 'js/**/*',
+    dest: 'dist/js'
   }
 };
 
@@ -27,7 +43,7 @@ async function styles() {
   const autoprefixer = await getAutoprefixer();
   return gulp.src(paths.styles.src)
     .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(cleanCSS())
     .pipe(sourcemaps.write('.'))
@@ -45,35 +61,66 @@ function scripts() {
     .pipe(browserSync.stream());
 }
 
+// Copiar assets para a pasta dist
+function copyAssets() {
+  return gulp.src(paths.assets.src)
+    .pipe(gulp.dest(paths.assets.dest));
+}
+
+// Copiar arquivos HTML para dist
+function copyHtml() {
+  return gulp.src(paths.html.src)
+    .pipe(gulp.dest(paths.html.dest));
+}
+
+// Copiar arquivos CSS que não são gerados pelo SASS
+function copyCss() {
+  return gulp.src(paths.css.src)
+    .pipe(gulp.dest(paths.css.dest));
+}
+
+// Copiar arquivos JS que não são processados pelo scripts()
+function copyJs() {
+  return gulp.src(['js/**/*', '!js/scripts/**/*'])
+    .pipe(gulp.dest(paths.js.dest));
+}
+
 // Servir e observar mudanças nos arquivos
 function serve() {
   browserSync.init({
     server: {
-      baseDir: './'
-    }
+      baseDir: './',
+      routes: {
+        '/dist': './dist'
+      }
+    },
+    port: 3000,
+    open: true,
+    notify: false
   });
 
   gulp.watch(paths.styles.src, styles);
   gulp.watch(paths.scripts.src, scripts);
-  gulp.watch('./*.html').on('change', browserSync.reload);
+  gulp.watch(paths.html.src, copyHtml).on('change', browserSync.reload);
+  gulp.watch(paths.assets.src, copyAssets).on('change', browserSync.reload);
+  gulp.watch(paths.css.src, copyCss).on('change', browserSync.reload);
+  gulp.watch(['js/**/*', '!js/scripts/**/*'], copyJs).on('change', browserSync.reload);
 }
-
-function html() {
-  return gulp.src('./*.html')
-    .pipe(gulp.dest('dist'));
-}
-
-gulp.task('html', html);
-gulp.task('build', gulp.series(html, styles, scripts));
-
 
 // Definir tarefas
-const build = gulp.series(styles, scripts);
+const build = gulp.series(
+  gulp.parallel(styles, scripts, copyHtml, copyAssets, copyCss, copyJs)
+);
+
 const dev = gulp.series(build, serve);
 
 // Exportar tarefas
 gulp.task('styles', styles);
 gulp.task('scripts', scripts);
+gulp.task('copy-html', copyHtml);
+gulp.task('copy-assets', copyAssets);
+gulp.task('copy-css', copyCss);
+gulp.task('copy-js', copyJs);
 gulp.task('build', build);
 gulp.task('serve', serve);
 gulp.task('default', dev);
@@ -81,6 +128,10 @@ gulp.task('default', dev);
 module.exports = {
   styles,
   scripts,
+  copyHtml,
+  copyAssets,
+  copyCss,
+  copyJs,
   build,
   serve,
   default: dev
