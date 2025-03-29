@@ -86,6 +86,12 @@ function copyJs() {
     .pipe(gulp.dest(paths.js.dest));
 }
 
+// Copiar arquivo _redirects e netlify.toml para a pasta dist
+function copyRedirects() {
+  return gulp.src(['dist/_redirects', 'dist/netlify.toml'])
+    .pipe(gulp.dest('dist'));
+}
+
 // Corrigir caminhos nos arquivos HTML
 function fixPaths() {
   return gulp.src('dist/**/*.html')
@@ -93,7 +99,19 @@ function fixPaths() {
     .pipe(replace(/src="dist\//g, 'src="'))
     .pipe(replace(/href="\.\//g, 'href="'))
     .pipe(replace(/src="\.\//g, 'src="'))
+    .pipe(replace(/url\(\.\/assets/g, 'url(assets'))
+    .pipe(replace(/url\('\.\/assets/g, "url('assets"))
+    .pipe(replace(/url\(\"\.\/assets/g, 'url("assets'))
     .pipe(gulp.dest('dist'));
+}
+
+// Corrigir caminhos nos arquivos CSS
+function fixCssPaths() {
+  return gulp.src('dist/css/**/*.css')
+    .pipe(replace(/url\(\.\.\/assets/g, 'url(assets'))
+    .pipe(replace(/url\('\.\.\/assets/g, "url('assets"))
+    .pipe(replace(/url\(\"\.\.\/assets/g, 'url("assets'))
+    .pipe(gulp.dest('dist/css'));
 }
 
 // Servir e observar mudanças nos arquivos
@@ -121,7 +139,9 @@ function serve() {
 // Definir tarefas
 const build = gulp.series(
   gulp.parallel(styles, scripts, copyHtml, copyAssets, copyCss, copyJs),
-  fixPaths
+  fixPaths,
+  fixCssPaths,
+  copyRedirects
 );
 
 const dev = gulp.series(build, serve);
@@ -133,6 +153,9 @@ gulp.task('copy-html', copyHtml);
 gulp.task('copy-assets', copyAssets);
 gulp.task('copy-css', copyCss);
 gulp.task('copy-js', copyJs);
+gulp.task('fix-paths', fixPaths);
+gulp.task('fix-css-paths', fixCssPaths);
+gulp.task('copy-redirects', copyRedirects);
 gulp.task('build', build);
 gulp.task('serve', serve);
 gulp.task('default', dev);
@@ -144,6 +167,7 @@ module.exports = {
   copyAssets,
   copyCss,
   copyJs,
+  copyRedirects,
   build,
   serve,
   default: dev
