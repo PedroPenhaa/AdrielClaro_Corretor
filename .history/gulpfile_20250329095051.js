@@ -264,25 +264,10 @@ function createPathVerifier() {
 // Adicionar script de correção de paths no HTML
 function addPathFixerScript() {
   return gulp.src('dist/**/*.html')
-    // Adiciona o CSS de correção de backgrounds
-    .pipe(replace('</head>', `
-    <!-- CSS de correção para backgrounds -->
-    <link rel="stylesheet" href="/css/bg-fix.css">
-</head>`))
-    // Adiciona script para corrigir caminhos em runtime
     .pipe(replace('</body>', `
     <script>
       // Script para corrigir caminhos de imagens em tempo de execução
       document.addEventListener('DOMContentLoaded', function() {
-        // Forçar o background para seções problemáticas
-        var servicosContainer = document.querySelector('#s__serviços .container');
-        if (servicosContainer) {
-          servicosContainer.style.backgroundImage = 'url(/assets/bg/bg1.jpg)';
-          servicosContainer.style.backgroundSize = 'cover';
-          servicosContainer.style.backgroundPosition = 'center';
-          servicosContainer.style.backgroundRepeat = 'no-repeat';
-        }
-
         // Corrigir backgrounds no estilo inline
         var elementsWithStyle = document.querySelectorAll('[style*="background-image"]');
         elementsWithStyle.forEach(function(el) {
@@ -300,12 +285,6 @@ function addPathFixerScript() {
             style = style.replace(/url\("assets\//g, 'url("/assets/');
             el.setAttribute('style', style);
           }
-          
-          // Corrigir caso específico de bg1.jpg
-          if (style.includes('bg1.jpg')) {
-            style = style.replace(/url\([^)]*bg1\.jpg\)/g, 'url(/assets/bg/bg1.jpg)');
-            el.setAttribute('style', style);
-          }
         });
 
         // Corrigir imagens src
@@ -314,8 +293,6 @@ function addPathFixerScript() {
           var src = img.getAttribute('src');
           img.setAttribute('src', '/' + src);
         });
-        
-        console.log('Correção de caminhos aplicada com sucesso');
       });
     </script>
 </body>`))
@@ -382,123 +359,6 @@ function fixSpecificBgPaths() {
   }
 }
 
-// Criar arquivo de diagnóstico que lista todas as imagens
-function createImageDiagnostic() {
-  try {
-    // Obter lista de todos os arquivos de imagem em dist/assets
-    const assetsDir = path.join(__dirname, 'dist/assets');
-    const bgDir = path.join(assetsDir, 'bg');
-    const logosDir = path.join(assetsDir, 'logos');
-    
-    let bgFiles = [];
-    let logoFiles = [];
-    
-    if (fs.existsSync(bgDir)) {
-      bgFiles = fs.readdirSync(bgDir)
-        .filter(file => /\.(jpg|jpeg|png|gif|webp)$/i.test(file))
-        .map(file => `/assets/bg/${file}`);
-    }
-    
-    if (fs.existsSync(logosDir)) {
-      logoFiles = fs.readdirSync(logosDir)
-        .filter(file => /\.(jpg|jpeg|png|gif|webp)$/i.test(file))
-        .map(file => `/assets/logos/${file}`);
-    }
-    
-    // Gerar conteúdo HTML
-    const content = `
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diagnóstico de Imagens</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; padding-bottom: 50px; }
-    h1, h2 { color: #333; }
-    .image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
-    .image-item { border: 1px solid #ccc; padding: 10px; border-radius: 8px; }
-    .image-item img { max-width: 100%; height: auto; display: block; margin-bottom: 10px; }
-    .image-item p { margin: 5px 0; font-size: 12px; word-break: break-all; }
-    .success { color: green; }
-    .failure { color: red; }
-    .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ccc; font-style: italic; }
-  </style>
-</head>
-<body>
-  <h1>Diagnóstico de Imagens - Adriel Claro Corretor</h1>
-  
-  <h2>Imagens de Background (${bgFiles.length})</h2>
-  <div class="image-grid">
-    ${bgFiles.map(file => `
-      <div class="image-item">
-        <img src="${file}" alt="${path.basename(file)}" 
-             onerror="this.parentNode.classList.add('failure'); this.style.display='none'; this.nextElementSibling.textContent='⚠️ ERRO AO CARREGAR';" 
-             onload="this.parentNode.classList.add('success');" />
-        <p class="status">Carregando...</p>
-        <p>Caminho: ${file}</p>
-      </div>
-    `).join('')}
-  </div>
-
-  <h2>Logos (${logoFiles.length})</h2>
-  <div class="image-grid">
-    ${logoFiles.map(file => `
-      <div class="image-item">
-        <img src="${file}" alt="${path.basename(file)}" 
-             onerror="this.parentNode.classList.add('failure'); this.style.display='none'; this.nextElementSibling.textContent='⚠️ ERRO AO CARREGAR';" 
-             onload="this.parentNode.classList.add('success');" />
-        <p class="status">Carregando...</p>
-        <p>Caminho: ${file}</p>
-      </div>
-    `).join('')}
-  </div>
-
-  <h2>Teste de CSS Background</h2>
-  <div style="margin: 20px 0; padding: 20px; border: 1px solid #ccc;">
-    <div id="bg-test" style="width: 100%; height: 200px; background-image: url(/assets/bg/bg1.jpg); background-size: cover; background-position: center;"></div>
-    <p>Este elemento deve mostrar o background bg1.jpg</p>
-  </div>
-
-  <div class="footer">
-    <p>Arquivo de diagnóstico gerado por gulpfile.js em ${new Date().toLocaleString()}</p>
-    <p>Se alguma imagem não estiver carregando, verifique:</p>
-    <ul>
-      <li>Se o arquivo existe no caminho correto</li>
-      <li>Se o caminho está sendo referenciado corretamente no CSS/HTML</li>
-      <li>Se há algum problema de permissão ou problemas no Netlify</li>
-    </ul>
-  </div>
-
-  <script>
-    // Verificar se o background está carregando
-    setTimeout(function() {
-      var bgTest = document.getElementById('bg-test');
-      var computedStyle = getComputedStyle(bgTest);
-      var bgImage = computedStyle.backgroundImage;
-      
-      if (bgImage !== 'none' && !bgImage.includes('url("")')) {
-        bgTest.insertAdjacentHTML('afterend', '<p class="success">✅ Background carregado com sucesso: ' + bgImage + '</p>');
-      } else {
-        bgTest.insertAdjacentHTML('afterend', '<p class="failure">⚠️ ERRO: Background não carregado</p>');
-      }
-    }, 1000);
-  </script>
-</body>
-</html>
-    `;
-    
-    // Salvar arquivo
-    fs.writeFileSync(path.join(__dirname, 'dist/imagens-diagnostico.html'), content);
-    console.log('Arquivo de diagnóstico de imagens criado com sucesso');
-    
-    return Promise.resolve();
-  } catch (error) {
-    console.error('Erro ao criar diagnóstico de imagens:', error);
-    return Promise.resolve();
-  }
-}
-
 // Servir e observar mudanças nos arquivos
 function serve() {
   browserSync.init({
@@ -530,7 +390,6 @@ const build = gulp.series(
   createPathVerifier,
   addPathFixerScript,
   fixSpecificBgPaths,
-  createImageDiagnostic,
   copyRedirects
 );
 
