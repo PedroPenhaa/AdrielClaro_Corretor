@@ -91,36 +91,25 @@ function copyJs() {
 // Copiar arquivo _redirects e netlify.toml para a pasta dist
 function copyRedirects() {
   // Conteúdo do arquivo _redirects
-  const redirectsContent = `# Redirects para assets específicos
+  const redirectsContent = `# Regra para assets
 /assets/*  /assets/:splat  200
-/css/*     /css/:splat     200
-/js/*      /js/:splat      200
 
-# Redirecionar todas as outras para index.html
+# Redirect para SPA
 /*          /index.html    200`;
 
   // Conteúdo do arquivo netlify.toml
   const netlifyTomlContent = `[build]
+  command = "yarn gulp build"
   publish = "dist"
-  
-[[headers]]
-  for = "/*"
-    [headers.values]
-    Access-Control-Allow-Origin = "*"
-    
+
 [[headers]]
   for = "/assets/*"
     [headers.values]
     Cache-Control = "public, max-age=31536000"
-    
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
-  
-[[redirects]]
-  from = "/assets/*"
-  to = "/assets/:splat"
   status = 200
 `;
 
@@ -136,6 +125,35 @@ function copyRedirects() {
   
   console.log('Arquivos _redirects e netlify.toml criados com sucesso na pasta dist');
   return Promise.resolve();
+}
+
+// Corrigir caminhos nos arquivos CSS
+function fixCssPaths() {
+  return gulp.src('dist/css/**/*.css')
+    // Corrigir caminhos relativos ../assets para /assets
+    .pipe(replace(/url\(\.\.\/assets/g, 'url(/assets'))
+    .pipe(replace(/url\('\.\.\/assets/g, "url('/assets"))
+    .pipe(replace(/url\(\"\.\.\/assets/g, 'url("/assets'))
+    
+    // Corrigir caminhos assets/ para /assets/
+    .pipe(replace(/url\(assets\//g, 'url(/assets/'))
+    .pipe(replace(/url\('assets\//g, "url('/assets/"))
+    .pipe(replace(/url\(\"assets\//g, 'url("/assets/'))
+    
+    // Corrigir caminhos assets sem barra para /assets
+    .pipe(replace(/url\(assets/g, 'url(/assets'))
+    .pipe(replace(/url\('assets/g, "url('/assets"))
+    .pipe(replace(/url\(\"assets/g, 'url("/assets'))
+    
+    // Corrigir bg1.jpg para /assets/bg/bg1.jpg (casos específicos)
+    .pipe(replace(/url\(\/assets\/bg\/bg1\.jpg/g, 'url(/assets/bg/bg1.jpg'))
+    
+    // Caso extremo: procurar por qualquer url() que não comece com / ou http
+    .pipe(replace(/url\((?!\/|http|data:)([^'"].*?)\)/g, 'url(/$1)'))
+    .pipe(replace(/url\('(?!\/|http|data:)(.*?)'\)/g, "url('/$1')"))
+    .pipe(replace(/url\("(?!\/|http|data:)(.*?)"\)/g, 'url("/$1")'))
+    
+    .pipe(gulp.dest('dist/css'));
 }
 
 // Corrigir caminhos nos arquivos HTML
@@ -155,19 +173,130 @@ function fixPaths() {
     .pipe(gulp.dest('dist'));
 }
 
-// Corrigir caminhos nos arquivos CSS
-function fixCssPaths() {
-  return gulp.src('dist/css/**/*.css')
-    .pipe(replace(/url\(\.\.\/assets/g, 'url(/assets'))
-    .pipe(replace(/url\('\.\.\/assets/g, "url('/assets"))
-    .pipe(replace(/url\(\"\.\.\/assets/g, 'url("/assets'))
-    .pipe(replace(/url\(assets\//g, 'url(/assets/'))
-    .pipe(replace(/url\('assets\//g, "url('/assets/"))
-    .pipe(replace(/url\(\"assets\//g, 'url("/assets/'))
-    .pipe(replace(/url\(assets/g, 'url(/assets'))
-    .pipe(replace(/url\('assets/g, "url('/assets"))
-    .pipe(replace(/url\(\"assets/g, 'url("/assets'))
-    .pipe(gulp.dest('dist/css'));
+// Função para criar um arquivo de debug com as substituições aplicadas
+function createDebugFile() {
+  // Ler o conteúdo do CSS
+  const cssContent = fs.readFileSync(path.join(__dirname, 'dist/css/main.css'), 'utf8');
+  
+  // Lista de padrões para verificar
+  const patterns = [
+    { find: /url\(assets\/bg\/bg1\.jpg\)/g, replace: 'url(/assets/bg/bg1.jpg)' },
+    { find: /url\("assets\/bg\/bg1\.jpg"\)/g, replace: 'url("/assets/bg/bg1.jpg")' },
+    { find: /url\('assets\/bg\/bg1\.jpg'\)/g, replace: "url('/assets/bg/bg1.jpg')" },
+    { find: /background-image\s*:\s*url\([^\/](assets|bg1\.jpg)/g, replace: (match) => match.replace(/url\(/, 'url(/') },
+  ];
+  
+  // Aplicar cada padrão
+  let fixedContent = cssContent;
+  patterns.forEach(pattern => {
+    fixedContent = fixedContent.replace(pattern.find, pattern.replace);
+  });
+  
+  // Verificar se houve alguma mudança
+  if (fixedContent !== cssContent) {
+    fs.writeFileSync(path.join(__dirname, 'dist/css/main.css'), fixedContent);
+    console.log('Correções adicionais de URL aplicadas ao CSS');
+  }
+  
+  return Promise.resolve();
+}
+
+// Criar arquivo de verificação de caminhos
+function createPathVerifier() {
+  // Conteúdo do arquivo de verificação
+  const content = `
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificador de Caminhos</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { color: #333; }
+    .test-item { margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; }
+    .success { color: green; }
+    .failure { color: red; }
+    img { max-width: 100px; max-height: 100px; display: block; margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <h1>Verificador de Caminhos de Imagens</h1>
+  
+  <div class="test-item">
+    <h2>Logo (/assets/logos/logo_5.png)</h2>
+    <img src="/assets/logos/logo_5.png" alt="Logo 5" onerror="this.parentNode.className += ' failure'; this.parentNode.innerHTML += '<p>Erro ao carregar a imagem</p>';" onload="this.parentNode.className += ' success';" />
+  </div>
+  
+  <div class="test-item">
+    <h2>Background (/assets/bg/bg1.jpg)</h2>
+    <img src="/assets/bg/bg1.jpg" alt="Background 1" onerror="this.parentNode.className += ' failure'; this.parentNode.innerHTML += '<p>Erro ao carregar a imagem</p>';" onload="this.parentNode.className += ' success';" />
+  </div>
+
+  <div class="test-item">
+    <h2>Background com CSS</h2>
+    <div id="bg-test" style="width: 100px; height: 100px; background-image: url('/assets/bg/bg1.jpg'); background-size: cover;"></div>
+    <script>
+      setTimeout(function() {
+        var div = document.getElementById('bg-test');
+        var style = getComputedStyle(div);
+        if (style.backgroundImage !== 'none') {
+          div.parentNode.className += ' success';
+          div.parentNode.innerHTML += '<p>Background carregado com sucesso</p>';
+        } else {
+          div.parentNode.className += ' failure';
+          div.parentNode.innerHTML += '<p>Erro ao carregar o background</p>';
+        }
+      }, 1000);
+    </script>
+  </div>
+</body>
+</html>
+  `;
+  
+  // Escrever o arquivo na pasta dist
+  fs.writeFileSync(path.join(__dirname, 'dist/path-verifier.html'), content);
+  console.log('Arquivo de verificação de caminhos criado com sucesso');
+  
+  return Promise.resolve();
+}
+
+// Adicionar script de correção de paths no HTML
+function addPathFixerScript() {
+  return gulp.src('dist/**/*.html')
+    .pipe(replace('</body>', `
+    <script>
+      // Script para corrigir caminhos de imagens em tempo de execução
+      document.addEventListener('DOMContentLoaded', function() {
+        // Corrigir backgrounds no estilo inline
+        var elementsWithStyle = document.querySelectorAll('[style*="background-image"]');
+        elementsWithStyle.forEach(function(el) {
+          var style = el.getAttribute('style');
+          // Corrigir caminhos relativos que não começam com /
+          if (style.includes('url(assets/')) {
+            style = style.replace(/url\(assets\//g, 'url(/assets/');
+            el.setAttribute('style', style);
+          }
+          if (style.includes("url('assets/")) {
+            style = style.replace(/url\('assets\//g, "url('/assets/");
+            el.setAttribute('style', style);
+          }
+          if (style.includes('url("assets/')) {
+            style = style.replace(/url\("assets\//g, 'url("/assets/');
+            el.setAttribute('style', style);
+          }
+        });
+
+        // Corrigir imagens src
+        var images = document.querySelectorAll('img[src^="assets/"]');
+        images.forEach(function(img) {
+          var src = img.getAttribute('src');
+          img.setAttribute('src', '/' + src);
+        });
+      });
+    </script>
+</body>`))
+    .pipe(gulp.dest('dist'));
 }
 
 // Servir e observar mudanças nos arquivos
@@ -197,6 +326,9 @@ const build = gulp.series(
   gulp.parallel(styles, scripts, copyHtml, copyAssets, copyCss, copyJs),
   fixPaths,
   fixCssPaths,
+  createDebugFile,
+  createPathVerifier,
+  addPathFixerScript,
   copyRedirects
 );
 
