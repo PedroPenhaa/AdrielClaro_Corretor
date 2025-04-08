@@ -5,12 +5,12 @@
   "license": "MIT",
   "scripts": {
     "start": "gulp",
-    "build": "node verify.js && gulp build && node build.js",
+    "build": "gulp build && node build.js",
     "serve": "gulp serve",
     "dev": "gulp",
     "clean": "rm -rf dist .vercel/output",
     "rebuild": "yarn clean && yarn build",
-    "verify": "node verify.js"
+    "deploy-prep": "node deploy.js"
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
