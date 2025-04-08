@@ -44,6 +44,7 @@ async function styles() {
   const autoprefixer = await getAutoprefixer();
   return gulp.src(paths.styles.src)
     .pipe(sourcemaps.init())
+    .pipe(replace('../assets/', '../assets/'))
     .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(cleanCSS())
@@ -74,6 +75,10 @@ function copyHtml() {
     .pipe(replace('dist/css/', 'css/'))
     .pipe(replace('dist/js/', 'js/'))
     .pipe(replace('dist/assets/', 'assets/'))
+    .pipe(replace(/src="\.\/(assets\/[^"]+)"/g, 'src="$1"'))
+    .pipe(replace(/url\('\.\/(assets\/[^']+)'\)/g, "url('$1')"))
+    .pipe(replace(/url\("\.\/(assets\/[^"]+)"\)/g, 'url("$1")'))
+    .pipe(replace(/url\(\.\/(assets\/[^)]+)\)/g, 'url($1)'))
     .pipe(gulp.dest(paths.html.dest));
 }
 

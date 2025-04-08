@@ -5,11 +5,12 @@
   "license": "MIT",
   "scripts": {
     "start": "gulp",
-    "build": "gulp build",
+    "build": "gulp build && node deploy.js",
     "serve": "gulp serve",
     "dev": "gulp",
-    "clean": "rm -rf dist",
-    "rebuild": "yarn clean && yarn build"
+    "clean": "rm -rf dist public",
+    "rebuild": "yarn clean && yarn build",
+    "deploy-prep": "node deploy.js"
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
