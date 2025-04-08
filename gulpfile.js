@@ -4,6 +4,7 @@ const cleanCSS = require('gulp-clean-css');
 const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const browserSync = require('browser-sync').create();
+const replace = require('gulp-replace');
 
 async function getAutoprefixer() {
   const autoprefixerModule = await import('gulp-autoprefixer');
@@ -67,9 +68,12 @@ function copyAssets() {
     .pipe(gulp.dest(paths.assets.dest));
 }
 
-// Copiar arquivos HTML para dist
+// Copiar e processar arquivos HTML para dist
 function copyHtml() {
   return gulp.src(paths.html.src)
+    .pipe(replace('dist/css/', 'css/'))
+    .pipe(replace('dist/js/', 'js/'))
+    .pipe(replace('dist/assets/', 'assets/'))
     .pipe(gulp.dest(paths.html.dest));
 }
 
