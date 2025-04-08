@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="dist/css/main.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
@@ -42,15 +42,13 @@
     .whatsapp-icon {
         display: none; /* Esconde o ícone inicialmente */
         margin-bottom: 50px;
-        position: fixed;
-        right: 20px;
-        bottom: 20px;
-        z-index: 1000;
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .whatsapp-icon a {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1000;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    a {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -64,19 +62,20 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação suave para transformação e sombra */
     }
 
-    .whatsapp-icon a:hover {
+    a:hover {
         background-color: #1ebe51; /* Cor levemente mais escura do WhatsApp */
         transform: scale(1.1); /* Aumenta o tamanho do botão em 10% */
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); /* Sombra mais profunda no hover */
     }
 
-    .whatsapp-icon a i {
+    a i {
         font-size: 24px; /* Ajuste o tamanho do ícone conforme necessário */
     }
+}
 
-    .whatsapp-icon.show {
-        display: flex; /* Mostra o ícone quando a classe 'show' é adicionada */
-    }
+.whatsapp-icon.show {
+    display: flex; /* Mostra o ícone quando a classe 'show' é adicionada */
+}
 
 </style>
 
@@ -86,8 +85,8 @@
         <!-- HEADER -->
         <header class="container-fluid">
             <div class="custom-header">
-                <a href="login.html">
-                    <img src="assets/logos/logo_5.png" alt="Logo" class="logo-img">
+                <a href="./login.html">
+                    <img src="./assets/logos/logo_5.png" alt="Logo" class="logo-img">
                     <div class="header-text">
                         <p>ENGENHEIRO CIVIL E CORRETOR DE IMÓVEIS</p>
                         <p>CREA MG 380290 - CRECI 53770</p>
@@ -126,6 +125,14 @@
                         <a href="https://www.google.com/maps?q=Adriel+Claro+-+Engenheiro+Civil+e+Corretor+de+Im%C3%B3veis" target="_blank" class="contact-icon">
                             <i class="fas fa-map-marker-alt fa-2x"></i>
                         </a>
+                        
+                        
+
+         <!--<iframe src="       https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3706.761798261006!2d-46.248704624724354!3d-21.711973080113847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c9f7196d8b6cd5%3A0x6dff564662921397!2sAdriel%20Claro%20-%20Engenheiro%20Civil%20e%20Corretor%20de%20Im%C3%B3veis!5e0!3m2!1spt-BR!2sbr!4v1725194760762!5m2!1spt-BR!2sbr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+-->
+
+
                     </div>
                   
                 </div>
@@ -138,17 +145,30 @@
         <section class="container-fluid" id="s__home">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
+                <!--    <div class="swiper-slide">
                         <div class="overlay"></div>
-                        <img src="assets/bg/bk3.jpg" alt="Background Image">
+                        <img src="./assets/bg/bg-login1.webp" alt="Background Image">
                     </div>
                     <div class="swiper-slide">
                         <div class="overlay"></div>
-                        <img src="assets/bg/bk4.jpg" alt="Background Image">
+                        <img src="./assets/bg/fundo-ajuda1.webp" alt="Background Image">
                     </div>
                     <div class="swiper-slide">
                         <div class="overlay"></div>
-                        <img src="assets/bg/bk5.jpg" alt="Background Image">
+                        <img src="./assets/bg/fundo-ajuda3.webp" alt="Background Image">
+                    </div>
+                    -->
+                    <div class="swiper-slide">
+                        <div class="overlay"></div>
+                        <img src="./assets/bg/bk3.jpg" alt="Background Image">
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="overlay"></div>
+                        <img src="./assets/bg/bk4.jpg" alt="Background Image">
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="overlay"></div>
+                        <img src="./assets/bg/bk5.jpg" alt="Background Image">
                     </div>
                   
                 </div>
@@ -159,8 +179,8 @@
 
             <div class="container">
                 <div class="content-container">
-                    <h1 class="fade-in-left fade-element">Conectando Pessoas a Grandes Oportunidades!</h1>
-                    <div class="filter fade-in-right fade-element">
+                    <h1 class="fade-in-left  fade-element">Conectando Pessoas a Grandes Oportunidades!</h1>
+                    <div class="filter fade-in-right  fade-element">
                         <form action="imoveis.html" method="GET">
                             <div class="filters">
                                 <div class="filter-item">
@@ -175,9 +195,29 @@
                                     <select name="classification" id="classification">
                                         <optgroup label="Urbano">
                                             <option value="1">Casas e Apartamentos</option>
-                                            <option value="5">Terrenos</option>
+<!--                                             <option value="2">Casa</option>
+ -->                                            <option value="5">Terrenos</option>
+                                        </optgroup>
+                                        <optgroup label="Rural">
+                                            <option value="3">Sítios e Chácaras</option>
+                                            <option value="4">Terras</option>
                                         </optgroup>
                                     </select>
+                                </div>
+                           <!--     <div class="filter-item">
+                                    <label for="minValue">Valor mínimo</label>
+                                    <input type="text" name="minValue" id="minValue" placeholder="R$ 0,00">
+                                </div>
+                            -->    
+                                <div class="filter-item">
+                                    <label for="maxValue">Valor máximo</label>
+                                    <input type="text" name="maxValue" id="maxValue" placeholder="R$ 0,00">
+                                </div>
+                                <div class="filter-item">
+                                    <button type="submit" class="btn btn-primary">
+                                        <img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Lupa"
+                                            style="width: 20px;">
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -416,7 +456,7 @@ color: #fff;
                     
                 </div>
 
-             <!--    <div class="links-uteis sec">
+            <!--     <div class="links-uteis sec">
                     <h2>Links úteis</h2>
                     <ul>
                         <li><a href="#">CREA MG</a></li>

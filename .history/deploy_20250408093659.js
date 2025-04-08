@@ -13,23 +13,16 @@ htmlFiles.forEach(file => {
   let content = fs.readFileSync(file, 'utf8');
   
   // Corrige os caminhos para os assets
-  content = content.replace(/src=["']\.\/assets\//g, 'src="assets/');
-  content = content.replace(/href=["']\.\/assets\//g, 'href="assets/');
-  content = content.replace(/url\(['"]?\.\/assets\//g, "url('assets/");
-  content = content.replace(/background-image:\s*url\(['"]\.\/assets\/([^'"]+)['"]\)/g, "background-image: url('assets/$1')");
+  content = content.replace(/src="\.\/assets\//g, 'src="assets/');
+  content = content.replace(/href="\.\/assets\//g, 'href="assets/');
+  content = content.replace(/url\('\.\/assets\//g, "url('assets/");
+  content = content.replace(/background-image:[^;]*url\(['"](\.\/assets\/[^'"]+)['"]\)/g, "background-image: url('assets/$1')");
   
   // Corrige os caminhos CSS
-  content = content.replace(/href=["']dist\/css\//g, 'href="css/');
+  content = content.replace(/href="dist\/css\//g, 'href="css/');
   
   // Corrige os caminhos JS
-  content = content.replace(/src=["']dist\/js\//g, 'src="js/');
-  
-  // Corrige redirecionamentos
-  content = content.replace(/href=["']\.\/([^"']+\.html)["']/g, 'href="$1"');
-  content = content.replace(/window\.location\.href\s*=\s*['"]\.\/([^'"]+)['"];/g, 'window.location.href = "$1";');
-  
-  // Corrige caminhos relativos em estilos inline
-  content = content.replace(/url\(['"]?\.\/([^'"]+)['"]?\)/g, "url('$1')");
+  content = content.replace(/src="dist\/js\//g, 'src="js/');
   
   fs.writeFileSync(path.join('public', file), content);
 });
@@ -45,21 +38,17 @@ function copyDir(src, dest) {
     fs.mkdirSync(dest, { recursive: true });
   }
   
-  try {
-    const entries = fs.readdirSync(src, { withFileTypes: true });
+  const entries = fs.readdirSync(src, { withFileTypes: true });
+  
+  for (let entry of entries) {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
     
-    for (let entry of entries) {
-      const srcPath = path.join(src, entry.name);
-      const destPath = path.join(dest, entry.name);
-      
-      if (entry.isDirectory()) {
-        copyDir(srcPath, destPath);
-      } else {
-        fs.copyFileSync(srcPath, destPath);
-      }
+    if (entry.isDirectory()) {
+      copyDir(srcPath, destPath);
+    } else {
+      fs.copyFileSync(srcPath, destPath);
     }
-  } catch (err) {
-    console.error(`Erro ao copiar diretório ${src}: ${err.message}`);
   }
 }
 
@@ -85,8 +74,5 @@ if (fs.existsSync('dist/js')) {
     copyDir('js', 'public/js');
   }
 }
-
-// Adicionando um arquivo vazio para verificar caminhos
-fs.writeFileSync('public/path-check.txt', 'Path check file to ensure assets are correctly configured in the deployment.');
 
 console.log('Arquivos preparados para deploy na pasta "public"!'); 

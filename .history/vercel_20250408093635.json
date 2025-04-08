@@ -1,0 +1,5 @@
+{
+  "outputDirectory": "dist",
+  "trailingSlash": true,
+  "cleanUrls": true
+} 
